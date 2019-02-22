@@ -1,0 +1,25 @@
+/* pages/info/info.wxss */
+.container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+}
+.info-block{
+  /* display: table;
+  vertical-align: middle;
+  text-align: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 33vh;
+  width: 100vw;
+  border-top: 2px solid rgba(109, 108, 108, 0.507);
+  border-bottom: 2px outset rgba(109, 108, 108, 0.507);
+  background-color: rgba(236, 236, 236, 0.507);
+}
+.info{
+  /* display: table-cell; */
+  vertical-align: middle;
+  text-align: center;
+}

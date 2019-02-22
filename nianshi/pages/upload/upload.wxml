@@ -1,0 +1,24 @@
+<!--pages/upload/upload.wxml-->
+<view class='head-logo'>
+    <image style='width:100px;height:100px' src='/images/icon/login_head.png'></image>
+</view>
+
+<view class='body'>
+  <view class='section'>
+    <view class='input-area'>
+      <input type='text' placeholder='作者名' auto-focus='true' bindinput='getAuthor'></input>
+    </view>
+  </view>
+  <view class='section'>
+    <view class='input-area'>
+      <input type='text' placeholder='密码' password='true' bindinput='getPwd'></input>
+    </view>
+    <view class='error'>{{ error }}</view>
+  </view>
+
+  <view class='section'>
+    <view class='btn-area'>
+      <button type='primary' bindtap='gotologIn'>注册</button>
+    </view>
+  </view>
+  </view>

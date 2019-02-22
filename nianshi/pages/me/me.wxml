@@ -1,0 +1,11 @@
+<!--pages/me/me.wxml-->
+<view class='container'>
+  <navigator class='section' bindtap='f1'>
+    <view class='image-block'>
+      <image style='height:10vh;width:10vh;border-radius: 10px;' src='/images/icon/icon11.png'></image>
+    </view>
+    <view class='section-text'>
+      <text class='content'>我要投稿</text>
+    </view>
+  </navigator>
+</view>

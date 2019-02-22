@@ -26,5 +26,8 @@ App({
    */
   onError: function (msg) {
     
+  },
+  globalData: {
+    openid: null
   }
 })

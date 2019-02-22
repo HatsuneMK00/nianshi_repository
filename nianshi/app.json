@@ -1,5 +1,11 @@
 {
-  "pages":["pages/article/article"],
+  "pages":[
+    "pages/me/me",
+    "pages/article/article",
+    "pages/info/info",
+    
+    "pages/upload/upload"
+    ],
   "window":{
     "navigationBarBackgroundColor": "#99cf66"
   }

@@ -1,0 +1,32 @@
+/* pages/me/me.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  padding-top:40vh;
+  width: 100vw;
+  height: 100vh;
+}
+.section{
+  display: flex;
+  margin: 5px 10px;
+  height: 10vh;
+  width: 100vw
+}
+.image-block{
+  height: 10vh;
+  width: 10vh;
+}
+.section-text{
+  display: flex;
+  width: 100%;
+  height: 10vh;
+  align-items: center;
+  flex-direction: column;
+  padding-right: 5vh;
+}
+.content{
+  vertical-align: middle;
+  line-height: 10vh
+}
