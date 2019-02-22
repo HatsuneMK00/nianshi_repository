@@ -1,0 +1,20 @@
+<!--pages/article/article.wxml-->
+
+<view class='article'>
+  <scroll-view scroll-y="true" style="height: 95vh">
+    <view class='title' style='font-size: {{titleFontSize}};'>
+      <text>{{Test.title}}\n</text>
+    </view>
+    <view class='timeAndAuthor' style='font-size: {{timeAndAuthorSize}}'>
+      <text>{{Test.time}}</text>    
+      <text class='timeAndAuthor-author'>文/{{Test.author}}\n</text>
+    </view>
+    <view>
+      <image class='image' mode="widthFix" src="https://www.nianshi.xyz/imagetest1/2"></image>
+    </view>
+    <view class='content' style='font-size: {{contentFontSize}};'>
+      <text>{{Test.text}}\n</text>
+    </view>
+  </scroll-view>
+</view>
+

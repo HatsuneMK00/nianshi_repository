@@ -1,0 +1,47 @@
+/* pages/article/article.wxss */
+
+page { 
+  overflow:hidden; 
+  position:fixed; 
+  background-image:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550174015464&di=893bbc35cc5e7d69ce5846d5046b9c2b&imgtype=0&src=http%3A%2F%2Fimg.sucaifengbao.com%2Fs%2Fs_017_bEO_4.jpg'); /*背景图 百度上找的，暂直接引用，后将此存储至调用服务器《==================================*/
+  margin: 0px; 
+  background-size: 100% 100%; 
+} 
+
+
+.article{
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.title{
+  text-align: left;
+  font-family: "Times New Roman", "宋体";
+  /* font-size: 42px; */
+  font-weight: 800;
+  color: brown;
+}
+
+.timeAndAuthor{
+  text-align: left;
+  margin-left: 10px;
+  /* font-size: 30px; */
+  opacity: 0.5;
+}
+
+.timeAndAuthor-author{
+  margin-left:50px
+}
+
+.image{
+  width:100vw;
+  object-fit: cover;
+  opacity:0.76;
+}
+
+.content{
+  /* text-indent:2em; */
+  font-family: "Times New Roman", "宋体";
+}
