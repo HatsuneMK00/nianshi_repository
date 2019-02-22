@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href={{ url_for('static',filename='bootstrap.min.css') }}>
+    <title>Login in</title>
+</head>
+<body>
+<p style="text-align: center;font-size: 30px;font-weight: 600;margin: 50px 0;">登陆</p>
+<div style="padding: 40px 50px;font-size: 25px;">
+    <form method="POST" action="login" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="Name">用户名</label>
+            <input type="text" class="form-control" id="Name" name='user' placeholder="用户名">
+        </div>
+        <div class="form-group">
+            <label for="Pwd">密码</label>
+            <input type="password" class="form-control" id="Pwd" name='pwd' placeholder="密码">    {{ error }}
+        </div>
+        <div style="display: table;width: 60%;margin-left: auto;margin-right: auto">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">提交</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upload Test</title>
+    <link rel="stylesheet" href={{ url_for('static',filename='bootstrap.min.css') }}>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">上传</a>
+            </div>
+        </div>
+    </nav>
+    <div style="padding: 90px 50px;font-size: 25px;">
+        <form method="POST" action="/" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Title">标题</label>
+                <input type="text" class="form-control" id="Title" name='title' placeholder="Tilte">
+            </div>
+            <div class="form-group">
+                <label for="Introduction">简介</label>
+                <input type="text" class="form-control" id="Introduction" name='Introduction' placeholder="Introduction">
+            </div>
+            <div class="form-group">
+                <label for="Article">正文</label>
+                <textarea class="form-control" rows="15" id="Article" name='article' placeholder="Article"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Time">年代</label>
+                <select class="form-control" id="Time" name="Time">
+                    <option value="0">1940</option>
+                    <option value="1">1950</option>
+                    <option value="2">1960</option>
+                    <option value="3">1970</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Classification">类别</label>
+                <select class="form-control" id="Classification" name="Classification">
+                    <option value="0">友情</option>
+                    <option value="1">亲情</option>
+                    <option value="2">爱情</option>
+                </select>
+            </div>
+            <div class="form-group" style="font-size: 19px;">
+                <label for="Image">图片</label>
+                <input type="file" multiple="multiple" name="file" id="Image">
+                <p class="help-block">请上传文章图片(可多选)</p>
+            </div>
+            <div style="display: table;width: 60%;margin-left: auto;margin-right: auto">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">提交</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

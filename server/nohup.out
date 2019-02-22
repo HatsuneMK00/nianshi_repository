@@ -1,0 +1,12 @@
+[2019-01-24 22:30:34 +0000] [21668] [INFO] Starting gunicorn 19.9.0
+[2019-01-24 22:30:34 +0000] [21668] [ERROR] Connection in use: ('127.0.0.1', 5000)
+[2019-01-24 22:30:34 +0000] [21668] [ERROR] Retrying in 1 second.
+[2019-01-24 22:30:35 +0000] [21668] [ERROR] Connection in use: ('127.0.0.1', 5000)
+[2019-01-24 22:30:35 +0000] [21668] [ERROR] Retrying in 1 second.
+[2019-01-24 22:30:36 +0000] [21668] [ERROR] Connection in use: ('127.0.0.1', 5000)
+[2019-01-24 22:30:36 +0000] [21668] [ERROR] Retrying in 1 second.
+[2019-01-24 22:30:37 +0000] [21668] [ERROR] Connection in use: ('127.0.0.1', 5000)
+[2019-01-24 22:30:37 +0000] [21668] [ERROR] Retrying in 1 second.
+[2019-01-24 22:30:38 +0000] [21668] [ERROR] Connection in use: ('127.0.0.1', 5000)
+[2019-01-24 22:30:38 +0000] [21668] [ERROR] Retrying in 1 second.
+[2019-01-24 22:30:39 +0000] [21668] [ERROR] Can't connect to ('127.0.0.1', 5000)
