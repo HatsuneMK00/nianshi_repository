@@ -1,2 +1,0 @@
-<!--pages/recommend/recommend.wxml-->
-<button open-type="getUserInfo">获取权限</button>

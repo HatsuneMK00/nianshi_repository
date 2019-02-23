@@ -1,3 +1,0 @@
-<navigator class='image_block' wx:for="{{items}}" url="&year={{item.text}}">
-  <image src="{{item.url}}"></image>
-</navigator>
