@@ -1,0 +1,11 @@
+.image_block{
+  height:24vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image_block image{
+  height: 24vh;
+  width: 100vw;
+}

@@ -1,0 +1,11 @@
+<view class="user_content">
+  <view class="user_head">
+    <view class="user_img domain">
+      <image class="icon-avatar"src="{{avatar}}"></image>
+      <view class="userinfo_name">{{username}}</view>
+    </view>
+  </view>
+</view>
+<navigator class='image_block' wx:for="{{items}}" url="{{ item.url}}">
+  <image class='user_menu'src="{{item.url}}"></image>
+</navigator>
