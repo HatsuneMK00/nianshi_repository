@@ -1,4 +1,4 @@
-// pages/me/me.js
+// pages/list/list.js
 Page({
 
   /**
@@ -12,16 +12,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    wx.cloud.init()
-    wx.cloud.callFunction({
-      name: 'testgetInfo',
-      success: function (res) {
-        that.setData({
-          openid: res.result.info.OPENID
-        })
-        console.log(that.data)
-      }
+    this.setData({
+      id: options.id
     })
   },
 
@@ -72,28 +64,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  f1: function(e){
-    var that = this
-    wx.request({
-      url: 'https://www.nianshi.xyz/getInfo',
-      data: {'openid': that.data.openid},
-      success(res){
-        console.log(res.data)
-        if(res.data['signed'] == 'false')
-        {
-          wx.navigateTo({
-            url: '/pages/upload/upload',
-          })
-        }
-        else
-        {
-          wx.navigateTo({
-            url: '/pages/info/info',
-          })
-        }
-      }
-    })
-    
   }
 })
