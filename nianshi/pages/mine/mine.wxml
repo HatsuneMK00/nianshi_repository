@@ -6,6 +6,6 @@
     </view>
   </view>
 </view>
-<navigator class='image_block' wx:for="{{items}}" url="{{ item.url}}">
+<navigator id="{{index}}" class='image_block' wx:for="{{items}}" catchtap='f1'>
   <image class='user_menu'src="{{item.url}}"></image>
 </navigator>

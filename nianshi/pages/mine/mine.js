@@ -44,4 +44,41 @@ Page({
   onShow: function () {
     console.log("onshow");
   },
+  onLoad: function(){
+    var app = getApp()
+    var that = this
+    wx.cloud.init()
+    wx.cloud.callFunction({
+      name: 'testgetInfo',
+      success: function (res) {
+        that.setData({
+          openid: res.result.info.OPENID
+        })
+        app.globalData.openid = that.data.openid
+      }
+    })
+  },
+  f1: function (e) {
+    if(e.currentTarget.id=="2"){
+      var app = getApp()
+      var that = this
+      wx.request({
+        url: 'https://www.nianshi.xyz/getInfo',
+        data: { 'openid': app.globalData.openid },
+        success(res) {
+          console.log(res)
+          if (res.data['signed'] == 'false') {
+            wx.navigateTo({
+              url: '/pages/upload/upload',
+            })
+          }
+          else {
+            wx.navigateTo({
+              url: '/pages/info/info',
+            })
+          }
+        }
+      })
+    }
+  }
 })

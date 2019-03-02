@@ -12,18 +12,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var app = getApp()
-    var that = this
-    wx.cloud.init()
-    wx.cloud.callFunction({
-      name: 'testgetInfo',
-      success: function (res) {
-        that.setData({
-          openid: res.result.info.OPENID
-        })
-        app.globalData.openid = that.data.openid
-      }
-    })
 
   },
 
