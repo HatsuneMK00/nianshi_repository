@@ -1,3 +1,3 @@
-<navigator class='image_block' wx:for="{{items}}" url="&affair={{item.text}}">
-  <image src="{{item.url}}"></image>
+<navigator class='image_block' wx:for="{{items}}" url="&affair={{item.text}}" wx:for-index="idx">
+  <image src="{{item.url}}" bindtap='bindAffairTap'></image>
 </navigator>

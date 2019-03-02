@@ -1,14 +1,6 @@
-<!--index.wxml-->
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" >
-  <swiper class="swiper-block" previous-margin="90rpx" next-margin="90rpx" current="{{swiperIndex}}" autoplay="{{autoplay}}">
-    <block wx:for="{{imgUrls}}" wx:index="{{index}}">
-      <swiper-item class="swiper-item" bindtap='bindActTap'>
-        <image mode="aspectFill" src="{{item.src}}" class="slide-image {{swiperIndex == index ? 'active' : ''}}" />
-        <view>{{item.text}}</view>
-      </swiper-item>
-    </block>
-  </swiper>                                  
+<!--pages/articleList/articleList.wxml-->
 
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower">
   <view>
     <block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item" bindtap='bindIndexTap'>
@@ -38,7 +30,7 @@
         <view class="feedContent">
           <text>{{item.article_outline}}</text>
           <view class="moreInformation">
-            <image mode="scaleToFill" src='../../images/triangle.png' style='height:30rpx;width:30rpx'></image>
+            <image mode="scaleToFill" src='../../images/triangle.png' style='height:40rpx;width:40rpx'></image>
           </view>
         </view>
       </view>

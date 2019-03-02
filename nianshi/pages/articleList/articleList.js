@@ -1,4 +1,5 @@
-//index.js
+// pages/articleList/articleList.js
+
 
 Page({
   data: {
@@ -13,18 +14,11 @@ Page({
         text: 'This is a topic'
       }
     ],
-    indicatorDots: true,
-    autoplay: true,
     interval: 5000,
     duration: 1000,
     swiperIndex: 0,
     feedIndex: 0,
-    swiperChange(e) {
-      const that = this;
-      that.setData({
-        swiperIndex: e.detail.current,
-      })
-    },
+    topTabItems: ["年","事"],
     feed: [
       {
         article_id: 0,
@@ -75,16 +69,9 @@ Page({
     console.log(e)
   },
   bindIndexTap: function (e) {
-    console.log(e)
-      wx.navigateTo({
-        url: '/pages/article/article',
-      })
-    // wx.switchTab({
-    //   url: '',
-    // })({
-    //   // url: '../article/articleId?id=value'
-    //   url: '/pages/agepage/agepage'
-    // })
+   wx.navigateTo({
+     url: '/pages/article/article',
+   })
   },
   bindLikeTap: function (e) {
     // this.data.good_yet = 1 - this.data.good_yet
@@ -96,11 +83,18 @@ Page({
     // }
     console.log(e)
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: 'https://www.nianshi.xyz/getArticleByAge?age=' + options.id,
+      success(res){
+        console.log(res)
+      }
+    }),
+    console(res.data)
   },
 
   /**
@@ -150,9 +144,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  f1: function (e) {
-    console.log(e)
   }
 })

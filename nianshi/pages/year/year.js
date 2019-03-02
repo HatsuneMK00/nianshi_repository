@@ -60,4 +60,9 @@ Page({
       }
     ],
   },
+  bindYearTap: function(e){
+    wx.navigateTo({
+      url: '/pages/articleList/articleList?id=' + e.target.id,
+    })
+  }
 })

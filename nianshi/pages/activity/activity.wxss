@@ -1,0 +1,53 @@
+.container{
+  height: 1500rpx;
+  padding: 0rpx;
+}
+.classes{
+  background-color:  aliceblue;
+  height: 50rpx;
+}
+.activities{
+  height: 300rpx;
+  width: 750rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2px darkgray groove;
+  position: relative;
+}
+.timeAndHeat{
+  height: 50rpx;
+  font-size: 16px;
+  color: darkgray;
+  position: relative;
+}
+.activityTime{
+  height: 50rpx;
+  font-size: 12px;
+  font-style: italic;
+  position: static;
+  color: dimgray;
+  padding-left: 26rpx;
+}
+.heat{
+  height: 50rpx;
+  font-size: 12px;
+  top:8rpx;
+  left: 500rpx;
+  position: absolute;
+}
+.actImage{
+  height: 250rpx;
+  width: 630rpx;
+  margin: 0rpx 26rpx;
+}
+.actImage image{
+  border-radius: 15rpx;
+}
+.actImage view{
+height: 50rpx;
+position: absolute;
+bottom: 10%;
+left: 30rpx;
+line-height: 60rpx;
+/* text-align: center; */
+z-index: 999;
+}

@@ -1,4 +1,5 @@
 // pages/article/article.js
+
 Page({
 
   /**

@@ -16,4 +16,9 @@ Page({
       }
     ],
   },
+  bindAffairTap: function (e) {
+    wx.navigateTo({
+      url: '/pages/articleList/articleList',
+    })
+  }
 })

@@ -1,14 +1,18 @@
 {
   "pages": [
+    "pages/year/year",
+    "pages/articleList/articleList",
+    "pages/recommend/recommend",
+    
     "pages/mine/mine",
     "pages/me/me",
     "pages/article/article",
     "pages/info/info",
     "pages/upload/upload",
-    "pages/year/year",
-    "pages/affair/affair",
-    "pages/recommend/recommend",
-    "pages/list/list"
+    "pages/activity/activity",
+
+    "pages/affair/affair"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"

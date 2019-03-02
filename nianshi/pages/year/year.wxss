@@ -9,3 +9,10 @@
   height: 24vh;
   width: 100vw;
 }
+
+.image_block .bind{
+  height: 24vh;
+  width: 50vw;
+  position: absolute;
+  left: 45vw;
+}

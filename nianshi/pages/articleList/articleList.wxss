@@ -1,64 +1,24 @@
+/* pages/articleList/articleList.wxss */
 .container{
   height: 1500rpx;
   padding: 0rpx;
 }
-.swiper-block {
-height: 300rpx;
-width: 100%; 
-margin-right: 20rpx;
-margin-top: 20rpx;
-}
-
-.swiper-item {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
-overflow: unset;
-position: relative;
-}
-
-.swiper-item view{
-position: absolute;
-left: 0;
-right: 0;
-bottom: 10%;
-line-height: 60rpx;
-text-align: center;
-z-index: 999;
-}
-
-.slide-image {
-height: 800rpx;
-width: 520rpx;
-border-radius: 9rpx;
-box-shadow: 0px 0px 30rpx rgba(0, 0, 0, 0.2);
-margin: 0rpx 30rpx;
-z-index: 1;
-}
-
-.active {
-transform: scale(1.15);
-transition: all 0.2s ease-in 0s;
-z-index: 20;
-}
-
 .feed-item{
-  width: 630rpx;
-  height: 300rpx;
+  width: 660rpx;
+  height: 240rpx;
   padding: 12rpx 50rpx 0rpx 50rpx;
-  margin: 10rpx 5rpx 7.5rpx 7.5rpx;
+  margin: 0rpx 5rpx 0rpx 0rpx;
   background: #fff;
   border-top: 1px solid rgb(197, 197, 197); 
-  border-left: 1px solid rgb(197, 197, 197);
-  border-right: 1px solid rgb(197, 197, 197);
+  /* border-left: 1px solid rgb(197, 197, 197);
+  border-right: 1px solid rgb(197, 197, 197); */
   border-bottom:3px outset rgba(184, 184, 184, 0.308);
   box-shadow: 0 2px 5px #fff;
-  border-radius: 15rpx;
+  /* border-radius: 15rpx; */
 }
 .feed-source{
   width: 690rpx;
-  height: 250rpx;
+  height: 180rpx;
   /* display: flex; */
   position: relative;
   left: -40rpx;
@@ -66,25 +26,28 @@ z-index: 20;
 .feed-source .pic{
   display: inline-block;
   position: relative;
+  margin-left: 0rpx;
 }
 .feed-source .pic image{
   top: 10rpx;
-  width: 240rpx;
-  height: 240rpx;
+  width: 180rpx;
+  height: 180rpx;
   position: relative;
   border-radius: 15rpx;
 }
 .feed-source .inform{
   display: inline-block;
   position: relative;
-  height: 240rpx;
-  width: 450rpx;
-  top: -50rpx;
+  height: 180rpx;
+  width: 480rpx;
+  top: 0rpx;
+  margin-left: 20rpx;
 }
 .feed-source .inform .title_block{
   margin-right: 10rpx;
   padding-left: 0rpx;
   padding-right: 15rpx;
+  font-size: 16px;
   text-align: center;
   position: relative;
   /*bottom: 10rpx;*/
@@ -96,24 +59,25 @@ z-index: 20;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
 }
 .feed-source .inform .title{
-  height:50rpx;
+  height:40rpx;
   width: 400rpx;
-  line-height: 40rpx;
+  /* line-height: 40rpx; */
   vertical-align: middle;
   /* padding: 20rpx 20rpx 200rpx 20rpx; */
   position: relative;
   /* left: 20rpx; */
-  bottom: 30rpx;
-  color: #a0acac;
-  font-size: 40rpx;
+  bottom: 10rpx;
+  /* color: #a0acac; */
+  font-size: 36rpx;
   font-weight: 300;
   /* text-align: center; */
 }
 .feed-source .inform .block{
   display: inline-block;
-  height: 100rpx;
+  height: 80rpx;
   width: 200rpx;
   position: relative;
   left: 30rpx;
@@ -125,16 +89,17 @@ z-index: 20;
   height: 100rpx;
   width: 200rpx;
   vertical-align: middle;
-  color: #a0acac;
+  /* color: #a0acac; */
   font-size: 34rpx;
   position: relative;
   left: 50rpx;
-  top:1rpx;
+  top:0rpx;
 }
 .feed-source .inform .good{
   height: 100rpx;
   width: 200rpx;
   display: inline-block;
+  margin-top: 15rpx;
 }
 .feed-source .inform .good .block{
   display: inline-block;
@@ -154,7 +119,7 @@ z-index: 20;
 }
 .feed-source .inform .good .block text{
   vertical-align: left;
-  color: #a0acac;
+  /* color: #a0acac; */
   font-size: 32rpx;
   position: relative;
   right: 50rpx;
@@ -172,6 +137,7 @@ z-index: 20;
   vertical-align: middle;
   color: #a0acac;
   font-size: 30rpx;
+  margin-top: 10rpx;
   /* border-bottom: solid;
   border-width: 4rpx;
   border-color: #000000; */
@@ -187,9 +153,8 @@ z-index: 20;
   height:50rpx;
 }
 .feedContent .moreInformation{
-  width: 50rpx;
-  height: 50rpx;
+  width: 30rpx;
+  height: 30rpx;
   float: right;
   left: 600rpx;
 }
-

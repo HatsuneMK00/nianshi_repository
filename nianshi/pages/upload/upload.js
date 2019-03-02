@@ -22,21 +22,9 @@ Page({
           openid: res.result.info.OPENID
         })
         app.globalData.openid = that.data.openid
-
-        wx.request({
-          url: 'https://www.nianshi.xyz/getInfo',
-          data: { 'openid': that.data.openid },
-          success(res) {
-            console.log(res.data)
-            if (res.data['signed'] != 'false') {
-              wx.navigateTo({
-                url: '/pages/info/info',
-              })
-            }
-          }
-        })
       }
     })
+
   },
 
   /**
@@ -94,6 +82,7 @@ Page({
       title: 'loading',
       icon: 'loading',
     })
+    console.log(e)
 
     wx.request({
       url: 'https://www.nianshi.xyz/signUp',
@@ -108,9 +97,6 @@ Page({
           that.setData({
             error: "您已经注册过了"
           })
-          setInterval(wx.navigateTo({
-            url: '/pages/info/info',
-          }), 6000)
         }
         else
         {
