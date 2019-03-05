@@ -6,7 +6,7 @@ import os
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Accounts, Article, Events
+from models import Accounts, Article, Events, ArticleImage
 from flask import jsonify
 from flask import send_file
 from flask_wtf import FlaskForm
@@ -18,10 +18,10 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import settings
 
-engine = settings.DevelopmentConfig.engine
+engine = settings.ProductionConfig.engine
 
 app = Flask(__name__)
-app.config.from_object(settings.DevelopmentConfig)
+app.config.from_object(settings.ProductionConfig)
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
@@ -41,38 +41,43 @@ def multiUpload():
             return redirect(url_for('login'))
     else:
         form = request.form
+        upload_files = request.files.getlist("file")  # 获取到上传文件列表
         author = session['username']
         connect = sessionmaker(bind=engine)
         conn = connect()
         usr = conn.query(Accounts).filter_by(usr_name=author).all()[0]
-        obj1 = Article(title=form['title'], auther=author, numofComment=0, numofLike=0,
-                       describe=form['Introduction'], image=usr.usr_open_id,
-                       time=datetime.now().strftime("%Y-%m-%d"), age=form['Time'], type=form['Classification'], text=form['article'],
-                       investigation=0)
+        article_id = conn.query(Article).count()
+        # 为满足外码约束 文章要先提交
+        obj1 = Article(article_id=article_id, title=form['title'], auther_name=author, like_num=0,
+                       describe=form['Introduction'],usr_open_id=usr.usr_open_id,
+                       time=datetime.now().strftime("%Y-%m-%d"), age=form['Time'], type=form['Classification'],
+                       text=form['article'], image_num=len(upload_files),
+                       passed=1)
         conn.add(obj1)
         conn.commit()
+        conn.close()
 
-        article_num = conn.query(Article).count()
+        connect = sessionmaker(bind=engine)
+        conn = connect()
         # 保存图片
-        # file = request.files['file']
-        upload_files = request.files.getlist("file")
-        file_name = ""
         # 检查合法文件类型 合法文件名 保存至指定位置
+        # 现在不支持在上传文章之后再对图片进行修改
         if len(upload_files) > 0:
             i = 0
             for f in upload_files:
                 if allowed_file(f.filename):
-                    print(allowed_file(f.filename))
-
-                    file_name = str(i) + '_' + str(article_num) + '_' + usr.usr_open_id + '.' + \
+                    file_name = str(i) + '_' + str(article_id) + '.' + \
                                 f.filename.rsplit('.', 1)[1]
-                    i = i + 1
+                    print(article_id)
+                    obj_img = ArticleImage(article_id=article_id, image_id=i, time=datetime.now().strftime("%Y-%m-%d"),
+                                           url=file_name)
                     file_name = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
                     f.save(file_name)
+                    conn.add(obj_img)
+                    conn.commit()
+                    i = i + 1
                 else:
                     return "文件类型错误"
-        print "file upload success"
-        i = 0
         conn.close()
     return "upload complete"
 
@@ -130,12 +135,8 @@ def login():
             else:
                 return render_template('login.html', error="wrong")  # error不能用中文
         else:
+            conn.close()
             return "没有该用户，请去小程序上注册"
-
-
-@app.route('/apitest')
-def apiTest():
-    return jsonify({'name': 'guoxingwu', 'age': '20', 'article': 'null'})
 
 
 @app.route('/imagetest1/<imageid>')
@@ -167,32 +168,13 @@ def articleUpload():
         return "complete"
 
 
-@app.route('/submit', methods=["GET", "POST"])
-def submit():
-    if request.method == "GET":
-        return render_template("multiUpload.html")
-    else:
-        print(request.form['author'])
-        return "success"
-
-
-@app.route('/postTest', methods=["GET", "POST"])
-def postTest():
-    if request.method == "POST":
-        print(request.data)
-        print("post success")
-        return "post success"
-    else:
-        print("something wrong")
-
-
-# articleID = 0
-# @app.route('/getArticleID')
-# def getArticleID():
-#     global articleID
-#     articleID = articleID + 1
-#     req = json.dumps({'articleID':articleID})
-#     return req
+# @app.route('/submit', methods=["GET", "POST"])
+# def submit():
+#     if request.method == "GET":
+#         return render_template("multiUpload.html")
+#     else:
+#         print(request.form['author'])
+#         return "success"
 
 
 # 这里需要处理防止同一个人反复注册 具体实现应该在getinfo中 在显示注册页面时先getinfo 注册过不再显示页面
@@ -200,23 +182,30 @@ def postTest():
 
 @app.route('/signUp', methods=['POST'])
 def signUp():
-    global users
+    # 处理从微信小程序端传来的注册请求
+    result = {}
     if request.method == "POST":
         form = request.json
+        print(form)
         session = sessionmaker(bind=engine)
         sess = session()
         if sess.query(Accounts).filter_by(usr_open_id=form['openid']).count() >= 1:
-            abort(500)
-        else:
-            pwd = generate_password_hash(form['pwd'])
-            obj1 = Accounts(usr_name=form['author'], usr_authority=1, usr_open_id=form['openid'], usr_pwd=pwd)
-            sess.add(obj1)
-            sess.commit()
             sess.close()
-            # print(request.json)
-            # users[request.json['openid']] = request.json
-            # print(users)
-            return "signup success"
+            result['result'] = 'double sign'
+            return jsonify(result)
+        else:
+            if sess.query(Accounts).filter_by(usr_name=form['author']).count() >= 1:
+                sess.close()
+                result['result'] = 'same user name'
+                return jsonify(result)
+            else:
+                pwd = generate_password_hash(form['pwd'])
+                obj1 = Accounts(usr_name=form['author'], usr_authority=1, usr_open_id=form['openid'], usr_pwd=pwd)
+                sess.add(obj1)
+                sess.commit()
+                sess.close()
+                result['result'] = 'success'
+                return jsonify(result)
 
 
 @app.route('/getInfo')
@@ -238,11 +227,12 @@ def getArticleImage():
     article_id = request.args.get('article_id')
     session = sessionmaker(bind=engine)
     sess = session()
-    article = sess.query(Article).filter_by(id=article_id).all()
+    images = sess.query(ArticleImage).filter_by(article_id=article_id).all()
     sess.close()
-    if len(article) != 0:  # 该用户存在即可 同一作者可能存在多篇文章
-        auther_open_id = article[0].image
-        word = image_id + '_' + article_id + '_' + auther_open_id
+    if int(image_id) < len(images):  # 该用户存在即可 同一作者可能存在多篇文章
+        image = images[int(image_id)]
+        word = image.url
+
         print(word)
         print(os.getcwd())
         # windows
@@ -264,7 +254,7 @@ def getArticleImage():
 def getArticleByLike():
     session = sessionmaker(bind=engine)
     sess = session()
-    articles = sess.query(Article).order_by('numofLike desc').all()
+    articles = sess.query(Article).order_by('like_num desc').all()
     article_list = []
     sess.close()
     if len(articles) != 0:
@@ -282,6 +272,7 @@ def getArticleByType():
     sess = session()
     article_list = []
     articles = sess.query(Article).filter_by(type=type).all()
+    sess.close()
     if len(articles) != 0:
         for article in articles:
             article_list.append(article.to_info())
@@ -297,6 +288,7 @@ def getArticleByAge():
     sess = session()
     article_list = []
     articles = sess.query(Article).filter_by(age=age).all()
+    sess.close()
     if len(articles) != 0:
         for article in articles:
             article_list.append(article.to_info())
@@ -307,11 +299,12 @@ def getArticleByAge():
 
 @app.route("/getArticleByAuthor")
 def getArticleByAuthor():
-    age = request.args.get('author_id')
+    author_id = request.args.get('author_id')
     session = sessionmaker(bind=engine)
     sess = session()
     article_list = []
-    articles = sess.query(Article).filter_by().all()
+    articles = sess.query(Article).filter_by(usr_open_id=author_id).all()
+    sess.close()
     if len(articles) != 0:
         for article in articles:
             article_list.append(article.to_info())
@@ -327,7 +320,7 @@ def setLike():
     session = sessionmaker(bind=engine)
     sess = session()
     article = sess.query(Article).get(int(article_id))
-    article.numofLike = int(like)
+    article.like_num = int(like)
     sess.add(article)
     sess.commit()
     sess.close()

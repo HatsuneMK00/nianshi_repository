@@ -4,19 +4,19 @@ Page({
     username: '',
     items: [
       {
-        url: '../../images/sc.png',
+        url: 'https://www.nianshi.xyz/images/sc.png',
         image: 'iconfont icon-sc',
         text: 'sc'
       }, {
-        url: '../../images/ls.png',
+        url: 'https://www.nianshi.xyz/images/ls.png',
         image: 'iconfont icon-ls',
         text: 'ls'
       }, {
-        url: '../../images/tg.png',
+        url: 'https://www.nianshi.xyz/images/tg.png',
         image: 'iconfont icon-tg',
         text: 'tg'
       }, {
-        url: '../../images/fk.png',
+        url: 'https://www.nianshi.xyz/images/fk.png',
         image: 'iconfont icon-fk',
         text: 'fk'
       }
@@ -62,6 +62,7 @@ Page({
     if(e.currentTarget.id=="2"){
       var app = getApp()
       var that = this
+      console.log(app.globalData.openid)
       wx.request({
         url: 'https://www.nianshi.xyz/getInfo',
         data: { 'openid': app.globalData.openid },
