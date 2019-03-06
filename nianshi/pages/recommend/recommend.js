@@ -5,11 +5,11 @@ Page({
     currentNavtab: "0",
     imgUrls: [
       {
-        src: '../../images/red_block.png',
+        src: 'https://www.nianshi.xyz/images/red_block.png',
         text: 'This is a topic'
       },
       {
-        src: '../../images/yellow_block.png',
+        src: 'https://www.nianshi.xyz/images/yellow_block.png',
         text: 'This is a topic'
       }
     ],
@@ -31,7 +31,7 @@ Page({
         article_name: "我们是改革开放的成果",
         author_name: "毕飞宇",
         article_outline: "60一代对改革开放的评论",
-        article_img: "../../images/art1.jpg",
+        article_img: "https://www.nianshi.xyz/images/art1.jpg",
         good_num: "112",
         good_yet: 0,
         comment_num: "18"
@@ -41,7 +41,7 @@ Page({
         article_name: "我的前半生",
         author_name: "青锋",
         article_outline: "一个平凡人真实的生活回忆",
-        article_img: "../../images/art2.jpg",
+        article_img: "https://www.nianshi.xyz/images/art2.jpg",
         good_num: "124",
         good_yet: 0,
         comment_num: "11"
@@ -51,7 +51,7 @@ Page({
         article_name: "我的前半生",
         author_name: "青锋",
         article_outline: "一个平凡人真实的生活回忆",
-        article_img: "../../images/art2.jpg",
+        article_img: "https://www.nianshi.xyz/images/art2.jpg",
         good_num: "124",
         good_yet: 0,
         comment_num: "11"
@@ -61,7 +61,7 @@ Page({
         article_name: "我的前半生",
         author_name: "青锋",
         article_outline: "一个平凡人真实的生活回忆",
-        article_img: "../../images/art2.jpg",
+        article_img: "https://www.nianshi.xyz/images/art2.jpg",
         good_num: "124",
         good_yet: 0,
         comment_num: "11"
@@ -152,7 +152,11 @@ Page({
 
   },
 
-  f1: function (e) {
-    console.log(e)
-  }
+  // upper:function(e){
+
+  // },
+
+  // lower:function(e){
+
+  // }
 })

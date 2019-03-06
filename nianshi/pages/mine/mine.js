@@ -4,19 +4,19 @@ Page({
     username: '',
     items: [
       {
-        url: 'https://www.nianshi.xyz/images/sc.png',
+        url: 'https://www.nianshi.xyz/images/sc.jpg',
         image: 'iconfont icon-sc',
         text: 'sc'
       }, {
-        url: 'https://www.nianshi.xyz/images/ls.png',
+        url: 'https://www.nianshi.xyz/images/ls.jpg',
         image: 'iconfont icon-ls',
         text: 'ls'
       }, {
-        url: 'https://www.nianshi.xyz/images/tg.png',
+        url: 'https://www.nianshi.xyz/images/tg.jpg',
         image: 'iconfont icon-tg',
         text: 'tg'
       }, {
-        url: 'https://www.nianshi.xyz/images/fk.png',
+        url: 'https://www.nianshi.xyz/images/fk.jpg',
         image: 'iconfont icon-fk',
         text: 'fk'
       }
@@ -79,6 +79,12 @@ Page({
             })
           }
         }
+      })
+    }
+    else if (e.currentTarget.id == "0" || e.currentTarget.id == "1" || e.currentTarget.id == "3"){
+      console.log(e.currentTarget.id)
+      wx.navigateTo({
+        url: '/pages/list/list?id=' + e.currentTarget.id,
       })
     }
   }
