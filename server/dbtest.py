@@ -18,10 +18,10 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import settings
 
-engine = settings.ProductionConfig.engine
+engine = settings.DevelopmentConfig.engine
 
 app = Flask(__name__)
-app.config.from_object(settings.ProductionConfig)
+app.config.from_object(settings.DevelopmentConfig)
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
@@ -36,7 +36,7 @@ def allowed_file(filename):
 def multiUpload():
     if request.method == "GET":
         if 'username' in session:
-            return render_template("upload.html")
+            return render_template("upload.html", name=session['username'])
         else:
             return redirect(url_for('login'))
     else:
@@ -49,7 +49,7 @@ def multiUpload():
         article_id = conn.query(Article).count()
         # 为满足外码约束 文章要先提交
         obj1 = Article(article_id=article_id, title=form['title'], auther_name=author, like_num=0,
-                       describe=form['Introduction'],usr_open_id=usr.usr_open_id,
+                       describe=form['Introduction'], usr_open_id=usr.usr_open_id,
                        time=datetime.now().strftime("%Y-%m-%d"), age=form['Time'], type=form['Classification'],
                        text=form['article'], image_num=len(upload_files),
                        passed=1)
@@ -71,7 +71,7 @@ def multiUpload():
                     print(article_id)
                     obj_img = ArticleImage(article_id=article_id, image_id=i, time=datetime.now().strftime("%Y-%m-%d"),
                                            url=file_name)
-                    file_name = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+                    # file_name = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
                     f.save(file_name)
                     conn.add(obj_img)
                     conn.commit()
@@ -120,6 +120,8 @@ def dbtest2_article(articleid):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == "GET":
+        if 'username' in session:
+            session.clear()
         return render_template('login.html')
     else:
         user = request.form.get('user')
