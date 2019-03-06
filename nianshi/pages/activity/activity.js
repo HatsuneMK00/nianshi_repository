@@ -8,13 +8,13 @@ Page({
       {
         time:"2019/9/9~2019/10/10",
         title:"抽奖送郭大佬一只",
-        imgsrc:"../../images/yellow_block.png",
+        imgsrc:"https://www.nianshi.xyz/images/yellow_block.png",
         heat:9999
       },
       {
         time: "2019/10/10~2019/11/11",
         title: "抽奖送胡大佬一只",
-        imgsrc: "../../images/yellow_block.png",
+        imgsrc: "https://www.nianshi.xyz/images/yellow_block.png",
         heat: 9999
       }
     ],
@@ -22,13 +22,13 @@ Page({
       {
         time:"2019/8/8~2019/9/9",
         title: "抽奖送陈大佬一只",
-        imgsrc: "../../images/yellow_block.png",
+        imgsrc: "https://www.nianshi.xyz/images/yellow_block.png",
         heat: 9999
       },
       {
         time:"2019/7/7~2019/8/8",
         title: "抽奖送焦菜鸡一只",
-        imgsrc: "../../images/yellow_block.png",
+        imgsrc: "https://www.nianshi.xyz/images/yellow_block.png",
         heat: 0
       }
     ]

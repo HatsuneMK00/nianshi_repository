@@ -2,15 +2,15 @@ Page({
   data: {
     items: [
       {
-        url: '../../images/qq.png',
+        url: 'https://www.nianshi.xyz/images/qq.png',
         image: 'iconfont icon-qq',
         text: '亲情'
       }, {
-        url: '../../images/yq.png',
+        url: 'https://www.nianshi.xyz/images/yq.png',
         image: 'iconfont icon-yq',
         text: '友情'
       }, {
-        url: '../../images/aq.png',
+        url: 'https://www.nianshi.xyz/images/aq.png',
         image: 'iconfont icon-aq',
         text: '爱情'
       }

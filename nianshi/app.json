@@ -1,49 +1,47 @@
 {
   "pages": [
+    "pages/recommend/recommend",
+    "pages/mine/mine",
     "pages/year/year",
     "pages/articleList/articleList",
-    "pages/recommend/recommend",
-    
-    "pages/mine/mine",
     "pages/me/me",
     "pages/article/article",
     "pages/info/info",
     "pages/upload/upload",
     "pages/activity/activity",
-
-    "pages/affair/affair"
+    "pages/affair/affair",
+    "pages/list/list"
     
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"
   },
   "tabBar": {
-    "color": "grey",
-    "selectedColor": "black",
+    "backgroundColor": "#f7f7fa",
     "list": [
       {
         "pagePath": "pages/recommend/recommend",
-        "text": "荐",
-        "iconPath": "images/re.png",
-        "selectedIconPath": "images/re.png"
+        "text": "推荐",
+        "iconPath": "/images/推.jpg",
+        "selectedIconPath": "/images/推选中.jpg"
       },
       {
         "pagePath": "pages/year/year",
-        "text": "年",
-        "iconPath": "images/ye.png",
-        "selectedIconPath": "images/ye.png"
+        "text": "年代",
+        "iconPath": "/images/年.jpg",
+        "selectedIconPath": "/images/年选中.jpg"
       },
       {
         "pagePath": "pages/affair/affair",
-        "text": "事",
-        "iconPath": "images/af.png",
-        "selectedIconPath": "images/af.png"
+        "text": "事儿",
+        "iconPath": "/images/事.jpg",
+        "selectedIconPath": "/images/事选中.jpg"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我",
-        "iconPath": "images/mi.png",
-        "selectedIconPath": "images/mi.png"
+        "text": "我的",
+        "iconPath": "/images/我.jpg",
+        "selectedIconPath": "/images/我选中.jpg"
       }
     ]
   }

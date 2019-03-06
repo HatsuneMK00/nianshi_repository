@@ -1,88 +1,119 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index, JSON
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index, JSON, VARCHAR, CHAR
 from sqlalchemy import create_engine
+import settings
 
 Base = declarative_base()
-
-# engine = create_engine(
-#     "mysql+pymysql://root:nishikinomaki556@127.0.0.1:3306/dbtest?charset=utf8",
-#     max_overflow=2,
-#     pool_size=5,
-#     pool_timeout=30,
-#     pool_recycle=-1
-# )
-
-
-engine = create_engine(
-    "mysql+pymysql://root:Nianshi-2018@127.0.0.1:3306/dbtest?charset=utf8",
-    max_overflow=2,
-    pool_size=5,
-    pool_timeout=30,
-    pool_recycle=-1
-)
-
+engine = settings.ProductionConfig.engine
 
 class Accounts(Base):
-    __tablename__ = 'Accounts'
-    usr_id = Column(Integer, primary_key=True, autoincrement=True)
-    usr_name = Column(String(128), index=True)
-    usr_open_id = Column(String(128), index=True)
-    usr_pwd = Column(String(128), index=True)
-    usr_liked = Column(String(128))
+    __tablename__ = 'Users'
+    usr_open_id = Column(VARCHAR(50), index=True, primary_key=True)
+    usr_name = Column(VARCHAR(50), index=True)
+    usr_pwd = Column(VARCHAR(200), index=True)
     usr_authority = Column(Integer)
 
     def to_dict(self):
-        return {'usr_id': self.usr_id, 'usr_name': self.usr_name, 'usr_open_id': self.usr_open_id,
-                'usr_pwd': self.usr_pwd, 'usr_liked': self.usr_liked, 'usr_authority': self.usr_authority}
+        return {'usr_name': self.usr_name, 'usr_open_id': self.usr_open_id,
+                'usr_pwd': self.usr_pwd, 'usr_authority': self.usr_authority}
 
 
 class Article(Base):
-    __tablename__ = 'article'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    title = Column(String(128))
-    auther = Column(String(128))
-    auther_id = Column(String(128))
-    numofComment = Column(Integer)
-    numofLike = Column(Integer)
+    __tablename__ = 'Articles'
+    article_id = Column(Integer, primary_key=True, autoincrement=False)
+    title = Column(VARCHAR(50))
+    auther_name = Column(VARCHAR(50))
+    usr_open_id = Column(VARCHAR(50), index=True)
+    like_num = Column(Integer)
     describe = Column(Text(1000))
-    image = Column(String(128))
-    # comments = Column(Text(1000))
     time = Column(String(128))
     age = Column(Integer)
     type = Column(Integer)
     text = Column(Text(10000))
-    investigation = Column(Integer)
-
+    passed = Column(Integer)
+    image_num = Column(Integer)
     def to_dict(self):
-        return {'id': self.id, 'title': self.title, 'author': self.auther, 'author_id': self.auther_id,
-                'numofComment': self.numofComment, 'numofLike': self.numofLike, 'describe': self.describe,
-                'time': self.time, 'age': self.age, 'type': self.type, 'text': self.text, 'image': self.image,
-                'investigation': self.investigation}
+        return {'title': self.title, 'author': self.auther_name, 'author_id': self.usr_open_id,
+                'numofLike': self.like_num, 'describe': self.describe, 'article_id': self.article_id,
+                'time': self.time, 'age': self.age, 'type': self.type, 'text': self.text,
+                'passed': self.passed, 'image_num':self.image_num}
 
     def to_info(self):
         hidden = False
         if len(self.describe) >= 20:
-            print(self.describe)
             hidden = True
-        return {'id': self.id, 'title': self.title, 'author': self.auther, 'author_id': self.auther_id,
-                'numofComment': self.numofComment, 'numofLike': self.numofLike, 'describe': self.describe,
-                'time': self.time, 'age': self.age, 'type': self.type, 'image': self.image, 'needHidden': hidden,
-                'investigation': self.investigation}
+        return {'title': self.title, 'author': self.auther_name, 'author_id': self.usr_open_id,
+                'numofLike': self.like_num, 'describe': self.describe,
+                'time': self.time, 'age': self.age, 'type': self.type, 'needHidden': hidden,
+                'passed': self.passed, 'image_num':self.image_num}
 
 
 class Events(Base):
     __tablename__ = 'Events'
-    event_id = Column(Integer, primary_key=True, autoincrement=True)
-    event_name = Column(String(128))
-    introduction = Column(Text(1000))
-    image = Column(String(128))
-    # comments = Column(Text(1000))
-    start_time = Column(DateTime)
-    terminal_time = Column(DateTime)
+    event_id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+    event_name = Column(VARCHAR(50))
+    introduction = Column(CHAR(100))
+    start_time = Column(VARCHAR(50))
+    end_time = Column(VARCHAR(50))
 
     def to_dict(self):
         return {'event_id': self.event_id, 'event_name': self.event_name, 'introduction': self.introduction,
-                'start_time': self.start_time, 'terminal_time': self.terminal_time}
+                'start_time': self.start_time, 'end_time': self.end_time}
+
+
+class Join(Base):
+    __tablename__ = 'Join'
+    article_id = Column(Integer, ForeignKey('Articles.article_id'), primary_key=True, index=True)
+    event_id = Column(Integer, ForeignKey('Events.event_id'), primary_key=True, index=True)
+    usr_open_id = Column(VARCHAR(50), ForeignKey('Users.usr_open_id'), primary_key=True, index=True)
+
+    def to_dict(self):
+        return {'event_id': self.event_id, 'article_id': self.article_id, 'usr_open_id': self.usr_open_id}
+
+
+class ArticleImage(Base):
+    __tablename__ = 'ArticleImages'
+    article_id = Column(Integer, ForeignKey('Articles.article_id'), primary_key=True)
+    image_id = Column(Integer, primary_key=True)
+    time = Column(VARCHAR(50))
+    url = Column(CHAR(100))
+
+    def to_dict(self):
+        return {'article_id': self.article_id, 'image_id': self.image_id, 'time': self.time, 'url': self.url}
+
+
+class EventImage(Base):
+    __tablename__ = 'EventImages'
+    event_id = Column(Integer, ForeignKey('Articles.article_id'), primary_key=True, index=True)
+    image_id = Column(Integer, primary_key=True)
+    time = Column(VARCHAR(50))
+    url = Column(CHAR(100))
+
+    def to_dict(self):
+        return {'event_id': self.event_id, 'image_id': self.image_id, 'time': self.time, 'url': self.url}
+
+
+class Like(Base):
+    __tablename__ = 'Like'
+    article_id = Column(Integer, ForeignKey('Articles.article_id'), primary_key=True, index=True)
+    usr_open_id = Column(VARCHAR(50), ForeignKey('Users.usr_open_id'), primary_key=True, index=True)
+
+    def to_dict(self):
+        return {'article_id': self.article_id, 'usr_open_id': self.usr_open_id}
+
+
+class Comment(Base):
+    __tablename__ = 'Comments'
+    article_id = Column(Integer, ForeignKey('Articles.article_id'), primary_key=True, index=True)
+    usr_open_id = Column(VARCHAR(50), ForeignKey('Users.usr_open_id'), primary_key=True, index=True)
+    comment = Column(VARCHAR(200))
+    time = Column(VARCHAR(50))
+    comment_id = Column(Integer, primary_key=True, autoincrement=True)
+    like_num = Column(Integer)
+
+    def to_dict(self):
+        return {'article_id': self.article_id, 'usr_open_id': self.usr_open_id, 'comment': self.comment,
+                'time': self.time, 'comment_id': self.comment_id, 'like_num': self.like_num}
 
 
 def init_db():

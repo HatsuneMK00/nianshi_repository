@@ -12,18 +12,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var app = getApp()
-    var that = this
-    wx.cloud.init()
-    wx.cloud.callFunction({
-      name: 'testgetInfo',
-      success: function (res) {
-        that.setData({
-          openid: res.result.info.OPENID
-        })
-        app.globalData.openid = that.data.openid
-      }
-    })
 
   },
 
@@ -83,20 +71,21 @@ Page({
       icon: 'loading',
     })
     console.log(e)
-
+    var app = getApp()
     wx.request({
       url: 'https://www.nianshi.xyz/signUp',
       header: { 'content-type': 'application/json' },
       method: 'POST',
       dataType: 'string',
-      data: { 'openid': that.data.openid, 'articleID': that.data.articleID, 'author': that.data.author, 'pwd': that.data.pwd},
+      data: { 'openid': app.globalData.openid, 'author': that.data.author, 'pwd': that.data.pwd},
       success(res) {
+        console.log(res)
         if(res.statusCode != 200)
         {
-          wx.hideToast()
-          that.setData({
-            error: "您已经注册过了"
-          })
+          // wx.hideToast()
+          // that.setData({
+          //   error: "您已经注册过了"
+          // })
         }
         else
         {
