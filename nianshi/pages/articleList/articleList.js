@@ -91,7 +91,11 @@ Page({
     wx.request({
       url: 'https://www.nianshi.xyz/getArticleByAge?age=' + options.id,
       success(res){
-        console.log(res)
+        console.log(res),
+        res.data[0].age = 1900 + res.data[0].age*10,
+        wx.setNavigationBarTitle({
+          title: '文章~' + res.data[0].age,
+        })
       }
     }),
     console(res.data)
