@@ -10,7 +10,7 @@
       <text class='timeAndAuthor-author'>文/{{Test.author}}\n</text>
     </view>
     <view>
-      <image class='image' mode="widthFix" src="https://www.nianshi.xyz/imagetest1/2"></image>
+      <image class='image' mode="widthFix" src="{{imagesrc}}"></image>
     </view>
     <view class='content' style='font-size: {{contentFontSize}};'>
       <text>{{Test.text}}\n</text>

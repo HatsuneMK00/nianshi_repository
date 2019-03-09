@@ -25,48 +25,13 @@ Page({
         swiperIndex: e.detail.current,
       })
     },
-    feed: [
-      {
-        article_id: 0,
-        article_name: "我们是改革开放的成果",
-        author_name: "毕飞宇",
-        article_outline: "60一代对改革开放的评论",
-        article_img: "https://www.nianshi.xyz/images/art1.jpg",
-        good_num: "112",
-        good_yet: 0,
-        comment_num: "18"
-      },
-      {
-        article_id: 1,
-        article_name: "我的前半生",
-        author_name: "青锋",
-        article_outline: "一个平凡人真实的生活回忆",
-        article_img: "https://www.nianshi.xyz/images/art2.jpg",
-        good_num: "124",
-        good_yet: 0,
-        comment_num: "11"
-      },
-      {
-        article_id: 2,
-        article_name: "我的前半生",
-        author_name: "青锋",
-        article_outline: "一个平凡人真实的生活回忆",
-        article_img: "https://www.nianshi.xyz/images/art2.jpg",
-        good_num: "124",
-        good_yet: 0,
-        comment_num: "11"
-      },
-      {
-        article_id: 3,
-        article_name: "我的前半生",
-        author_name: "青锋",
-        article_outline: "一个平凡人真实的生活回忆",
-        article_img: "https://www.nianshi.xyz/images/art2.jpg",
-        good_num: "124",
-        good_yet: 0,
-        comment_num: "11"
-      }
-    ],
+    
+  },
+  swiperChange(e) {
+    const that = this;
+    that.setData({
+      swiperIndex: e.detail.current,
+    })
   },
   bindActTap: function (e) {
     wx.navigateTo({
@@ -75,17 +40,17 @@ Page({
     console.log(e)
   },
   bindIndexTap: function (e) {
-    console.log(e)
-      wx.navigateTo({
-        url: '/pages/article/article',
-      })
+    console.log(e);
+    wx.navigateTo({
+      url: '/pages/article/article?id=' + e.currentTarget.id
+    })
+  },
     // wx.switchTab({
     //   url: '',
     // })({
     //   // url: '../article/articleId?id=value'
     //   url: '/pages/agepage/agepage'
     // })
-  },
   bindLikeTap: function (e) {
     // this.data.good_yet = 1 - this.data.good_yet
     // if(this.data.good_yet == 1){
@@ -100,7 +65,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let pages = getCurrentPages();
+    let prevpage = pages[pages.length - 2];
+    var that = this;
+    wx.request({
+      url: 'https://www.nianshi.xyz/getArticleByLike',
+      success(res) {
+        console.log(res)
+        var articles = [];
+        for (var i = 0; i < res.data.length; i++) {
+          articles.push(res.data[i]);
+          articles[i].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
+          that.setData({
+            articles
+          })
+        }
+        console.log(articles)
+      }
+    })
   },
 
   /**
