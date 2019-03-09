@@ -261,7 +261,9 @@ def getArticleByLike():
     sess.close()
     if len(articles) != 0:
         for article in articles:
-            article_list.append(article.to_info())
+            temp = article.to_info()
+            temp['article_id'] = article.article_id
+            article_list.append(temp)
     else:
         return "seems like there is no article"
     return jsonify(article_list)
@@ -270,14 +272,19 @@ def getArticleByLike():
 @app.route("/getArticleByType")
 def getArticleByType():
     type = request.args.get('type')
+    openid = request.args.get('openid')
     session = sessionmaker(bind=engine)
     sess = session()
     article_list = []
     articles = sess.query(Article).filter_by(type=type).all()
+    for article in articles:
+        usrs = sess.query().filter_by()
     sess.close()
     if len(articles) != 0:
         for article in articles:
-            article_list.append(article.to_info())
+            temp = article.to_info()
+            temp['article_id'] = article.article_id
+            article_list.append(temp)
     else:
         return "no such article"
     return jsonify(article_list)
@@ -293,7 +300,9 @@ def getArticleByAge():
     sess.close()
     if len(articles) != 0:
         for article in articles:
-            article_list.append(article.to_info())
+            temp = article.to_info()
+            temp['article_id'] = article.article_id
+            article_list.append(temp)
     else:
         return "no such article"
     return jsonify(article_list)
@@ -309,7 +318,9 @@ def getArticleByAuthor():
     sess.close()
     if len(articles) != 0:
         for article in articles:
-            article_list.append(article.to_info())
+            temp = article.to_info()
+            temp['article_id'] = article.article_id
+            article_list.append(temp)
     else:
         return "no such article"
     return jsonify(article_list)
