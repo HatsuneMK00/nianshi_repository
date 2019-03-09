@@ -28,6 +28,6 @@ App({
     
   },
   globalData: {
-    openid: null
+    openid: null,
   }
 })

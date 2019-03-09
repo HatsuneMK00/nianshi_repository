@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/recommend/recommend",
+    
     "pages/mine/mine",
+    "pages/authorize/authorize",
+    "pages/recommend/recommend",
     "pages/year/year",
     "pages/articleList/articleList",
     "pages/me/me",
