@@ -4,97 +4,66 @@
 Page({
   data: {
     currentNavtab: "0",
-    imgUrls: [
-      {
-        src: 'https://www.nianshi.xyz/images/red_block.png',
-        text: 'This is a topic'
-      },
-      {
-        src: 'https://www.nianshi.xyz/images/yellow_block.png',
-        text: 'This is a topic'
-      }
-    ],
     interval: 5000,
     duration: 1000,
     swiperIndex: 0,
     feedIndex: 0,
-    topTabItems: ["年","事"],
-    feed: [
-      {
-        article_id: 0,
-        article_name: "我们是改革开放的成果",
-        author_name: "毕飞宇",
-        article_outline: "60一代对改革开放的评论",
-        article_img: "https://www.nianshi.xyz/images/art1.jpg",
-        good_num: "112",
-        good_yet: 0,
-        comment_num: "18"
-      },
-      {
-        article_id: 1,
-        article_name: "我的前半生",
-        author_name: "青锋",
-        article_outline: "一个平凡人真实的生活回忆",
-        article_img: "https://www.nianshi.xyz/images/art2.jpg",
-        good_num: "124",
-        good_yet: 0,
-        comment_num: "11"
-      },
-      {
-        article_id: 2,
-        article_name: "我的前半生",
-        author_name: "青锋",
-        article_outline: "一个平凡人真实的生活回忆",
-        article_img: "https://www.nianshi.xyz/images/art2.jpg",
-        good_num: "124",
-        good_yet: 0,
-        comment_num: "11"
-      },
-      {
-        article_id: 3,
-        article_name: "我的前半生",
-        author_name: "青锋",
-        article_outline: "一个平凡人真实的生活回忆",
-        article_img: "https://www.nianshi.xyz/images/art2.jpg",
-        good_num: "124",
-        good_yet: 0,
-        comment_num: "11"
-      }
-    ],
-  },
-  bindActTap: function (e) {
-    wx.navigateTo({
-      url: '/pages/activity/activity',
-    })
-    console.log(e)
   },
   bindIndexTap: function (e) {
+    console.log(e);
    wx.navigateTo({
-     url: '/pages/article/article',
+     url: '/pages/article/article?id=' + e.currentTarget.id
    })
   },
-  bindLikeTap: function (e) {
-    // this.data.good_yet = 1 - this.data.good_yet
-    // if(this.data.good_yet == 1){
-    //   this.data.good_num = this.data.good_num + 1
-    // }
-    // else{
-    //   this.data.good_num = this.data.good_num - 1
-    // }
-    console.log(e)
-  },
+  // bindLikeTap: function (e) {
+  //   this.data[idx].good_yet = 1 - this.data[idx].good_yet
+  //   if(this.data.good_yet == 1){
+  //     this.data.good_num = this.data.good_num + 1
+  //   }
+  //   else{
+  //     this.data.good_num = this.data.good_num - 1
+  //   }
+  //   console.log(e)
+  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let pages = getCurrentPages();
+    let prevpage = pages[pages.length - 2];
+    var method ='getArticleByAge?age=';
+    var types = ['亲情','友情','爱情'];
+    if(prevpage.route=='pages/year/year'){
+      method = 'getArticleByAge?age='
+    }
+    else{
+      method = 'getArticleByType?type=';
+    }
+    var that = this;
     wx.request({
-      url: 'https://www.nianshi.xyz/getArticleByAge?age=' + options.id,
+      url: 'https://www.nianshi.xyz/' + method + options.id,
       success(res){
         console.log(res)
+        if (method == 'getArticleByAge?age='){
+          wx.setNavigationBarTitle({
+            title: '文章~' + options.id})
+        }
+        else{
+          wx.setNavigationBarTitle({
+            title: '文章~' + types[options.id]})
+        }
+         var articles = [];
+      for(var i = 0; i < res.data.length; i++){
+        articles.push(res.data[i]);
+        articles[i].imagesrc ="https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
+        that.setData({
+          articles
+        })
+        }
+        console.log(articles)
       }
-    }),
-    console(res.data)
+    })
   },
 
   /**

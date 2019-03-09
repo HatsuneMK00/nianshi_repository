@@ -1,4 +1,4 @@
-<navigator class='image_block' wx:for="{{items}}" url="&year={{item.text}}">
+<navigator class='image_block' wx:for="{{items}}">
   <image src="{{item.url}}"></image>
   <view id="{{index}}" class="bind" bindtap='bindYearTap'></view>
 </navigator>
