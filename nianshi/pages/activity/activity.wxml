@@ -2,7 +2,7 @@
 <scroll-view scroll-y="true" class="container" >
   <view>
     <view class='classes'>
-      <image src='/images/going.png' mode='scaleToFill'/>
+      <image src='https://www.nianshi.xyz/images/going.png' mode='scaleToFill'/>
     </view>
     <block wx:for="{{ongoingActivities}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class='activities'>
@@ -35,7 +35,7 @@
   </view>
   <view>
     <view class='classes'>
-      <image src='/images/end.png' mode='scaleToFill'/>
+      <image src='https://www.nianshi.xyz/images/end.png' mode='scaleToFill'/>
     </view>
      <block wx:for="{{ongoingActivities}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class='activities'>

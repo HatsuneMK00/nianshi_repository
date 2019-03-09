@@ -10,7 +10,7 @@ Page({
         title:"春天的故事",
         subtitle:"又是一年春来到",
         // imgsrc:"https://www.nianshi.xyz/images/yellow_block.png",
-        imgsrc:"/images/spring.jpg",
+        imgsrc:"https://www.nianshi.xyz/images/spring.jpg",
         heat:9999,
         describe:"我们与春天的故事。",
         phase:"01"
@@ -20,7 +20,7 @@ Page({
         title: "乡愁情怀",
         subtitle:"记忆中不变的眷念",
         // imgsrc: "https://www.nianshi.xyz/images/yellow_block.png",
-        imgsrc:"/images/act2.jpg",
+        imgsrc:"https://www.nianshi.xyz/images/act2.jpg",
         heat: 9999,
         describe:"乡愁是母亲的一碗面，是老家的一棵树，还是那一句熟悉的呼唤？",
         phase:"02"
