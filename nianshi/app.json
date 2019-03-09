@@ -2,6 +2,8 @@
   "pages": [
     "pages/recommend/recommend",
     "pages/mine/mine",
+    "pages/authorize/authorize",
+    
     "pages/year/year",
     "pages/articleList/articleList",
     "pages/me/me",

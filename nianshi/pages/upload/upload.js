@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -70,7 +70,6 @@ Page({
       title: 'loading',
       icon: 'loading',
     })
-    console.log(e)
     var app = getApp()
     wx.request({
       url: 'https://www.nianshi.xyz/signUp',
