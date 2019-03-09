@@ -29,5 +29,6 @@ App({
   },
   globalData: {
     openid: null,
+    asked: false
   }
 })

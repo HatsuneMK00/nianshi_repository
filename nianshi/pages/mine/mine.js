@@ -24,12 +24,42 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
+    var app = getApp();
+    wx.cloud.init()
+    wx.cloud.callFunction({
+      name: 'testgetInfo',
+      success: function (res) {
+        that.setData({
+          openid: res.result.info.OPENID,
+          test:"omg"
+        })
+        app.globalData.openid = that.data.openid
+        console.log(that.data)
+      }
+    })
     wx.getSetting({
       success: function(res) {
         console.log(res)
-        if(!res.authSetting["scope.userInfo"]){
+        if(!res.authSetting["scope.userInfo"]&&(!app.globalData.asked)){
           wx.navigateTo({
             url: '/pages/authorize/authorize',
+          })
+        }
+        else{
+          wx.getUserInfo({
+            success(res){
+              app.globalData.nickName = res.userInfo.nickName
+              app.globalData.avatarUrl = res.userInfo.avatarUrl
+              that.setData({
+                username: res.userInfo.nickName,
+                avatar: res.userInfo.avatarUrl
+              })
+            },
+            fail(res){
+              that.setData({
+                avatar:'/images/logo.png'
+              })
+            }
           })
         }
       },
@@ -43,32 +73,23 @@ Page({
   },
   onShow: function () {
     var that = this
-    var app = getApp()
-    console.log(app.globalData.nickName)
-    that.setData({ avatar: app.globalData.avatarUrl, username: app.globalData.nickName })
+    wx.getSetting({
+      success(res){
+        if(res.authSetting["scope.userInfo"]){
+          var app = getApp()
+          that.setData({ avatar: app.globalData.avatarUrl, username: app.globalData.nickName })
+        }
+      }
+    })
   },
-  // onLoad: function(){
-  //   var app = getApp()
-  //   var that = this
-  //   wx.cloud.init()
-  //   wx.cloud.callFunction({
-  //     name: 'testgetInfo',
-  //     success: function (res) {
-  //       that.setData({
-  //         openid: res.result.info.OPENID
-  //       })
-  //       app.globalData.openid = that.data.openid
-  //     }
-  //   })
-  // },
   f1: function (e) {
     if(e.currentTarget.id=="2"){
       var app = getApp()
       var that = this
-      console.log(app.globalData.openid)
+      console.log(that.openid)
       wx.request({
         url: 'https://www.nianshi.xyz/getInfo',
-        data: { 'openid': app.globalData.openid },
+        data: { 'openid': that.data.openid },
         success(res) {
           console.log(res)
           if (res.data['signed'] == 'false') {

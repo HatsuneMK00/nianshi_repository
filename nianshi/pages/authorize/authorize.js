@@ -3,7 +3,8 @@ Page({
 
   },
   onLoad: function () {
-    
+    var app = getApp();
+    app.asked = true
   },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
@@ -30,7 +31,14 @@ Page({
       //用户按了拒绝按钮
       //这里写用户拒绝授权之后的逻辑
       wx.showModal({
-        //可以试试看这个 这个的功能是调出一个对话窗口
+        content:"没有授权将无法显示头像",
+        success(res){
+          if(res.confirm){
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
       })
     }
   },
