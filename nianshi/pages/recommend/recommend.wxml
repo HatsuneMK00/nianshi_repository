@@ -5,7 +5,7 @@
     <block wx:for="{{imgUrls}}" wx:index="{{index}}">
       <swiper-item class="swiper-item" bindtap='bindActTap'>
         <image mode="aspectFill" src="{{item.src}}" class="slide-image {{swiperIndex == index ? 'active' : ''}}" />
-        <view>{{item.text}}</view>
+        <view class='describe'>{{item.text}}</view>
       </swiper-item>
     </block>
   </swiper>                                  

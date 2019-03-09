@@ -5,16 +5,16 @@ Page({
     currentNavtab: "0",
     imgUrls: [
       {
-        src: 'https://www.nianshi.xyz/images/red_block.png',
+        src: 'https://www.nianshi.xyz/images/theme.jpg',
         text: 'This is a topic'
       },
       {
-        src: 'https://www.nianshi.xyz/images/yellow_block.png',
+        src: 'https://www.nianshi.xyz/images/theme.jpg',
         text: 'This is a topic'
       }
     ],
     indicatorDots: true,
-    autoplay: true,
+    autoplay: false,
     interval: 5000,
     duration: 1000,
     swiperIndex: 0,

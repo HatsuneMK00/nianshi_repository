@@ -17,12 +17,12 @@ overflow: unset;
 position: relative;
 }
 
-.swiper-item view{
+.swiper-item .describe{
 position: absolute;
 left: 0;
 right: 0;
 bottom: 10%;
-line-height: 60rpx;
+line-height: 50rpx;
 text-align: center;
 z-index: 999;
 }
@@ -60,7 +60,7 @@ z-index: 20;
   height: 220rpx;
   /* display: flex; */
   position: relative;
-  left: -40rpx;
+  left: -30rpx;
 }
 .feed-source .pic{
   display: inline-block;
@@ -68,8 +68,8 @@ z-index: 20;
 }
 .feed-source .pic image{
   top: 10rpx;
-  width: 220rpx;
-  height: 220rpx;
+  width: 200rpx;
+  height: 200rpx;
   position: relative;
   border-radius: 15rpx;
 }
@@ -102,13 +102,12 @@ z-index: 20;
   width: 400rpx;
   line-height: 40rpx;
   vertical-align: middle;
-  /* padding: 20rpx 20rpx 200rpx 20rpx; */
+  font-weight: 500;
   position: relative;
-  /* left: 20rpx; */
+  top: -20rpx;
   bottom: 30rpx;
-  /* color: #a0acac; */
+  color: rgb(73, 73, 73);
   font-size: 40rpx;
-  font-weight: 300;
   /* text-align: center; */
 }
 .feed-source .inform .block{
@@ -167,12 +166,12 @@ z-index: 20;
 }
 .feedContent{
   width: 680rpx;
-  height: 73rpx;
+  height: 91rpx;
   margin-bottom:0; 
   color: #a0acac;
-  font-size: 26rpx;
+  font-size: 32rpx;
   position: relative;
-  top: 10rpx;
+  top: -10rpx;
   left: -20rpx;
   display: -webkit-box;
   overflow: hidden;

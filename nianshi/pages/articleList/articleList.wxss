@@ -60,11 +60,9 @@
   font-size: 16px;
   text-align: center;
   position: relative;
-  /*bottom: 10rpx;*/
   border-bottom: solid #cccece 4rpx
 }
 .feed-source .inform .inform-bottomleft{
-  /* padding-left: 10rpx; */
   padding-right: 45rpx;
   display: flex;
   justify-content: space-around;
@@ -74,13 +72,9 @@
 .feed-source .inform .title{
   height:40rpx;
   width: 400rpx;
-  /* line-height: 40rpx; */
   vertical-align: middle;
-  /* padding: 20rpx 20rpx 200rpx 20rpx; */
   position: relative;
-  /* left: 20rpx; */
   bottom: 10rpx;
-  /* color: #a0acac; */
   font-size: 36rpx;
   font-weight: 300;
   /* text-align: center; */
@@ -123,7 +117,6 @@
 .feed-source .inform .good .block image{
   height: 40rpx;
   width: 40rpx;
-  /* vertical-align: text-bottom; */
   position: relative;
   top:8rpx;
 }
