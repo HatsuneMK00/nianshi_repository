@@ -1,7 +1,7 @@
 <!--index.wxml-->
  <!-- bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" -->
 <scroll-view scroll-y="true" class="container">
-  <swiper class="swiper-block" previous-margin="0rpx" next-margin="0rpx" current="{{swiperIndex}}" autoplay="{{autoplay}}" bindchange='swiperChange' indicator-dots='{{indicatorDots}}'>
+  <swiper class="swiper-block" previous-margin="0rpx" next-margin="0rpx" current="{{swiperIndex}}" autoplay="{{autoplay}}" bindanimationfinish='swiperChange' indicator-dots='{{indicatorDots}}'>
     <block wx:for="{{imgUrls}}" wx:index="{{index}}">
       <swiper-item class="swiper-item" bindtap='bindActTap'>
         <image mode="aspectFill" src="{{item.src}}" class="slide-image {{swiperIndex == index ? 'active' : ''}}" />
@@ -12,7 +12,7 @@
 
   <view>
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-      <view class="feed-item" bindtap='bindIndexTap' id='{{idx}}'>
+      <view class="feed-item" bindtap='bindIndexTap' id='{{item.article_id}}'>
         <view class="feed-source">
           <view class="pic">
             <image src="{{item.imagesrc}}" mode='scaleToFill'></image>
