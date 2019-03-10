@@ -14,7 +14,7 @@ Page({
       }
     ],
     indicatorDots: true,
-    autoplay: false,
+    autoplay: true,
     interval: 5000,
     duration: 1000,
     swiperIndex: 0,

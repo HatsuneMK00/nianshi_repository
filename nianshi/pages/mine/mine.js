@@ -86,7 +86,7 @@ Page({
     if(e.currentTarget.id=="2"){
       var app = getApp()
       var that = this
-      console.log(that.openid)
+      console.log(that.data.openid)
       wx.request({
         url: 'https://www.nianshi.xyz/getInfo',
         data: { 'openid': that.data.openid },
