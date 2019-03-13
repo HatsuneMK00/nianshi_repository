@@ -4,5 +4,8 @@
     <view class='info'>请复制www.nianshi.xyz到浏览器提交文章</view>
     <view class='info'>或通过邮件sc_nianshi@126.com发给我们</view>
     <view class='info'>或者寄给我们</view>
-  </view>                                                                                                    
+  </view>
+  <view>
+    <view>这里会显示您投稿的文章</view>
+  </view>                                                                                                  
 </view>
