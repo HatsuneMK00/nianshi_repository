@@ -5,20 +5,13 @@
 }
 .feed-item{
   width: 660rpx;
-  height: 280rpx;
+  height: 295rpx;
   padding: 12rpx 50rpx 0rpx 50rpx;
   margin: 0rpx 5rpx 0rpx 0rpx;
   background: #fff;
   border-top: 1px solid rgb(197, 197, 197); 
-  /* border-left: 1px solid rgb(197, 197, 197);
-  border-right: 1px solid rgb(197, 197, 197); */
   border-bottom:3px outset rgba(184, 184, 184, 0.308);
   box-shadow: 0 2px 5px #fff;
-  /* background-image: url(https://www.nianshi.xyz/images/art1.jpg);
-  background-repeat:no-repeat; 
-  background-size:100% 100%;
-  -moz-background-size:100% 100%; */
-  /* border-radius: 15rpx; */
 }
 /* .feed-item .bg_image{
   width: inherit;
@@ -75,7 +68,7 @@
   vertical-align: middle;
   position: relative;
   bottom: 10rpx;
-  font-size: 36rpx;
+  font-size: 40rpx;
   font-weight: 300;
   /* text-align: center; */
 }
@@ -94,7 +87,7 @@
   width: 200rpx;
   vertical-align: middle;
   /* color: #a0acac; */
-  font-size: 34rpx;
+  font-size: 36rpx;
   position: relative;
   left: 50rpx;
   top:0rpx;
@@ -135,10 +128,10 @@
 }
 .feedContent{
   width: 690rpx;
-  height:80rpx;
+  height:100rpx;
   margin-bottom:0; 
   color: #a0acac;
-  font-size: 26rpx;
+  font-size: 32rpx;
   margin-top: 10rpx;
   position: relative;
   left: -30rpx;
