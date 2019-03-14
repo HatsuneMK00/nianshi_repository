@@ -6,11 +6,11 @@ Page({
     imgUrls: [
       {
         src: 'https://www.nianshi.xyz/images/theme.jpg',
-        text: 'This is a topic'
+        text: '每季主题'
       },
       {
         src: 'https://www.nianshi.xyz/images/theme.jpg',
-        text: 'This is a topic'
+        text: '每季主题'
       }
     ],
     indicatorDots: true,

@@ -62,7 +62,7 @@ Page({
   },
   bindYearTap: function(e){
     console.log(e)
-    var years = ['1900前', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2010'];
+    var years = ['19000', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '20100'];
     wx.navigateTo({
       url: '/pages/articleList/articleList?id=' + years[e.target.id],
     })

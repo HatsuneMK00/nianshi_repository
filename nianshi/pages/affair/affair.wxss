@@ -57,12 +57,12 @@ page {
  
 }
 .image_block{
-  height:30vh;
+  height:22vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .image_block image{
-  height: 30vh;
+  height: 22vh;
   width: 100vw;
 }

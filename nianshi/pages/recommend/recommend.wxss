@@ -17,14 +17,15 @@ overflow: unset;
 position: relative;
 }
 
-.swiper-item .describe{
+.swiper-item .bg{
 position: absolute;
-left: 0;
-right: 0;
+/* left: 0;
+right: 0; */
+height: 250rpx;
+width: 100%; 
 opacity:0.7; 
 filter: alpha(opacity=60);
-background:linear-gradient(to right,#FFF,rgba(255,255,255,0));
-bottom: 18%;
+background:linear-gradient(to right,rgba(255,255,255,0),rgba(0,0,0,0.5));
 line-height: 50rpx;
 text-indent: 1em;
 font-weight: 500;
@@ -32,12 +33,35 @@ font-weight: 500;
 z-index: 999;
 }
 
+.swiper-item .bg .describe{
+  position: absolute;
+  width: 50rpx;
+  height: 215rpx;
+  left: 650rpx;
+  top: 15rpx;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 36rpx;
+  z-index: 999;
+  /* text-indent: 0.5em; */
+}
+
+.swiper-item .bg .describe text{
+  display: table-cell;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 500;
+  vertical-align: middle;
+  text-align: center;
+  text-indent: 0em;
+}
+
 .slide-image {
 height: 800rpx;
 width: 750rpx;
 border-radius: 9rpx;
 box-shadow: 0px 0px 30rpx rgba(0, 0, 0, 0.2);
-margin: 0rpx 30rpx;
+/* margin: 0rpx 30rpx; */
 z-index: 1;
 }
 
