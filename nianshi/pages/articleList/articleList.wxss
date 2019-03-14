@@ -24,7 +24,7 @@
   height: 190rpx;
   /* display: flex; */
   position: relative;
-  left: -40rpx;
+  left: -20rpx;
 }
 .feed-source .pic{
   display: inline-block;

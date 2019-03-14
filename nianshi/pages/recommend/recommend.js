@@ -65,9 +65,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    var app = getApp();
+    wx.cloud.init()
+    wx.cloud.callFunction({
+      name: 'testgetInfo',
+      success: function (res) {
+        app.globalData.openid = res.result.info.OPENID
+        // console.log(app.globalData.openid)
+      }
+    })
     let pages = getCurrentPages();
     let prevpage = pages[pages.length - 2];
-    var that = this;
     wx.request({
       url: 'https://www.nianshi.xyz/getArticleByLike',
       success(res) {
