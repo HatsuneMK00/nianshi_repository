@@ -3,12 +3,11 @@
     "pages/recommend/recommend",
     "pages/mine/mine",
     "pages/authorize/authorize",
-    
+    "pages/info/info",
     "pages/year/year",
     "pages/articleList/articleList",
     "pages/me/me",
     "pages/article/article",
-    "pages/info/info",
     "pages/upload/upload",
     "pages/activity/activity",
     "pages/affair/affair",

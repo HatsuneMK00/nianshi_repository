@@ -16,12 +16,13 @@ import json
 import requests
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import func
 import settings
 
-engine = settings.DevelopmentConfig.engine
+engine = settings.ProductionConfig.engine
 
 app = Flask(__name__)
-app.config.from_object(settings.DevelopmentConfig)
+app.config.from_object(settings.ProductionConfig)
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
@@ -46,7 +47,8 @@ def multiUpload():
         connect = sessionmaker(bind=engine)
         conn = connect()
         usr = conn.query(Accounts).filter_by(usr_name=author).all()[0]
-        article_id = conn.query(Article).count()
+        sql_result = conn.query(func.max(Article.article_id).label('article_id')).one()
+        article_id = sql_result.article_id + 1
         # 为满足外码约束 文章要先提交
         obj1 = Article(article_id=article_id, title=form['title'], auther_name=author, like_num=0,
                        describe=form['Introduction'], usr_open_id=usr.usr_open_id,
@@ -71,7 +73,7 @@ def multiUpload():
                     print(article_id)
                     obj_img = ArticleImage(article_id=article_id, image_id=i, time=datetime.now().strftime("%Y-%m-%d"),
                                            url=file_name)
-                    # file_name = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+                    file_name = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
                     f.save(file_name)
                     conn.add(obj_img)
                     conn.commit()

@@ -24,24 +24,18 @@
   /* display: table-cell; */
   vertical-align: middle;
   text-align: center;
+  font-size: 21px;
 }
 /* pages/articleList/articleList.wxss */
 .feed-item{
   width: 660rpx;
-  height: 280rpx;
+  height: 295rpx;
   padding: 12rpx 50rpx 0rpx 50rpx;
   margin: 0rpx 5rpx 0rpx 0rpx;
   background: #fff;
   border-top: 1px solid rgb(197, 197, 197); 
-  /* border-left: 1px solid rgb(197, 197, 197);
-  border-right: 1px solid rgb(197, 197, 197); */
   border-bottom:3px outset rgba(184, 184, 184, 0.308);
   box-shadow: 0 2px 5px #fff;
-  /* background-image: url(https://www.nianshi.xyz/images/art1.jpg);
-  background-repeat:no-repeat; 
-  background-size:100% 100%;
-  -moz-background-size:100% 100%; */
-  /* border-radius: 15rpx; */
 }
 /* .feed-item .bg_image{
   width: inherit;
@@ -54,7 +48,7 @@
   height: 190rpx;
   /* display: flex; */
   position: relative;
-  left: -40rpx;
+  left: -10rpx;
 }
 .feed-source .pic{
   display: inline-block;
@@ -83,11 +77,9 @@
   font-size: 16px;
   text-align: center;
   position: relative;
-  /*bottom: 10rpx;*/
   border-bottom: solid #cccece 4rpx
 }
 .feed-source .inform .inform-bottomleft{
-  /* padding-left: 10rpx; */
   padding-right: 45rpx;
   display: flex;
   justify-content: space-around;
@@ -97,14 +89,10 @@
 .feed-source .inform .title{
   height:40rpx;
   width: 400rpx;
-  /* line-height: 40rpx; */
   vertical-align: middle;
-  /* padding: 20rpx 20rpx 200rpx 20rpx; */
   position: relative;
-  /* left: 20rpx; */
   bottom: 10rpx;
-  /* color: #a0acac; */
-  font-size: 36rpx;
+  font-size: 40rpx;
   font-weight: 300;
   /* text-align: center; */
 }
@@ -123,7 +111,7 @@
   width: 200rpx;
   vertical-align: middle;
   /* color: #a0acac; */
-  font-size: 34rpx;
+  font-size: 36rpx;
   position: relative;
   left: 50rpx;
   top:0rpx;
@@ -146,7 +134,6 @@
 .feed-source .inform .good .block image{
   height: 40rpx;
   width: 40rpx;
-  /* vertical-align: text-bottom; */
   position: relative;
   top:8rpx;
 }
@@ -165,10 +152,10 @@
 }
 .feedContent{
   width: 690rpx;
-  height:80rpx;
+  height:100rpx;
   margin-bottom:0; 
   color: #a0acac;
-  font-size: 26rpx;
+  font-size: 32rpx;
   margin-top: 10rpx;
   position: relative;
   left: -30rpx;

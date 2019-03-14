@@ -6,6 +6,40 @@
     <view class='info'>或者寄给我们</view>
   </view>
   <view>
-    <view>这里会显示您投稿的文章</view>
+    <view>{{ message }}</view>
+    <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+      <view class="feed-item" bindtap='bindIndexTap' id="{{item.article_id}}">
+        <!-- <image class="bg_image" mode='scaleToFill' src="/image/bg1.jpg"></image> -->
+        <view class="feed-source">
+          <view class="pic">
+            <image src="{{item.imagesrc}}" mode='aspectFill'></image>
+          </view>
+          <view class="inform">
+            <view class='title_block'>
+              <text class='title'>{{item.title}}</text>
+            </view>
+            <view class='inform-bottomleft'>
+              <view class='block'>
+                <text class="author">{{item.author}}</text>
+              </view>
+              <view class="good">
+                <view catchtap='bindLikeTap' class='block' hover-stop-propagation='false'>
+                  <image src='https://www.nianshi.xyz/images/like.png' />
+                </view>
+                <view class='block'>
+                  <text>{{item.numofLike}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="feedContent">
+          <text>{{item.describe}}</text>
+          <!-- <view class="moreInformation">
+            <image mode="scaleToFill" src='https://www.nianshi.xyz/images/triangle.png' style='height:40rpx;width:40rpx'></image>
+          </view> -->
+        </view>
+      </view>
+    </block>
   </view>                                                                                                  
 </view>
