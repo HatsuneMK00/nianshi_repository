@@ -3,11 +3,11 @@
 page { 
   overflow:hidden; 
   position:fixed; 
-  background-image:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550174015464&di=893bbc35cc5e7d69ce5846d5046b9c2b&imgtype=0&src=http%3A%2F%2Fimg.sucaifengbao.com%2Fs%2Fs_017_bEO_4.jpg'); 
+  /* background-image:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550174015464&di=893bbc35cc5e7d69ce5846d5046b9c2b&imgtype=0&src=http%3A%2F%2Fimg.sucaifengbao.com%2Fs%2Fs_017_bEO_4.jpg'); 
   background-attachment: scroll;
-  background-repeat: repeat-y;
+  background-repeat: repeat-y; */
   margin: 0px; 
-  background-color: #dac189;
+  background-color: #dac0897e;
   background-size: 100% 100%; 
 } 
 
