@@ -79,6 +79,11 @@ Page({
           var app = getApp()
           that.setData({ avatar: app.globalData.avatarUrl, username: app.globalData.nickName })
         }
+        else{
+          that.setData({
+            avatar: '/images/logo.png'
+          })
+        }
       }
     })
   },

@@ -1,6 +1,6 @@
 <!--pages/articleList/articleList.wxml-->
 
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower">
+<scroll-view scroll-y="true" class="container">
   <view>
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item" bindtap='bindIndexTap' id="{{item.article_id}}">

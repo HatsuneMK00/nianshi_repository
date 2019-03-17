@@ -25,6 +25,8 @@
   vertical-align: middle;
   text-align: center;
   font-size: 21px;
+  width: 85vw;
+  margin: 0 auto;
 }
 /* pages/articleList/articleList.wxss */
 .feed-item{

@@ -4,6 +4,7 @@
     <view class='info'>请复制www.nianshi.xyz到浏览器提交文章</view>
     <view class='info'>或通过邮件sc_nianshi@126.com发给我们</view>
     <view class='info'>或者寄给我们</view>
+    <view class='info'>地址：华东师范大学中山北路校区第五宿舍</view>
   </view>
   <view>
     <view>{{ message }}</view>
