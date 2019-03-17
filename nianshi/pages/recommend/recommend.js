@@ -37,10 +37,10 @@ Page({
     wx.navigateTo({
       url: '/pages/activity/activity',
     })
-    console.log(e)
+    // console.log(e)
   },
   bindIndexTap: function (e) {
-    console.log(e);
+    // console.log(e);
     wx.navigateTo({
       url: '/pages/article/article?id=' + e.currentTarget.id
     })
@@ -59,7 +59,7 @@ Page({
     // else{
     //   this.data.good_num = this.data.good_num - 1
     // }
-    console.log(e)
+    // console.log(e)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -80,16 +80,16 @@ Page({
     wx.request({
       url: 'https://www.nianshi.xyz/getArticleByLike',
       success(res) {
-        console.log(res)
+        // console.log(res)
         var articles = [];
         for (var i = 0; i < res.data.length; i++) {
           articles.push(res.data[i]);
           articles[i].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
-          that.setData({
-            articles
-          })
         }
-        console.log(articles)
+        that.setData({
+          articles
+        })
+        // console.log(articles)
       }
     })
   },

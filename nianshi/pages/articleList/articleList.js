@@ -10,7 +10,7 @@ Page({
     feedIndex: 0,
   },
   bindIndexTap: function (e) {
-    console.log(e);
+    // console.log(e);
    wx.navigateTo({
      url: '/pages/article/article?id=' + e.currentTarget.id
    })
@@ -44,7 +44,7 @@ Page({
     wx.request({
       url: 'https://www.nianshi.xyz/' + method + options.id,
       success(res){
-        console.log(res)
+        // console.log(res)
         if (method == 'getArticleByAge?age='){
           wx.setNavigationBarTitle({
             title: '文章~' + options.id})
@@ -57,11 +57,11 @@ Page({
       for(var i = 0; i < res.data.length; i++){
         articles.push(res.data[i]);
         articles[i].imagesrc ="https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
+        }
         that.setData({
           articles
         })
-        }
-        console.log(articles)
+        // console.log(articles)
       }
     })
   },

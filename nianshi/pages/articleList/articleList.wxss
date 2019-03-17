@@ -1,6 +1,6 @@
 /* pages/articleList/articleList.wxss */
 .container{
-  height: 1500rpx;
+  height: 100vh;
   padding: 0rpx;
 }
 .feed-item{

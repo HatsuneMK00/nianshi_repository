@@ -1,6 +1,6 @@
 .container{
-  padding: 0rpx;
-  background-color: aliceblue;
+  height: 100vh;
+  padding: 0
 }
 .swiper-block {
 height: 250rpx;

@@ -17,14 +17,14 @@ Page({
     that.setData({
       openid: app.globalData.openid
     })
-    console.log(that.data.openid)
+    // console.log(that.data.openid)
     wx.request({
       url: 'https://www.nianshi.xyz/getArticleByAuthor',
       data: {
         author_id:that.data.openid
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data=="no such article"){
           that.setData({message:"暂无文章"})
         }
@@ -34,11 +34,11 @@ Page({
           for (var i = 0; i < res.data.length; i++) {
             articles.push(res.data[i]);
             articles[i].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
-            that.setData({
-              articles
-            })
           }
-          console.log(articles)
+          that.setData({
+            articles
+          })
+          // console.log(articles)
         }
       }
     })
@@ -93,7 +93,7 @@ Page({
 
   },
   bindIndexTap: function (e) {
-    console.log(e);
+    // console.log(e);
     wx.navigateTo({
       url: '/pages/article/article?id=' + e.currentTarget.id
     })
