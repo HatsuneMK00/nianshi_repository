@@ -1,5 +1,5 @@
 .container{
-  height: 100vh;
+  height: 99vh; /* 设为100小米mix2首页滑动会 上下滑动切换时会卡顿*/
   padding: 0
 }
 .swiper-block {
