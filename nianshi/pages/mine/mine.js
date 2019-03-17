@@ -116,5 +116,16 @@ Page({
         url: '/pages/list/list?id=' + e.currentTarget.id,
       })
     }
+  },
+  wantToAuth: function(e){
+    wx.getSetting({
+      success(res){
+        if (!res.authSetting['scope.userInfo']){
+          wx.navigateTo({
+            url: '/pages/authorize/authorize',
+          })
+        }
+      }
+    })
   }
 })
