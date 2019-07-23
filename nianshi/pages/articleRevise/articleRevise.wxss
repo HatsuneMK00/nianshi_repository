@@ -20,6 +20,7 @@
 .articleTitleText{
   font-size: 35px;
   margin-bottom: 5px;
+  color: blue;
 }
 
 .articleTitleContent{
