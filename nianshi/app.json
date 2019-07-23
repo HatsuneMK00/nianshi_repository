@@ -11,8 +11,8 @@
     "pages/upload/upload",
     "pages/activity/activity",
     "pages/affair/affair",
-    "pages/list/list"
-    
+    "pages/list/list",
+    "pages/articleRevise/articleRevise"
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"

@@ -1,0 +1,70 @@
+/* pages/articleRevise/articleRevise.wxss */
+
+.all{
+  height:99vh;
+  overflow: hidden;
+}
+
+.articleTitle{
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-left: 3px solid #b6b6b6;
+  border-right: 3px solid #b6b6b6;
+  border-top: 3px solid #b6b6b6;
+  border-bottom: 3px solid #b6b6b6;
+  font-family: "Times New Roman", "楷体";
+}
+
+.articleTitleText{
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+
+.articleTitleContent{
+  font-size: 23px;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #dddddd;
+  color: black;
+}
+
+.articleContent{
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-left: 3px solid #b6b6b6;
+  border-right: 3px solid #b6b6b6;
+  border-top: 3px solid #b6b6b6;
+  border-bottom: 3px solid #b6b6b6;
+  font-family: "Times New Roman", "楷体";
+}
+
+.articleContentText{
+  font-size: 35px;
+  margin-bottom: 5px;
+  color: blue;
+}
+
+.articleContentContent{
+  font-size: 23px;
+  width: 48vh;
+  height: 50vh;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #dddddd;
+  color: black;
+}
+
+.section{
+  margin: 30rpx 20rpx 30rpx 20rpx 
+}
+
+.btn-area{
+  padding: 20rpx 30rpx
+}
