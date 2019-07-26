@@ -29,12 +29,12 @@
 </body>
 <script>
     function article_accepted(data) {
-        var url = "http://127.0.0.1:5000/api/accept_article/" + data;
+        var url = "https://www.nianshi.xyz/api/accept_article/" + data;
         $.get(
             url,
             function (data) {
                 if(data=="success"){
-                    window.history.back(-1);
+                    window.location.href=document.referrer;
                 }
                 else{
                     alert('error.try again');
@@ -43,12 +43,12 @@
         )
     }
     function article_rejected(data) {
-        var url = "http://127.0.0.1:5000/api/reject_article/" + data;
+        var url = "https://www.nianshi.xyz/api/reject_article/" + data;
         $.get(
             url,
             function (data) {
                 if(data=="success"){
-                    window.history.back(-1);
+                    window.location.href=document.referrer;
                 }
                 else{
                     alert('error.try again');

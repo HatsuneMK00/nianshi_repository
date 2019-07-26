@@ -136,7 +136,10 @@ def login():
             conn.close()
             if check_password_hash(pwd_hash, pwd):
                 session['username'] = user
-                return redirect(url_for('multiUpload'))
+                if user=='admin':
+                    return redirect(url_for('admin'))
+                else:
+                    return redirect(url_for('multiUpload'))
             else:
                 return render_template('login.html', error="wrong")  # error不能用中文
         else:
@@ -409,7 +412,7 @@ def admin_auth(article_id):
 
 @app.route('/api/accept_article/<article_id>')
 def accept_article(article_id):
-    update_query = """UPDATE articles
+    update_query = """UPDATE Articles
 SET passed=1
 WHERE article_id={}"""
     cursor = engine.execute(update_query.format(int(article_id)))
@@ -418,7 +421,7 @@ WHERE article_id={}"""
 
 @app.route('/api/reject_article/<article_id>')
 def reject_article(article_id):
-    update_query = """UPDATE articles
+    update_query = """UPDATE Articles
 SET passed=0
 WHERE article_id={}"""
     cursor = engine.execute(update_query.format(int(article_id)))
