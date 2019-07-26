@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../static/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <title>K.makise</title>
+</head>
+<body>
+<div class="container">
+    <div>
+        {{ article['text'] }}
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary btn-lg" onclick="article_accepted({{ article['article_id'] }})">审核通过</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick="article_rejected({{ article['article_id'] }})">审核不通过</button>
+    </div>
+</div>
+</body>
+<script>
+    function article_accepted(data) {
+        var url = "http://127.0.0.1:5000/api/accept_article/" + data;
+        $.get(
+            url,
+            function (data) {
+                if(data=="success"){
+                    window.history.back(-1);
+                }
+                else{
+                    alert('error.try again');
+                }
+            }
+        )
+    }
+    function article_rejected(data) {
+        var url = "http://127.0.0.1:5000/api/reject_article/" + data;
+        $.get(
+            url,
+            function (data) {
+                if(data=="success"){
+                    window.history.back(-1);
+                }
+                else{
+                    alert('error.try again');
+                }
+            }
+        )
+    }
+</script>
+</html>

@@ -18,6 +18,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
 import settings
+from settings import check_login
 
 engine = settings.ProductionConfig.engine
 
@@ -350,6 +351,78 @@ def get_article():
     article = sess.query(Article).get(int(article_id))
     sess.close()
     return jsonify(article.to_dict())
+
+
+# 暂时先从用户入口登入管理员账户
+@app.route('/admin')
+@check_login
+def admin():
+    # if 'username' not in session:
+    #     return redirect(url_for('login'))
+    # get article by authorization
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    articles_info = []
+    articles = sess.query(Article).all()
+    sess.close()
+    for article in articles:
+        articles_info.append(article.to_dict())
+    return render_template("admin.html", articles=articles_info)
+
+
+@app.route('/admin/not_passed')
+@check_login
+def admin_not_passed():
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    articles_info = []
+    articles = sess.query(Article).filter_by(passed=0).all()
+    sess.close()
+    for article in articles:
+        articles_info.append(article.to_dict())
+    return render_template("not_passed.html", articles=articles_info)
+
+
+@app.route('/admin/passed')
+@check_login
+def admin_passed():
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    articles_info = []
+    articles = sess.query(Article).filter_by(passed=1).all()
+    sess.close()
+    for article in articles:
+        articles_info.append(article.to_dict())
+    return render_template("passed.html", articles=articles_info)
+
+
+@app.route('/admin_auth/<article_id>')
+@check_login
+def admin_auth(article_id):
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    article = sess.query(Article).filter_by(article_id=article_id).all()[0]
+    sess.close()
+    article_info = article.to_dict()
+    return render_template("article_auth.html", article=article_info)
+
+
+@app.route('/api/accept_article/<article_id>')
+def accept_article(article_id):
+    update_query = """UPDATE articles
+SET passed=1
+WHERE article_id={}"""
+    cursor = engine.execute(update_query.format(int(article_id)))
+    return "success"
+
+
+@app.route('/api/reject_article/<article_id>')
+def reject_article(article_id):
+    update_query = """UPDATE articles
+SET passed=0
+WHERE article_id={}"""
+    cursor = engine.execute(update_query.format(int(article_id)))
+    return "success"
 
 
 if __name__ == '__main__':

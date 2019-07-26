@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../static/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <title>K.makise</title>
+</head>
+<body>
+<nav class="nav nav-pills nav-fill">
+  <a class="nav-item nav-link" href="/admin">所有文章</a>
+  <a class="nav-item nav-link active" href="/admin/not_passed">未通过</a>
+  <a class="nav-item nav-link" href="/admin/passed">已通过</a>
+</nav>
+<div>
+<div class="container">
+    <ul class="list-group">
+        {% for item in articles %}
+        <li class="list-group-item list" style="margin: 10px 0 10px 0;" onclick="goto_article_auth({{ item['article_id'] }})">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="list-group-item-text" style="padding-bottom: 2px">标题：
+                        {{ item['title'] }}
+                    </div>
+                    <div class="list-group-item-text" style="padding-bottom: 2px">作者：
+                        {{ item['author'] }}
+                    </div>
+                    <div class="list-group-item-text" style="padding-bottom: 2px">作者：
+                        {{ item['article_id'] }}
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div style="font-weight: bold;font-size: large">简介</div>
+                    {{ item['describe'] }}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+</body>
+</html>
