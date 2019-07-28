@@ -8,7 +8,7 @@ Page({
     titleFontSize: '30px',
     contentFontSize: '20px',
     timeAndAuthorSize: '15px',
-
+    article_id: ''
   },
 
   /**
@@ -27,7 +27,8 @@ Page({
       success: function (res) {
         console.log(res.data)
         that.setData({
-          Test: res.data
+          Test: res.data,
+          article_id: that.data.article_id
         })
       },
       fail: function (err) {
@@ -104,11 +105,11 @@ Page({
       icon: 'loading',
     })
     wx.request({
-      url: '',
+      url: 'https://www.nianshi.xyz/api/update_article',
       header: { 'content-type': 'application/json' },
       method: 'POST',
       dataType: 'string',
-      data: { 'article': Test.article_id , 'title': that.data.Title , 'content' : that.data.Content },
+      data: { 'article': that.article_id , 'title': that.data.Title , 'content' : that.data.Content },
       success(res){
         console.log(res)
       }
