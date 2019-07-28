@@ -108,9 +108,6 @@ Page({
       title: 'loading',
       icon: 'loading',
     })
-    console.log(that.data.article_id)
-    console.log(that.data.article_title)
-    console.log(that.data.article_content)
     wx.request({
       url: 'https://www.nianshi.xyz/api/update_article',
       header: { 'content-type': 'application/json' },
