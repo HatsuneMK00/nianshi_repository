@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, redirect, Response, session, url_for, abort
@@ -433,13 +433,18 @@ WHERE article_id={}"""
 @app.route('/api/update_article',methods=['POST'])
 def update_article():
     form = request.json
-    n_article = form['article']
+    # 这里在服务器端 字符类型是unicode 而在本地是str，因此在服务器端需要用encode对unicode类型进行编码转换为str类型！！！！
+    n_article = form['article'].encode('utf-8')
+    print(n_article.__class__)
     article_id = form['article_id']
-    title = form['title']
+    title = form['title'].encode('utf-8')
+    print(title.__class__)
     update_query = """UPDATE Articles
 SET `text`='{}',passed=0,`title`='{}'
 WHERE article_id={}"""
-    engine.execute(update_query.format(n_article,title,int(article_id)))
+    update_query = update_query.format(n_article, title, int(article_id))
+    print(update_query.__class__)
+    engine.execute(update_query)
     return "success"
 
 
