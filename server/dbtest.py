@@ -428,5 +428,36 @@ WHERE article_id={}"""
     return "success"
 
 
+# there is some bugs
+# fixed
+@app.route('/api/update_article',methods=['POST'])
+def update_article():
+    form = request.json
+    n_article = form['article']
+    article_id = form['article_id']
+    title = form['title']
+    update_query = """UPDATE Articles
+SET `text`='{}',passed=0,`title`='{}'
+WHERE article_id={}"""
+    engine.execute(update_query.format(n_article,title,int(article_id)))
+    return "success"
+
+
+@app.route('/api/get_liked_article/<openid>')
+def get_liked_article(openid):
+    select_query = """SELECT `title`,auther_name,Articles.usr_open_id,like_num,`describe`,Articles.article_id,`time`,`age`,`type`,`passed`,image_num
+FROM Articles JOIN `Like` ON (Articles.article_id=`Like`.article_id)
+WHERE `Like`.usr_open_id='{}'"""
+    result = engine.execute(select_query.format(openid))
+    article_list = []
+    for row in result:
+        article_info = {}
+        for key in row.keys():
+            article_info[key] = row[key]
+        article_list.append(article_info)
+    return jsonify(article_list)
+
+
+
 if __name__ == '__main__':
     app.run()
