@@ -346,14 +346,26 @@ def setLike():
     return "update success"
 
 
-@app.route('/getArticle')
+# need 2 arguments!
+@app.route('/api/getArticle')
 def get_article():
-    article_id = request.args.get('id')
-    session = sessionmaker(bind=engine)
-    sess = session()
+    article_id = request.args.get('article_id')
+    openid = request.args.get('openid')
+    connection = sessionmaker(bind=engine)
+    sess = connection()
     article = sess.query(Article).get(int(article_id))
+    select_query = """SELECT COUNT(*) as article_num FROM `Like`
+WHERE article_id={} AND usr_open_id='{}'"""
+    cursor = engine.execute(select_query.format(int(article_id),openid))
+    result = article.to_dict()
+    for row in cursor:
+        if row['article_num'] == 0:
+            result['liked'] = "false"
+        else:
+            result['liked'] = "true"
     sess.close()
-    return jsonify(article.to_dict())
+
+    return jsonify(result)
 
 
 # 暂时先从用户入口登入管理员账户
@@ -462,6 +474,34 @@ WHERE `Like`.usr_open_id='{}'"""
         article_list.append(article_info)
     return jsonify(article_list)
 
+
+#使用url参数
+@app.route('/api/like_article')
+def like_article():
+    article_id = request.args.get('article_id')
+    openid = request.args.get('openid')
+    insert_query = """INSERT INTO `Like`
+VALUES({},'{}')"""
+    try:
+        engine.execute(insert_query.format(int(article_id),openid))
+    except:
+        return "error"
+    else:
+        return "success"
+
+
+@app.route('/api/dislike_article')
+def dislike_article():
+    article_id = request.args.get('article_id')
+    openid = request.args.get('openid')
+    delete_query = """DELETE FROM `Like`
+WHERE article_id={} AND usr_open_id='{}'"""
+    try:
+        engine.execute(delete_query.format(int(article_id), openid))
+    except:
+        return "success"
+    else:
+        return "success"
 
 
 if __name__ == '__main__':
