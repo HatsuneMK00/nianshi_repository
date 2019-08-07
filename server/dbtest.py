@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, redirect, Response, session, url_for, abort
@@ -18,6 +18,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
 import settings
+from settings import check_login
 
 engine = settings.ProductionConfig.engine
 
@@ -135,7 +136,10 @@ def login():
             conn.close()
             if check_password_hash(pwd_hash, pwd):
                 session['username'] = user
-                return redirect(url_for('multiUpload'))
+                if user=='admin':
+                    return redirect(url_for('admin'))
+                else:
+                    return redirect(url_for('multiUpload'))
             else:
                 return render_template('login.html', error="wrong")  # error不能用中文
         else:
@@ -342,14 +346,162 @@ def setLike():
     return "update success"
 
 
-@app.route('/getArticle')
+# need 2 arguments!
+@app.route('/api/getArticle')
 def get_article():
-    article_id = request.args.get('id')
-    session = sessionmaker(bind=engine)
-    sess = session()
+    article_id = request.args.get('article_id')
+    openid = request.args.get('openid')
+    connection = sessionmaker(bind=engine)
+    sess = connection()
     article = sess.query(Article).get(int(article_id))
+    select_query = """SELECT COUNT(*) as article_num FROM `Like`
+WHERE article_id={} AND usr_open_id='{}'"""
+    cursor = engine.execute(select_query.format(int(article_id),openid))
+    result = article.to_dict()
+    for row in cursor:
+        if row['article_num'] == 0:
+            result['liked'] = "false"
+        else:
+            result['liked'] = "true"
     sess.close()
-    return jsonify(article.to_dict())
+
+    return jsonify(result)
+
+
+# 暂时先从用户入口登入管理员账户
+@app.route('/admin')
+@check_login
+def admin():
+    # if 'username' not in session:
+    #     return redirect(url_for('login'))
+    # get article by authorization
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    articles_info = []
+    articles = sess.query(Article).all()
+    sess.close()
+    for article in articles:
+        articles_info.append(article.to_dict())
+    return render_template("admin.html", articles=articles_info)
+
+
+@app.route('/admin/not_passed')
+@check_login
+def admin_not_passed():
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    articles_info = []
+    articles = sess.query(Article).filter_by(passed=0).all()
+    sess.close()
+    for article in articles:
+        articles_info.append(article.to_dict())
+    return render_template("not_passed.html", articles=articles_info)
+
+
+@app.route('/admin/passed')
+@check_login
+def admin_passed():
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    articles_info = []
+    articles = sess.query(Article).filter_by(passed=1).all()
+    sess.close()
+    for article in articles:
+        articles_info.append(article.to_dict())
+    return render_template("passed.html", articles=articles_info)
+
+
+@app.route('/admin_auth/<article_id>')
+@check_login
+def admin_auth(article_id):
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    article = sess.query(Article).filter_by(article_id=article_id).all()[0]
+    sess.close()
+    article_info = article.to_dict()
+    return render_template("article_auth.html", article=article_info)
+
+
+@app.route('/api/accept_article/<article_id>')
+def accept_article(article_id):
+    update_query = """UPDATE Articles
+SET passed=1
+WHERE article_id={}"""
+    cursor = engine.execute(update_query.format(int(article_id)))
+    return "success"
+
+
+@app.route('/api/reject_article/<article_id>')
+def reject_article(article_id):
+    update_query = """UPDATE Articles
+SET passed=0
+WHERE article_id={}"""
+    cursor = engine.execute(update_query.format(int(article_id)))
+    return "success"
+
+
+# there is some bugs
+# fixed
+@app.route('/api/update_article',methods=['POST'])
+def update_article():
+    form = request.json
+    # 这里在服务器端 字符类型是unicode 而在本地是str，因此在服务器端需要用encode对unicode类型进行编码转换为str类型！！！！
+    n_article = form['article'].encode('utf-8')
+    print(n_article.__class__)
+    article_id = form['article_id']
+    title = form['title'].encode('utf-8')
+    print(title.__class__)
+    update_query = """UPDATE Articles
+SET `text`='{}',passed=0,`title`='{}'
+WHERE article_id={}"""
+    update_query = update_query.format(n_article, title, int(article_id))
+    print(update_query.__class__)
+    engine.execute(update_query)
+    return "success"
+
+
+@app.route('/api/get_liked_article/<openid>')
+def get_liked_article(openid):
+    select_query = """SELECT `title`,auther_name,Articles.usr_open_id,like_num,`describe`,Articles.article_id,`time`,`age`,`type`,`passed`,image_num
+FROM Articles JOIN `Like` ON (Articles.article_id=`Like`.article_id)
+WHERE `Like`.usr_open_id='{}'"""
+    result = engine.execute(select_query.format(openid))
+    article_list = []
+    for row in result:
+        article_info = {}
+        for key in row.keys():
+            article_info[key] = row[key]
+        article_list.append(article_info)
+    return jsonify(article_list)
+
+
+#使用url参数
+@app.route('/api/like_article')
+def like_article():
+    article_id = request.args.get('article_id')
+    openid = request.args.get('openid')
+    insert_query = """INSERT INTO `Like`
+VALUES({},'{}')"""
+    try:
+        engine.execute(insert_query.format(int(article_id),openid))
+    except:
+        return "error"
+    else:
+        return "success"
+
+
+@app.route('/api/dislike_article')
+def dislike_article():
+    article_id = request.args.get('article_id')
+    openid = request.args.get('openid')
+    delete_query = """DELETE FROM `Like`
+WHERE article_id={} AND usr_open_id='{}'"""
+    try:
+        engine.execute(delete_query.format(int(article_id), openid))
+    except:
+        return "success"
+    else:
+        return "success"
 
 
 if __name__ == '__main__':

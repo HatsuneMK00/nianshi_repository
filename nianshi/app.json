@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/activity/activity",
     "pages/recommend/recommend",
     "pages/mine/mine",
     "pages/authorize/authorize",
@@ -9,7 +10,7 @@
     "pages/me/me",
     "pages/article/article",
     "pages/upload/upload",
-    "pages/activity/activity",
+    
     "pages/affair/affair",
     "pages/list/list",
     "pages/articleRevise/articleRevise"
