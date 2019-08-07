@@ -1,16 +1,5 @@
 <!--pages/info/info.wxml-->
 <view class='container'>
-  <view class='info-block' bindtap='bindContributeTap'>
-    <text>我要投稿</text>
-  </view>
-<!--
-  <view class='info-block'>
-    <view class='info'>请复制www.nianshi.xyz到浏览器提交文章</view>
-    <view class='info'>或通过邮件sc_nianshi@126.com发给我们</view>
-    <view class='info'>或者寄给我们</view>
-    <view class='info'>地址：华东师范大学中山北路校区第五宿舍</view>
-  </view>
-  -->
   <view style="position:absolute;top:10vh;">
     <view>{{ message }}</view>
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">

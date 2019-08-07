@@ -2,13 +2,14 @@
 
 page { 
   overflow:hidden; 
-  position:fixed; 
+  position:relative; 
   background-color: #dac0897e;
   background-image:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550174015464&di=893bbc35cc5e7d69ce5846d5046b9c2b&imgtype=0&src=http%3A%2F%2Fimg.sucaifengbao.com%2Fs%2Fs_017_bEO_4.jpg'); 
   background-attachment: scroll;
   background-repeat: repeat-y;
   margin: 0px; 
   background-size: 100% 100%; 
+  z-index:-1;
 } 
 
 
@@ -19,6 +20,49 @@ page {
   margin-bottom: 20px;
 }
 
+.likeBind{
+  height: 130rpx;
+  width: 90rpx;
+  position: fixed;
+  z-index: 999;
+  right: 2vh;
+  top: 3vh;
+  background-color: white;
+  border: solid 2px gainsboro;
+  border-radius: 10px;
+}
+
+.likeBindImg{
+  height: 70rpx;
+  width: 70rpx;
+  margin: 5rpx
+}
+
+.likeAmount{
+  position: relative;
+  height: 40rpx;
+  font-size: 35rpx;
+  text-align: center;
+  background-color: white;
+  border-top: 1px gainsboro solid;
+}
+
+.movaleAera{ 
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: transparent;
+}
+
+.movableView{
+  pointer-events: auto;
+  height: 50px;
+  width: 50px;
+  background: blue;
+}
 .title{
   text-align: left;
   font-family: "Times New Roman", "宋体";

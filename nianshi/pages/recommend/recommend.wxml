@@ -17,7 +17,7 @@
       <view class="feed-item" bindtap='bindIndexTap' id='{{item.article_id}}'>
         <view class="feed-source">
           <view class="pic">
-            <image src="{{item.imagesrc}}" mode='scaleToFill'></image>
+            <image src="{{item.imagesrc}}" mode='aspectFill'></image>
           </view>
           <view class="inform">
             <view class='title_block'>
@@ -29,7 +29,7 @@
               </view>
               <view class="good">
                 <view catchtap='bindLikeTap' class='block' hover-stop-propagation='false'>
-                  <image src='https://www.nianshi.xyz/images/like.png' />
+                  <image  src='https://www.nianshi.xyz/images/like.png' />
                 </view>
                 <view class='block'>
                   <text>{{item.numofLike}}</text>

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/activity/activity",
     "pages/recommend/recommend",
+    "pages/activity/activity",
     "pages/mine/mine",
     "pages/authorize/authorize",
     "pages/info/info",
@@ -10,10 +10,10 @@
     "pages/me/me",
     "pages/article/article",
     "pages/upload/upload",
-    
     "pages/affair/affair",
-    "pages/list/list"
-    
+    "pages/list/list",
+    "pages/collection/collection",
+    "pages/contribute/contribute"
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"

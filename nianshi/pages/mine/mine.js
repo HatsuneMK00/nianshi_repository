@@ -88,9 +88,30 @@ Page({
     })
   },
   f1: function (e) {
-    if(e.currentTarget.id=="2"){
-      var app = getApp()
-      var that = this
+    
+    var app = getApp()
+    var that = this
+    if(e.currentTarget.id=="0"){
+      console.log(that.data.openid)
+      wx.request({
+        url: 'https://www.nianshi.xyz/getInfo',
+        data: { 'openid': that.data.openid },
+        success(res) {
+          console.log(res)
+          if (res.data['signed'] == 'false') {
+            wx.navigateTo({
+              url: '/pages/upload/upload',
+            })
+          }
+          else {
+            wx.navigateTo({
+              url: '/pages/collection/collection',
+            })
+          }
+        }
+      })
+    }
+    else if(e.currentTarget.id=="2"){
       console.log(that.data.openid)
       wx.request({
         url: 'https://www.nianshi.xyz/getInfo',
@@ -110,12 +131,13 @@ Page({
         }
       })
     }
-    else if (e.currentTarget.id == "0" || e.currentTarget.id == "1" || e.currentTarget.id == "3"){
-      console.log(e.currentTarget.id)
+    else if (e.currentTarget.id == "0" ||e.currentTarget.id == "1" || e.currentTarget.id == "3"){
+      //console.log(e.currentTarget.id)
       wx.navigateTo({
         url: '/pages/list/list?id=' + e.currentTarget.id,
       })
     }
+    
   },
   wantToAuth: function(e){
     wx.getSetting({

@@ -1,41 +1,33 @@
-// pages/info/info.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    
   },
-  bindContributeTap:function(e){
-    var that = this;
-    var app=getApp();
+  bindIndexTap: function (e) {
+    // console.log(e);
     wx.navigateTo({
-      url: '/pages/contribute/contribute',
+      url: '/pages/article/article?id=' + e.currentTarget.id
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var app = getApp()
-    var that = this
-    that.setData({
-      openid: app.globalData.openid
-    })
-    // console.log(that.data.openid)
+    var that = this;
+    var app = getApp();
+    console.log(app)
     wx.request({
-      url: 'https://www.nianshi.xyz/getArticleByAuthor',
-      data: {
-        author_id:that.data.openid
-      },
+      url: 'https://www.nianshi.xyz/api/get_liked_article/'+app.globalData.openid,
       success(res){
         console.log(res)
-        if(res.data=="no such article"){
-          that.setData({message:"暂无文章"})
+        if (res.data.length == 0) {
+          that.setData({ message: "暂时没有已收藏的文章哦" })
         }
-        else{
-          that.setData({message:""})
+        else {
+          that.setData({ message: "" })
           var articles = [];
           for (var i = 0; i < res.data.length; i++) {
             articles.push(res.data[i]);
@@ -54,59 +46,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-  },
-  bindInfoTap: function (e){
-    wx.navigateTo({
-      url: '/pages/'
-    })
-  },
-  bindIndexTap: function (e) {
-    // console.log(e);
-    wx.navigateTo({
-      url: '/pages/article/article?id=' + e.currentTarget.id
-    })
-  },
+    
+  }
 })

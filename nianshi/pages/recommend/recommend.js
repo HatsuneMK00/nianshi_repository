@@ -40,10 +40,32 @@ Page({
     // console.log(e)
   },
   bindIndexTap: function (e) {
-    // console.log(e);
+    console.log(e);
+    var that = this
     wx.navigateTo({
-      url: '/pages/article/article?id=' + e.currentTarget.id
+      url: '/pages/article/article?id=' + e.currentTarget.id,
     })
+    //wx.request({
+    //url: '/pages/article/article',
+    //data: { openid: app.globalData.openid}
+    //})
+    /*wx.request({
+      url: 'https://www.nianshi.xyz/getInfo',
+      data: { 'openid': that.data.openid },
+      success(res) {
+        console.log(res)
+        if (res.data['signed'] == 'false') {
+          wx.navigateTo({
+            url: '/pages/upload/upload',
+          })
+        }
+        else {
+          wx.navigateTo({
+            url: '/pages/article/article?id='+ e.currentTarget.id,
+          })
+        }
+      }
+    })*/
   },
     // wx.switchTab({
     //   url: '',
@@ -52,6 +74,14 @@ Page({
     //   url: '/pages/agepage/agepage'
     // })
   bindLikeTap: function (e) {
+    var that=this
+    wx.request({
+      url: 'https://www.nianshi.xyz/setLike',
+      data:{
+        article_id:that.data.article_id,
+        openid:app.globalData.openid
+      }
+    })
     // this.data.good_yet = 1 - this.data.good_yet
     // if(this.data.good_yet == 1){
     //   this.data.good_num = this.data.good_num + 1
@@ -72,7 +102,7 @@ Page({
       name: 'testgetInfo',
       success: function (res) {
         app.globalData.openid = res.result.info.OPENID
-        // console.log(app.globalData.openid)
+        console.log(app.globalData.openid)
       }
     })
     let pages = getCurrentPages();
