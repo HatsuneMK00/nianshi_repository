@@ -13,7 +13,8 @@
     "pages/affair/affair",
     "pages/list/list",
     "pages/collection/collection",
-    "pages/contribute/contribute"
+    "pages/contribute/contribute",
+    "pages/articleRevise/articleRevise"
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"
