@@ -14,6 +14,14 @@ Page({
       url: '/pages/contribute/contribute',
     })
   },
+  catchReviseTap:function(e){
+    var that = this;
+    var app=getApp();
+    console.log('hello');
+    wx.navigateTo({
+      url: '/pages/articleRevise/articleRevise?id='+ e.currentTarget.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

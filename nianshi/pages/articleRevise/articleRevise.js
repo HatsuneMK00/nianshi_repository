@@ -18,10 +18,13 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options);
+    var app=getApp();
+    console.log(app);
     wx.request({
-      url: 'https://www.nianshi.xyz/getArticle?id=3', //+ options.id,
+      url: 'https://www.nianshi.xyz/api/getArticle?id=' + options.id,
       data: {
+        article_id:options.id,
+        openid:app.globalData.openid
       },
       header: {
         'content-type': 'application/json'

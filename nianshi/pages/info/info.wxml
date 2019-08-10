@@ -15,6 +15,9 @@
     <view>{{ message }}</view>
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item" bindtap='bindIndexTap' id="{{item.article_id}}">
+        <view class="reviseBottom" catchtap="catchReviseTap" id="{{item.article_id}}">
+          <image classs="" url=''></image>
+        </view>
         <!-- <image class="bg_image" mode='scaleToFill' src="/image/bg1.jpg"></image> -->
         <view class="feed-source">
           <view class="pic">

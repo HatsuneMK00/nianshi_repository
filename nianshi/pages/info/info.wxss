@@ -38,6 +38,16 @@
   width: 85vw;
   margin: 0 auto;
 }
+
+.reviseBottom{
+  width: 30rpx;
+  height: 30rpx;
+  background-color: black;
+  position: relative;
+  top: 20rpx;
+  left: 620rpx;
+  z-index: 9;
+}
 /* pages/articleList/articleList.wxss */
 .feed-item{
   width: 660rpx;
