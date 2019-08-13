@@ -18,7 +18,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
 import settings
-from settings import check_login
+from settings import check_login_admin
 
 engine = settings.ProductionConfig.engine
 
@@ -370,7 +370,7 @@ WHERE article_id={} AND usr_open_id='{}'"""
 
 # 暂时先从用户入口登入管理员账户
 @app.route('/admin')
-@check_login
+@check_login_admin
 def admin():
     # if 'username' not in session:
     #     return redirect(url_for('login'))
@@ -386,7 +386,7 @@ def admin():
 
 
 @app.route('/admin/not_passed')
-@check_login
+@check_login_admin
 def admin_not_passed():
     connection = sessionmaker(bind=engine)
     sess = connection()
@@ -399,7 +399,7 @@ def admin_not_passed():
 
 
 @app.route('/admin/passed')
-@check_login
+@check_login_admin
 def admin_passed():
     connection = sessionmaker(bind=engine)
     sess = connection()
@@ -412,7 +412,7 @@ def admin_passed():
 
 
 @app.route('/admin_auth/<article_id>')
-@check_login
+@check_login_admin
 def admin_auth(article_id):
     connection = sessionmaker(bind=engine)
     sess = connection()
