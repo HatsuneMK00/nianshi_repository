@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/recommend/recommend",
     "pages/activity/activity",
     "pages/mine/mine",
@@ -48,5 +47,6 @@
         "selectedIconPath": "/images/我选中.jpg"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
