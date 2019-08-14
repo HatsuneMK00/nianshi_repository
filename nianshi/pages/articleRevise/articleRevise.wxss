@@ -74,7 +74,7 @@ page {
   overflow:hidden; 
   position:relative; 
   background-color: #dac0897e;
-  background-image:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565717744004&di=64da21005bfefb831163990eebdc8208&imgtype=0&src=http%3A%2F%2Fp.store.itangyuan.com%2Fp%2Fchapter%2Fattachment%2Fet-s4g-U%2FEgfuE_MsEBjVe_-sEgEteGuTe7e26C108mHF96mRHbQSeUoRJCLFgVS.jpg'); 
+  background-image:url('https://www.nianshi.xyz/images/ReviseBackground.jpg'); 
   background-attachment: scroll;
   background-repeat: repeat-y;
   margin: 0px; 
