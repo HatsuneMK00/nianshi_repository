@@ -54,7 +54,7 @@
 .articleContentContent{
   font-size: 23px;
   width: 80vw;
-  height: 90vw;
+  height: 75vw;
   margin-top: 15px;
   margin-left: 15px;
   margin-right: 15px;
