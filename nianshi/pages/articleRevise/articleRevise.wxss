@@ -25,11 +25,11 @@
 
 .articleTitleContent{
   font-size: 23px;
+  width: 80vw;
   margin-top: 15px;
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #dddddd;
   color: black;
 }
 
@@ -53,12 +53,12 @@
 
 .articleContentContent{
   font-size: 23px;
-  width: 48vh;
-  height: 50vh;
+  width: 80vw;
+  height: 75vw;
   margin-top: 15px;
   margin-left: 15px;
+  margin-right: 15px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #dddddd;
   color: black;
 }
 
@@ -69,3 +69,15 @@
 .btn-area{
   padding: 20rpx 30rpx
 }
+
+page { 
+  overflow:hidden; 
+  position:relative; 
+  background-color: #dac0897e;
+  background-image:url('https://www.nianshi.xyz/images/ReviseBackground.jpg'); 
+  background-attachment: scroll;
+  background-repeat: repeat-y;
+  margin: 0px; 
+  background-size: 100% 100%; 
+  z-index:-1;
+} 
