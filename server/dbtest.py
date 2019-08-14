@@ -18,7 +18,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
 import settings
-from settings import check_login_admin
+from settings import check_login_admin, check_article_security
 
 engine = settings.ProductionConfig.engine
 
@@ -347,6 +347,9 @@ def setLike():
 
 
 # need 2 arguments!
+# add article security check
+# the result return has security and liked
+# security shows OK or risky
 @app.route('/api/getArticle')
 def get_article():
     article_id = request.args.get('article_id')
@@ -358,6 +361,8 @@ def get_article():
 WHERE article_id={} AND usr_open_id='{}'"""
     cursor = engine.execute(select_query.format(int(article_id),openid))
     result = article.to_dict()
+    is_secured = check_article_security(result['text'])
+    result['security'] = is_secured
     for row in cursor:
         if row['article_num'] == 0:
             result['liked'] = "false"
