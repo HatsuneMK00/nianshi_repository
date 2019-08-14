@@ -82,7 +82,7 @@ def multiUpload():
                 else:
                     return "文件类型错误"
         conn.close()
-    return "upload complete"
+    return render_template("uploadSuccess.html")
 
 
 @app.route('/dbtest1')
