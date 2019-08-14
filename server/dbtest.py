@@ -18,7 +18,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
 import settings
-from settings import check_login_admin, check_article_security
+from support import check_login_admin, check_article_security
 
 engine = settings.ProductionConfig.engine
 
