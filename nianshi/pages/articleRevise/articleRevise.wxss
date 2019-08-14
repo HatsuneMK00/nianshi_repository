@@ -25,11 +25,11 @@
 
 .articleTitleContent{
   font-size: 23px;
+  width: 50vh;
   margin-top: 15px;
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #dddddd;
   color: black;
 }
 
@@ -53,12 +53,12 @@
 
 .articleContentContent{
   font-size: 23px;
-  width: 48vh;
+  width: 50vh;
   height: 50vh;
   margin-top: 15px;
   margin-left: 15px;
+  margin-right: 15px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #dddddd;
   color: black;
 }
 

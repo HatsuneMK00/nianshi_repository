@@ -94,14 +94,12 @@ Page({
   },
 
   setTitle: function (e) {
-    console.log(e.detail.value)
     this.setData({
       article_title: e.detail.value
     })
   },
 
   setContent: function (e) {
-    console.log(e.detail.value)
     this.setData({
       article_content: e.detail.value
     })
