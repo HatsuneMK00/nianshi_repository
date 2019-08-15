@@ -10,6 +10,7 @@ Page({
     feedIndex: 0,
   },
   bindIndexTap: function (e) {
+    // console.log(e);
    wx.navigateTo({
      url: '/pages/article/article?id=' + e.currentTarget.id
    })
@@ -43,6 +44,7 @@ Page({
     wx.request({
       url: 'https://www.nianshi.xyz/' + method + options.id,
       success(res){
+        // console.log(res)
         if (method == 'getArticleByAge?age='){
           wx.setNavigationBarTitle({
             title: '文章~' + options.id})

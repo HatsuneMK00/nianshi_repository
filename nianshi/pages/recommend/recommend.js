@@ -8,19 +8,15 @@ Page({
     imgUrls: [
       {
         src: 'https://www.nianshi.xyz/images/theme.jpg',
-        text: 'This is a topic',
         bindfun: 'bindActTap1'
       },
       {
         src: '../../images/好歌分享.png',
-        text: 'This is a topic',
         bindfun: 'bindActTap2'
       },
       {
         src: '../../images/社区活动.png',
-        text: 'This is a topic',
         bindfun: 'bindActTap3'
-        text: '每季主题'
       },
     ],
     indicatorDots: true,
