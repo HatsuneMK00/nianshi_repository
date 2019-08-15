@@ -1,0 +1,51 @@
+<scroll-view class='page'>
+  <view class='CircleList' wx:for='{{DataSource}}'>
+    <view class='body-view'>
+      <view class='left-view'>
+        <image class='user-icon' src='{{icon}}'></image>
+      </view>
+      <view class='right-view'>
+        <view class='user-name-view'>
+          <label class='user-name'>年事项目组</label>
+        </view>
+        <view class='user-content-view'>
+          <text class='user-content'>{{content}}</text>
+        </view>
+        <view class='photo-view'>
+          <view class='photo' wx:for='{{resource}}' style='width:{{photoWidth/2}}px;height:{{photoWidth/6}}px'>
+            <image bindtap='LookPhoto' data-photUrl='{{item}}' src='{{item}}' style='width:{{photoWidth/2}}px;height:{{photoWidth/6}}px'></image>
+          </view>
+        </view>
+        <view class='user-address-view'>
+          <label>上海市中山北路3663号</label>
+        </view>
+        <view class='TDD-view'>
+          <label>2019-07-31 10:14:23</label>
+          <button bindtap='delete'>删除</button>
+          <image data-isShow='{{isShow}}' bindtap='TouchDiscuss' src='/images/wxdiscuss.png'></image>
+        </view>
+        <view class='zan-view'>
+          <view class='trigon-view'>
+            <image mode='aspectFill' class='trigon' src='/images/trigon.png'></image>
+          </view>
+          <view class='zan-bg-view'>
+            <view class='zan-user-view' wx:for='{{zanSource}}'>
+              <label bindtap='TouchZanUser' data-name='{{item}}' class='zan-user'>{{item}},</label>
+            </view>
+          </view>
+          <view class='line'></view>
+          <view class='discuss-view'>
+            <view class='discuss' wx:for='{{contnet}}'>
+              <label bindtap='TouchZanUser' data-name='{{item.firstname}}' class='discuss-user'>{{item.firstname}}：</label>
+              <label class='content'>{{item.content}}</label>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>
+<view animation="{{animation}}" class='pop-up-box' style='top:{{popTop}}px;width: {{popWidth}}px;'>
+
+</view>

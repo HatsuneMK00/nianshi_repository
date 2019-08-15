@@ -1,34 +1,67 @@
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower">
+<!-- bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" -->
+<scroll-view scroll-y="true" class="container" >
   <view>
     <view class='classes'>
-      <text>进行中</text>
+      <image src='https://www.nianshi.xyz/images/going.png' mode='scaleToFill'/>
     </view>
     <block wx:for="{{ongoingActivities}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class='activities'>
-        <view class='timeAndHeat'>
-        <text class='activityTime'>起止时间：{{item.time}}</text>
-        <text class='heat'>参与人数：{{item.heat}}</text>
-        </view>
+        <!-- <view class='time'>
+        <text class='activityTime'>截止时间：{{item.time}}</text>
+        </view> -->
         <view class='actImage'>
+          <view class='act_time'>
+            <text>结束时间:{{item.time}}</text>
+          </view>
+          <view class='trangle'>
+            <text class='phase'>{{item.phase}}</text>
+          </view>
+          <text class='act_title'>{{item.title}}</text>
+          <text class='sub_act_title'>{{item.subtitle}}</text>
           <image mode='scaleToFill' src="{{item.imgsrc}}" class='actImage'></image>
-          <view class='actImage'>{{item.title}}</view>
+          <!-- <view class='actImage'>{{item.title}}</view> -->
+        </view>
+        <view class='summary'>
+          <view class='introduction'>
+            <text>{{item.describe}}</text>
+          </view>
+          <view class='heat'>参与人数：{{item.heat}}</view>
+          <view class='join'>
+            <text>立即参与</text>
+          </view>
         </view>
       </view>
     </block>
   </view>
   <view>
     <view class='classes'>
-      <text>已结束</text>
+      <image src='https://www.nianshi.xyz/images/end.png' mode='scaleToFill'/>
     </view>
-    <block wx:for="{{doneActivities}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+     <block wx:for="{{ongoingActivities}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class='activities'>
-        <view class='timeAndHeat'>
-        <text class='activityTime'>起止时间：{{item.time}}</text>
-        <text class='heat'>参与人数：{{item.heat}}</text>
-        </view>
+        <!-- <view class='time'>
+        <text class='activityTime'>截止时间：{{item.time}}</text>
+        </view> -->
         <view class='actImage'>
+          <view class='act_time'>
+            <text>结束时间:{{item.time}}</text>
+          </view>
+          <view class='trangle'>
+            <text class='phase'>{{item.phase}}</text>
+          </view>
+          <text class='act_title'>{{item.title}}</text>
+          <text class='sub_act_title'>{{item.subtitle}}</text>
           <image mode='scaleToFill' src="{{item.imgsrc}}" class='actImage'></image>
-          <view class='actImage'>{{item.title}}</view>
+          <!-- <view class='actImage'>{{item.title}}</view> -->
+        </view>
+        <view class='summary'>
+          <view class='introduction'>
+            <text>{{item.describe}}</text>
+          </view>
+          <view class='heat'>参与人数：{{item.heat}}</view>
+          <view class='join'>
+            <text>立即参与</text>
+          </view>
         </view>
       </view>
     </block>

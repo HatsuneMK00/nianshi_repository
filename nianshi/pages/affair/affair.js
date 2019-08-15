@@ -17,8 +17,9 @@ Page({
     ],
   },
   bindAffairTap: function (e) {
+    console.log(e.target.id),
     wx.navigateTo({
-      url: '/pages/articleList/articleList',
+      url: '/pages/articleList/articleList?id=' + e.target.id,
     })
   }
 })

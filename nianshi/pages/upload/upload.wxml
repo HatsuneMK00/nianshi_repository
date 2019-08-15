@@ -1,6 +1,6 @@
 <!--pages/upload/upload.wxml-->
 <view class='head-logo'>
-    <image style='width:100px;height:100px' src='/images/icon/login_head.png'></image>
+    <image style='width:100px;height:100px' src='/images/logo.png'></image>
 </view>
 
 <view class='body'>

@@ -2,6 +2,7 @@
   "pages": [
     "pages/recommend/recommend",
     "pages/mine/mine",
+    "pages/authorize/authorize",
     "pages/year/year",
     "pages/articleList/articleList",
     "pages/me/me",
@@ -9,9 +10,10 @@
     "pages/info/info",
     "pages/upload/upload",
     "pages/activity/activity",
+    "pages/activity2/activity2",
+    "pages/activity3/activity3",
     "pages/affair/affair",
     "pages/list/list"
-    
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"
@@ -44,5 +46,6 @@
         "selectedIconPath": "/images/我选中.jpg"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

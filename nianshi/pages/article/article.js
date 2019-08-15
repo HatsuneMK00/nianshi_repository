@@ -8,16 +8,18 @@ Page({
   data: {
     titleFontSize : '',
     contentFontSize : '',
-    timeAndAuthorSize : ''
+    timeAndAuthorSize : '',
+    imagesrc :''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
+    var that = this;
+    console.log(options);
     wx.request({
-      url: 'https://www.nianshi.xyz/getArticle?id=2', //服务器地址 实际按调用文章页会传过来的id号来访问，暂硬编写《==================================
+      url: 'https://www.nianshi.xyz/getArticle?id=' + options.id, //服务器地址 实际按调用文章页会传过来的id号来访问，暂硬编写《==================================
       data: {
       },
       header: {
@@ -34,8 +36,10 @@ Page({
         that.setData({
           Test: res.data
         })
+        that.setData({
+          imagesrc:"https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data.article_id
+        })
         var titleLength = res.data.title.length
-
         console.log(titleLength)
         if (titleLength <=8  && winWidth <= 500){
           that.setData({

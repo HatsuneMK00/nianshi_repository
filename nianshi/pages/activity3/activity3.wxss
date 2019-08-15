@@ -1,0 +1,91 @@
+.titleimage{
+  width: 750rpx; 
+  height: 90rpx;
+}
+
+.extra{
+  opacity:0;
+}
+
+.top{
+  width: 750rpx;
+  display: flex;
+  flex-flow: row;
+}
+
+.topmain{
+  width: 750rpx;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin-left: 5rpx;
+}
+
+.information{
+ height: 440rpx;
+ width: 350rpx;
+ margin-left: 10rpx;
+ margin-right: 10rpx;
+ margin-top: 10rpx;
+ margin-bottom: 20rpx;
+ border-radius: 30rpx;
+ background-color: rgba(163, 162, 162, 0.089);
+}
+
+.find_image{
+ height: 300rpx;
+ width: 350rpx;
+ border-radius: 30rpx 30rpx 0rpx 0rpx;
+}
+
+.brief_text{
+ height: 60rpx;
+ width: 350rpx;
+ display: flex;
+ margin-top: 5rpx;
+ margin-left: 10rpx;
+ flex-direction: row;
+ font-size: 28rpx;
+ color:  rgba(54, 54, 54, 0.973);
+}
+
+.findcontain{
+ width: 350rpx;
+ height: 100px;
+ display: flex;
+ flex-direction: row;
+ margin-left: 10rpx;
+}
+
+.avatar{
+ flex-direction: row;
+ display: flex;
+ width: 50rpx;
+ height: 50rpx;
+}
+
+.nickname{
+ width: 160rpx;
+ font-size: 25rpx;
+ margin-top: 10rpx;
+ color: rgba(77, 75, 75, 0.945);
+ margin-left: 10rpx;
+ margin-right: 10rpx;
+}
+
+.LikeLike{
+ display: flex;
+ flex-direction: row;
+ margin-top: 10rpx;
+}
+
+.Like{
+ width: 45rpx;
+ height: 45rpx;
+}
+
+.isLikenumber{
+  font-size: 25rpx;
+  margin-top: 6rpx;
+  color: rgba(77, 75, 75, 0.945)
+}

@@ -5,7 +5,7 @@
 }
 .feed-item{
   width: 660rpx;
-  height: 240rpx;
+  height: 280rpx;
   padding: 12rpx 50rpx 0rpx 50rpx;
   margin: 0rpx 5rpx 0rpx 0rpx;
   background: #fff;
@@ -14,11 +14,21 @@
   border-right: 1px solid rgb(197, 197, 197); */
   border-bottom:3px outset rgba(184, 184, 184, 0.308);
   box-shadow: 0 2px 5px #fff;
+  /* background-image: url(https://www.nianshi.xyz/images/art1.jpg);
+  background-repeat:no-repeat; 
+  background-size:100% 100%;
+  -moz-background-size:100% 100%; */
   /* border-radius: 15rpx; */
 }
+/* .feed-item .bg_image{
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  z-index: 999;
+} */
 .feed-source{
   width: 690rpx;
-  height: 180rpx;
+  height: 190rpx;
   /* display: flex; */
   position: relative;
   left: -40rpx;
@@ -50,11 +60,9 @@
   font-size: 16px;
   text-align: center;
   position: relative;
-  /*bottom: 10rpx;*/
   border-bottom: solid #cccece 4rpx
 }
 .feed-source .inform .inform-bottomleft{
-  /* padding-left: 10rpx; */
   padding-right: 45rpx;
   display: flex;
   justify-content: space-around;
@@ -64,13 +72,9 @@
 .feed-source .inform .title{
   height:40rpx;
   width: 400rpx;
-  /* line-height: 40rpx; */
   vertical-align: middle;
-  /* padding: 20rpx 20rpx 200rpx 20rpx; */
   position: relative;
-  /* left: 20rpx; */
   bottom: 10rpx;
-  /* color: #a0acac; */
   font-size: 36rpx;
   font-weight: 300;
   /* text-align: center; */
@@ -113,7 +117,6 @@
 .feed-source .inform .good .block image{
   height: 40rpx;
   width: 40rpx;
-  /* vertical-align: text-bottom; */
   position: relative;
   top:8rpx;
 }
@@ -131,22 +134,28 @@
 
 }
 .feedContent{
-  width: 650rpx;
-  height: 50rpx;
+  width: 690rpx;
+  height:80rpx;
   margin-bottom:0; 
-  vertical-align: middle;
   color: #a0acac;
-  font-size: 30rpx;
+  font-size: 26rpx;
   margin-top: 10rpx;
-  /* border-bottom: solid;
-  border-width: 4rpx;
-  border-color: #000000; */
+  position: relative;
+  left: -30rpx;
   /* border-color: #636464; */
   /* position: relative;
   left: 100rpx; */
 }
-.feedContent .text{
-  width: 540rpx;
+.feedContent text{
+  width: 690rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-indent: 2em;
 }
 .feedContent_content{
   width: 540rpx;
