@@ -11,16 +11,56 @@ Page({
     timeAndAuthorSize : '',
     imagesrc :''
   },
-
+  bindLikeTap:function(e){
+    var that = this;
+    var app = getApp();
+    var option;
+    if(that.data.Test.liked=='flase'){
+      option='like_article';
+    }
+    else{option='dislike_article';}
+    wx.request({
+      url: 'https://www.nianshi.xyz/api/'+option,
+      data: {
+        article_id: that.data.Test.article_id,
+        openid: app.globalData.openid
+      },
+      success(res){
+        console.log(res)
+        if(res.data=='success'){
+          console.log('hello')
+        }
+        else if(res.data=='error'){
+          console.log('helllo')
+          that.setData({
+            'that.data.Test.liked':'ture',
+            'that.data.Test.numoflike':['that.data.Test.numofLike']+1
+          })
+        }
+        
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    var app = getApp();
+    wx.cloud.init()
+    wx.cloud.callFunction({
+      name: 'testgetInfo',
+      success: function (res) {
+        app.globalData.openid = res.result.info.OPENID
+        console.log(app.globalData.openid)
+      }
+    })
     console.log(options);
     wx.request({
-      url: 'https://www.nianshi.xyz/getArticle?id=' + options.id, //服务器地址 实际按调用文章页会传过来的id号来访问，暂硬编写《==================================
+      url: 'https://www.nianshi.xyz/api/getArticle', //服务器地址 实际按调用文章页会传过来的id号来访问
       data: {
+        article_id:options.id,
+        openid: app.globalData.openid
       },
       header: {
         'content-type': 'application/json'

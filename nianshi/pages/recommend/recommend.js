@@ -20,7 +20,8 @@ Page({
         src: '../../images/社区活动.png',
         text: 'This is a topic',
         bindfun: 'bindActTap3'
-      }
+        text: '每季主题'
+      },
     ],
     indicatorDots: true,
     autoplay: true,
@@ -35,7 +36,17 @@ Page({
       })
     },
     
+// not in chenyu part
+// in zihangyihan part 
   },
+  swiperChange(e) {
+    const that = this;
+    that.setData({
+      swiperIndex: e.detail.current,
+    })
+  },
+// end
+
   swiperChange(e) {
     const that = this;
     that.setData({
@@ -46,8 +57,9 @@ Page({
     wx.navigateTo({
       url: '/pages/activity/activity',
     })
-    console.log(e)
+    // console.log(e)
   },
+
   bindActTap2: function (e) {
     wx.navigateTo({
       url: '/pages/activity2/activity2',
@@ -62,24 +74,78 @@ Page({
   },
   bindIndexTap: function (e) {
     console.log(e);
+    var that = this
     wx.navigateTo({
-      url: '/pages/article/article?id=' + e.currentTarget.id
+      url: '/pages/article/article?id=' + e.currentTarget.id,
     })
+    //wx.request({
+    //url: '/pages/article/article',
+    //data: { openid: app.globalData.openid}
+    //})
+    /*wx.request({
+      url: 'https://www.nianshi.xyz/getInfo',
+      data: { 'openid': that.data.openid },
+      success(res) {
+        console.log(res)
+        if (res.data['signed'] == 'false') {
+          wx.navigateTo({
+            url: '/pages/upload/upload',
+          })
+        }
+        else {
+          wx.navigateTo({
+            url: '/pages/article/article?id='+ e.currentTarget.id,
+          })
+        }
+      }
+    })*/
   },
+    // wx.switchTab({
+    //   url: '',
+    // })({
+    //   // url: '../article/articleId?id=value'
+    //   url: '/pages/agepage/agepage'
+    // })
   bindLikeTap: function (e) {
-    console.log(e)
+    var that=this
+    wx.request({
+      url: 'https://www.nianshi.xyz/setLike',
+      data:{
+        article_id:that.data.article_id,
+        openid:app.globalData.openid
+      }
+    })
+    // this.data.good_yet = 1 - this.data.good_yet
+    // if(this.data.good_yet == 1){
+    //   this.data.good_num = this.data.good_num + 1
+    // }
+    // else{
+    //   this.data.good_num = this.data.good_num - 1
+    // }
+    // console.log(e)
   },
   /**
    * 生命周期函数--监听页面加载
    */
+  
+  // there are two onload function?
   onLoad: function (options) {
+    var that = this;
+    var app = getApp();
+    wx.cloud.init()
+    wx.cloud.callFunction({
+      name: 'testgetInfo',
+      success: function (res) {
+        app.globalData.openid = res.result.info.OPENID
+        console.log(app.globalData.openid)
+      }
+    })
     let pages = getCurrentPages();
     let prevpage = pages[pages.length - 2];
-    var that = this;
     wx.request({
       url: 'https://www.nianshi.xyz/getArticleByLike',
       success(res) {
-        console.log(res)
+        // console.log(res)
         var articles = [];
         for (var i = 0; i < res.data.length; i++) {
           articles.push(res.data[i]);
@@ -91,9 +157,8 @@ Page({
         console.log(articles)
       }
     })
-  },
-  
-  onLoad: function (options) {
+
+    // chenyu animation part
     var ani_above_1 = wx.createAnimation({
       duration: 1500,
       delay: 1000,

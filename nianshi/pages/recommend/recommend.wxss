@@ -1,6 +1,7 @@
 .container{
-  padding: 0rpx;
   background-color: aliceblue;
+  height: 99vh; /* 设为100小米mix2首页滑动会 上下滑动切换时会卡顿*/
+  padding: 0
 }
 .swiper-block {
 height: 250rpx;
@@ -17,14 +18,43 @@ overflow: unset;
 position: relative;
 }
 
-.swiper-item .describe{
+.swiper-item .bg{
 position: absolute;
-left: 0;
-right: 0;
-bottom: 10%;
+/* left: 0;
+right: 0; */
+height: 250rpx;
+width: 100%; 
+opacity:0.7; 
+filter: alpha(opacity=60);
+background:linear-gradient(to right,rgba(255,255,255,0),rgba(0,0,0,0.5));
 line-height: 50rpx;
-text-align: center;
+text-indent: 1em;
+font-weight: 500;
+/* text-align: center; */
 z-index: 999;
+}
+
+.swiper-item .bg .describe{
+  position: absolute;
+  width: 50rpx;
+  height: 215rpx;
+  left: 650rpx;
+  top: 15rpx;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 36rpx;
+  z-index: 999;
+  /* text-indent: 0.5em; */
+}
+
+.swiper-item .bg .describe text{
+  display: table-cell;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 500;
+  vertical-align: middle;
+  text-align: center;
+  text-indent: 0em;
 }
 
 .slide-image {
@@ -32,7 +62,7 @@ height: 800rpx;
 width: 750rpx;
 border-radius: 9rpx;
 box-shadow: 0px 0px 30rpx rgba(0, 0, 0, 0.2);
-margin: 0rpx 30rpx;
+/* margin: 0rpx 30rpx; */
 z-index: 1;
 }
 
@@ -169,7 +199,7 @@ z-index: 20;
   height: 91rpx;
   margin-bottom:0; 
   color: #a0acac;
-  font-size: 32rpx;
+  font-size: 33rpx;
   position: relative;
   top: -10rpx;
   left: -20rpx;

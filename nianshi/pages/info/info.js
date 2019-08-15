@@ -7,7 +7,21 @@ Page({
   data: {
 
   },
-
+  bindContributeTap:function(e){
+    var that = this;
+    var app=getApp();
+    wx.navigateTo({
+      url: '/pages/contribute/contribute',
+    })
+  },
+  catchReviseTap:function(e){
+    var that = this;
+    var app=getApp();
+    console.log('hello');
+    wx.navigateTo({
+      url: '/pages/articleRevise/articleRevise?id='+ e.currentTarget.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -17,14 +31,29 @@ Page({
     that.setData({
       openid: app.globalData.openid
     })
-    console.log(that.data)
+    // console.log(that.data.openid)
     wx.request({
       url: 'https://www.nianshi.xyz/getArticleByAuthor',
       data: {
         author_id:that.data.openid
       },
       success(res){
-        console.log(res.data[0])
+        console.log(res)
+        if(res.data=="no such article"){
+          that.setData({message:"暂无文章"})
+        }
+        else{
+          that.setData({message:""})
+          var articles = [];
+          for (var i = 0; i < res.data.length; i++) {
+            articles.push(res.data[i]);
+            articles[i].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
+          }
+          that.setData({
+            articles
+          })
+          // console.log(articles)
+        }
       }
     })
   },
@@ -76,5 +105,16 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  bindInfoTap: function (e){
+    wx.navigateTo({
+      url: '/pages/'
+    })
+  },
+  bindIndexTap: function (e) {
+    // console.log(e);
+    wx.navigateTo({
+      url: '/pages/article/article?id=' + e.currentTarget.id
+    })
+  },
 })

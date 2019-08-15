@@ -13,11 +13,12 @@
                 <a class="navbar-brand" href="#">年 · 事</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li id="logout"><a href="https://www.nianshi.xyz/login"><span class="glyphicon glyphicon-log-out"></span>登出</a></li>
+                <li><p>你好！{{ name }}</p></li>
+                <li id="logout"><a href="https://www.nianshi.xyz/login">登出</a></li>
             </ul>
         </div>
     </nav>
-    <div style="padding: 90px 50px;font-size: 25px;">
+    <div style="padding: 10vh 50px;font-size: 25px;">
         <form method="POST" action="/" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="Title">标题</label>
@@ -34,7 +35,7 @@
             <div class="form-group">
                 <label for="Time">年代</label>
                 <select class="form-control" id="Time" name="Time">
-                    <option value="before1900">1900前</option>
+                    <option value="19000">1900前</option>
                     <option value="1900">1900</option>
                     <option value="1910">1910</option>
                     <option value="1920">1920</option>
@@ -47,7 +48,7 @@
                     <option value="1990">1990</option>
                     <option value="2000">2000</option>
                     <option value="2010">2010</option>
-                    <option value="after2010">2010后</option>
+                    <option value="20100">2010后</option>
                 </select>
             </div>
             <div class="form-group">

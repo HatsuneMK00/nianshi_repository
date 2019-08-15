@@ -1,19 +1,21 @@
 {
   "pages": [
     "pages/recommend/recommend",
+    "pages/activity/activity",
     "pages/mine/mine",
     "pages/authorize/authorize",
+    "pages/info/info",
     "pages/year/year",
     "pages/articleList/articleList",
     "pages/me/me",
     "pages/article/article",
-    "pages/info/info",
     "pages/upload/upload",
     "pages/activity/activity",
     "pages/activity2/activity2",
     "pages/activity3/activity3",
-    "pages/affair/affair",
-    "pages/list/list"
+    "pages/collection/collection",
+    "pages/contribute/contribute",
+    "pages/articleRevise/articleRevise"
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"

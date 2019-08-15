@@ -1,12 +1,24 @@
 <!--pages/article/article.wxml-->
 
 <view class='article'>
-  <scroll-view scroll-y="true" style="height: 95vh">
+  <!--<movable-area class='movableArea'>
+<movable-view direction='all' class='movableView'> 
+<image src='https://www.nianshi.xyz/images/like.png'></image>
+</movable-view>-->
+  <view class='likeBind'>
+    <view class='likeBindImg'>
+      <image class='likeBindImg' style='aspectFill' src='https://www.nianshi.xyz/images/like.png' catchtap='bindLikeTap'></image>
+    </view>
+    <view class='likeAmount'>
+      <text class=''>{{Test.numofLike}}</text>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" style="height: 95vh; z-index:-1;">
     <view class='title' style='font-size: {{titleFontSize}};'>
       <text>{{Test.title}}\n</text>
     </view>
     <view class='timeAndAuthor' style='font-size: {{timeAndAuthorSize}}'>
-      <text>{{Test.time}}</text>    
+      <text>{{Test.time}}</text>
       <text class='timeAndAuthor-author'>文/{{Test.author}}\n</text>
     </view>
     <view>
@@ -16,5 +28,5 @@
       <text>{{Test.text}}\n</text>
     </view>
   </scroll-view>
+  <!--</movable-area>-->
 </view>
-

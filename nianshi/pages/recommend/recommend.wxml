@@ -29,7 +29,10 @@
       <view class="feed-item" bindtap='bindIndexTap' id='{{item.article_id}}'>
         <view class="feed-source">
           <view class="pic">
+
             <image src="{{item.imagesrc}}" mode='scaleToFill'></image>
+            <!-- <image src="{{item.imagesrc}}" mode='aspectFill'></image> -->
+          
           </view>
           <view class="inform">
             <view class='title_block'>
@@ -41,7 +44,9 @@
               </view>
               <view class="good">
                 <view catchtap='bindLikeTap' class='block' hover-stop-propagation='false'>
+
                   <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555504114889&di=1a79d00a0105b90cdbfbadd43bedefc5&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201503%2F16%2F20150316193030_CxLVX.thumb.700_0.jpeg' />
+                  <!-- <image  src='https://www.nianshi.xyz/images/like.png' /> -->
                 </view>
                 <view class='block'>
                   <text>{{item.numofLike}}</text>

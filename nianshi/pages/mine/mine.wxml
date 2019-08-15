@@ -1,7 +1,7 @@
 <view class="user_content">
   <view class="user_head">
     <view class="user_img domain">
-      <image class="icon-avatar"src="{{avatar}}"></image>
+      <image class="icon-avatar"src="{{avatar}}" catchtap='wantToAuth'></image>
       <view class="userinfo_name">{{username}}</view>
     </view>
   </view>

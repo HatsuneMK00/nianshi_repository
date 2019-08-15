@@ -1,0 +1,18 @@
+<!--pages/articleRevise/articleRevise.wxml-->
+<view class="all">
+  <view class="articleTitle">
+    <text class="articleTitleText">标题：</text>
+    <input class="articleTitleContent" value="{{Test.title}}"bindinput="setTitle"></input>
+  </view>
+
+  <view class="articleContent">
+    <text class="articleContentText">正文：</text>
+    <textarea class="articleContentContent" maxlength="-1" value="{{Test.text}}" bindinput="setContent"></textarea>
+  </view>
+
+  <view class='section'>
+    <view class='btn-area'>
+      <button type='primary' bindtap='articleRevisePost'>提交修改</button>
+    </view>
+  </view>
+</view>
