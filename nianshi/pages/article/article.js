@@ -15,10 +15,12 @@ Page({
     var that = this;
     var app = getApp();
     var option;
-    if(that.data.Test.liked=='flase'){
+    console.log(that.data.Test.liked)
+    if(that.data.Test.liked=='false'){
       option='like_article';
     }
     else{option='dislike_article';}
+    console.log(option)
     wx.request({
       url: 'https://www.nianshi.xyz/api/'+option,
       data: {
@@ -29,6 +31,10 @@ Page({
         console.log(res)
         if(res.data=='success'){
           console.log('hello')
+          that.setData({
+            'that.data.Test.liked': 'false',
+            'that.data.Test.numoflike': ['that.data.Test.numofLike'] - 1
+          })
         }
         else if(res.data=='error'){
           console.log('helllo')

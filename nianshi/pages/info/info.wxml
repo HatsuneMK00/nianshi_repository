@@ -1,7 +1,7 @@
 <!--pages/info/info.wxml-->
 <view class='container'>
-  <view class='info-block' bindtap='bindContributeTap'>
-    <text>我要投稿</text>
+  <view class='info-block' >
+    <button class="weui-btn" type="primary" bindtap='bindContributeTap'>我要投稿</button>
   </view>
 <!--
   <view class='info-block'>
@@ -16,7 +16,8 @@
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item" bindtap='bindIndexTap' id="{{item.article_id}}">
         <view class="reviseBottom" catchtap="catchReviseTap" id="{{item.article_id}}">
-          <image classs="" url=''></image>
+          <!-- <image class="" url=''></image> -->
+          <button class="weui-btn" type="default">编辑</button>
         </view>
         <!-- <image class="bg_image" mode='scaleToFill' src="/image/bg1.jpg"></image> -->
         <view class="feed-source">
