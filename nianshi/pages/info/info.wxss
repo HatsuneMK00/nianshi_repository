@@ -1,4 +1,6 @@
 /* pages/info/info.wxss */
+@import '/style/weui.wxss';
+
 .container{
   display: flex;
   align-items: center;
@@ -16,11 +18,12 @@
   justify-content: space-around;
   height: 10vh;
   width: 100vw;
-  border-top: 2px solid rgba(109, 108, 108, 0.507);
-  border-bottom: 2px outset rgba(109, 108, 108, 0.507);
-  background-color: rgba(236, 236, 236, 0.507);
+  border-top: 2px solid rgba(109, 108, 108, 1);
+  border-bottom: 2px outset rgba(109, 108, 108, 1);
+  background-color: rgba(236, 236, 236, 1);
   position: fixed;
   top:0;
+  z-index: 10;
 }
 .info-block text{
   vertical-align: middle;
@@ -40,12 +43,11 @@
 }
 
 .reviseBottom{
-  width: 30rpx;
-  height: 30rpx;
+  width: 70px;
   background-color: black;
-  position: relative;
-  top: 20rpx;
-  left: 620rpx;
+  position: absolute;
+  top: 15rpx;
+  left: 610rpx;
   z-index: 9;
 }
 /* pages/articleList/articleList.wxss */
@@ -54,6 +56,7 @@
   height: 295rpx;
   padding: 12rpx 50rpx 0rpx 50rpx;
   margin: 0rpx 5rpx 0rpx 0rpx;
+  position: relative;
   background: #fff;
   border-top: 1px solid rgb(197, 197, 197); 
   border-bottom:3px outset rgba(184, 184, 184, 0.308);
