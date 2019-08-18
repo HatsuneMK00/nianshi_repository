@@ -130,13 +130,15 @@ Page({
         }
       })
     }
-    else if (e.currentTarget.id == "0" ||e.currentTarget.id == "1" || e.currentTarget.id == "3"){
+    else if(e.currentTarget.id=="1"){
       //console.log(e.currentTarget.id)
       wx.navigateTo({
-        url: '/pages/list/list?id=' + e.currentTarget.id,
+        url: '/pages/list/list'
       })
     }
-    
+    else{
+      console.log("he has some feedback")
+    }
   },
   wantToAuth: function(e){
     wx.getSetting({

@@ -19,6 +19,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
 import settings
 from support import check_login_admin, check_article_security
+import time
 
 engine = settings.ProductionConfig.engine
 
@@ -55,7 +56,7 @@ def multiUpload():
                        describe=form['Introduction'], usr_open_id=usr.usr_open_id,
                        time=datetime.now().strftime("%Y-%m-%d"), age=form['Time'], type=form['Classification'],
                        text=form['article'], image_num=len(upload_files),
-                       passed=1)
+                       passed=0)
         conn.add(obj1)
         conn.commit()
         conn.close()
@@ -82,7 +83,7 @@ def multiUpload():
                 else:
                     return "文件类型错误"
         conn.close()
-    return "upload complete"
+    return render_template("uploadSuccess.html")
 
 
 @app.route('/dbtest1')
@@ -515,7 +516,9 @@ WHERE article_id={} AND usr_open_id='{}'"""
 def get_read_article(openid):
     select_query = """SELECT `title`,auther_name,Articles.usr_open_id,like_num,`describe`,Articles.article_id,`time`,`age`,`type`,`passed`,image_num
 FROM Articles JOIN `Read` ON (Articles.article_id=`Read`.article_id)
-WHERE `Read`.usr_open_id='{}'"""
+WHERE `Read`.usr_open_id='{}'
+ORDER BY read_time DESC
+LIMIT 10"""
     result = engine.execute(select_query.format(openid))
     article_list = []
     for row in result:
@@ -530,9 +533,12 @@ WHERE `Read`.usr_open_id='{}'"""
 def set_read():
     openid = request.args.get('openid')
     article_id = request.args.get('article_id')
-    insert_query = """INSERT INTO `Read`(article_id,usr_open_id)
-VALUES ({},'{}')"""
-    result = engine.execute(insert_query.format(article_id, openid))
+    insert_query = """INSERT INTO `Read`(article_id,usr_open_id,read_time)
+VALUES ({},'{}','{}')"""
+    try:
+        result = engine.execute(insert_query.format(article_id, openid, time.time()))
+    except:
+        pass
     return "success"
 
 

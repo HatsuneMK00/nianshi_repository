@@ -13,9 +13,10 @@
     "pages/affair/affair",
     "pages/activity2/activity2",
     "pages/activity3/activity3",
-    "pages/collection/collection",
     "pages/contribute/contribute",
-    "pages/articleRevise/articleRevise"
+    "pages/collection/collection",
+    "pages/articleRevise/articleRevise",
+    "pages/list/list"
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"

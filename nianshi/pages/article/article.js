@@ -57,6 +57,16 @@ Page({
     })
     console.log(options);
     wx.request({
+      url: 'https://www.nianshi.xyz/api/set_read',
+      data:{
+        article_id: options.id,
+        openid: app.globalData.openid
+      },
+      success: function(res){
+        console.log("set read success")
+      }
+    })
+    wx.request({
       url: 'https://www.nianshi.xyz/api/getArticle', //服务器地址 实际按调用文章页会传过来的id号来访问
       data: {
         article_id:options.id,
