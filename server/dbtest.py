@@ -82,7 +82,7 @@ def multiUpload():
                 else:
                     return "文件类型错误"
         conn.close()
-    return render_template("uploadSuccess.html")
+    return "upload complete"
 
 
 @app.route('/dbtest1')
@@ -136,7 +136,7 @@ def login():
             conn.close()
             if check_password_hash(pwd_hash, pwd):
                 session['username'] = user
-                if user=='admin':
+                if user == 'admin':
                     return redirect(url_for('admin'))
                 else:
                     return redirect(url_for('multiUpload'))
@@ -241,8 +241,8 @@ def getArticleImage():
         image = images[int(image_id)]
         word = image.url
 
-        print(word)
-        print(os.getcwd())
+        # print(word)
+        # print(os.getcwd())
         # windows
         # command = "dir " + os.getcwd() + " | " + "findstr " + word
         # output = os.popen(command).read()
@@ -256,6 +256,8 @@ def getArticleImage():
         output = os.popen(command).read()
         file = output.strip()
         return send_file(app.config['UPLOAD_FOLDER'] + '/' + file, mimetype='image')
+    else:
+        return "no such image"
 
 
 @app.route('/getArticleByLike')
@@ -271,7 +273,7 @@ def getArticleByLike():
             temp['article_id'] = article.article_id
             article_list.append(temp)
     else:
-        return "seems like there is no article"
+        return "no article"
     return jsonify(article_list)
 
 
@@ -359,7 +361,7 @@ def get_article():
     article = sess.query(Article).get(int(article_id))
     select_query = """SELECT COUNT(*) as article_num FROM `Like`
 WHERE article_id={} AND usr_open_id='{}'"""
-    cursor = engine.execute(select_query.format(int(article_id),openid))
+    cursor = engine.execute(select_query.format(int(article_id), openid))
     result = article.to_dict()
     is_secured = check_article_security(result['text'])
     result['security'] = is_secured
@@ -447,7 +449,7 @@ WHERE article_id={}"""
 
 # there is some bugs
 # fixed
-@app.route('/api/update_article',methods=['POST'])
+@app.route('/api/update_article', methods=['POST'])
 def update_article():
     form = request.json
     # 这里在服务器端 字符类型是unicode 而在本地是str，因此在服务器端需要用encode对unicode类型进行编码转换为str类型！！！！
@@ -480,7 +482,7 @@ WHERE `Like`.usr_open_id='{}'"""
     return jsonify(article_list)
 
 
-#使用url参数
+# 使用url参数
 @app.route('/api/like_article')
 def like_article():
     article_id = request.args.get('article_id')
@@ -488,7 +490,7 @@ def like_article():
     insert_query = """INSERT INTO `Like`
 VALUES({},'{}')"""
     try:
-        engine.execute(insert_query.format(int(article_id),openid))
+        engine.execute(insert_query.format(int(article_id), openid))
     except:
         return "error"
     else:
@@ -507,6 +509,41 @@ WHERE article_id={} AND usr_open_id='{}'"""
         return "success"
     else:
         return "success"
+
+
+@app.route('/api/get_read_article/<openid>')
+def get_read_article(openid):
+    select_query = """SELECT `title`,auther_name,Articles.usr_open_id,like_num,`describe`,Articles.article_id,`time`,`age`,`type`,`passed`,image_num
+FROM Articles JOIN `Read` ON (Articles.article_id=`Read`.article_id)
+WHERE `Read`.usr_open_id='{}'"""
+    result = engine.execute(select_query.format(openid))
+    article_list = []
+    for row in result:
+        article_info = {}
+        for key in row.keys():
+            article_info[key] = row[key]
+        article_list.append(article_info)
+    return jsonify(article_list)
+
+
+@app.route('/api/set_read')
+def set_read():
+    openid = request.args.get('openid')
+    article_id = request.args.get('article_id')
+    insert_query = """INSERT INTO `Read`(article_id,usr_open_id)
+VALUES ({},'{}')"""
+    result = engine.execute(insert_query.format(article_id, openid))
+    return "success"
+
+
+@app.route('/api/delete_read')
+def delete_read():
+    openid = request.args.get('openid')
+    article_id = request.args.get('article_id')
+    delete_read = """DELETE FROM `Read`
+WHERE article_id={} AND usr_open_id='{}'"""
+    result = engine.execute(delete_read.format(article_id, openid))
+    return "success"
 
 
 if __name__ == '__main__':

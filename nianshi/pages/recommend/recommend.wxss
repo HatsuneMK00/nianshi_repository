@@ -241,13 +241,15 @@ z-index: 20;
   text-align: center;
 }
 .flash{
-  height:800rpx;
-  margin-top: 150rpx;
+  height:100vh;
   letter-spacing: 10rpx;
   text-align: center;
   padding: 100rpx;
   font-size: 180%;
   color: #AAAAAA;
+  background-color: white;
+  position: fixed;
+  z-index: 10;
 }
 .above_text{
   display:flex;

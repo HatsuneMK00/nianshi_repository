@@ -6,6 +6,7 @@ import settings
 Base = declarative_base()
 engine = settings.ProductionConfig.engine
 
+
 class Accounts(Base):
     __tablename__ = 'Users'
     usr_open_id = Column(VARCHAR(50), index=True, primary_key=True)
@@ -116,6 +117,15 @@ class Comment(Base):
                 'time': self.time, 'comment_id': self.comment_id, 'like_num': self.like_num}
 
 
+class Read(Base):
+    __tablename__ = 'Read'
+    article_id = Column(Integer, ForeignKey('Articles.article_id'), primary_key=True, index=True)
+    usr_open_id = Column(VARCHAR(50), ForeignKey('Users.usr_open_id'), primary_key=True, index=True)
+
+    def to_dict(self):
+        return {'article_id': self.article_id, 'usr_open_id': self.usr_open_id}
+
+
 def init_db():
     Base.metadata.create_all(engine)
 
@@ -125,5 +135,5 @@ def drop_db():
 
 
 if __name__ == '__main__':
-    drop_db()
+    # drop_db()
     init_db()
