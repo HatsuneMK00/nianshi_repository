@@ -1,6 +1,14 @@
 /* pages/info/info.wxss */
 @import '/style/weui.wxss';
 
+.notPassImage{
+  position: absolute;
+  z-index: 9;
+  top: -35rpx;
+  width: 80%;
+  height: 130%;
+}
+
 .container{
   display: flex;
   align-items: center;
