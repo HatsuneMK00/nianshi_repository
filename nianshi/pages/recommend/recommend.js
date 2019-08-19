@@ -143,13 +143,20 @@ Page({
       success(res) {
         // console.log(res)
         var articles = [];
+        var notPass = 0;
         for (var i = 0; i < res.data.length; i++) {
-          articles.push(res.data[i]);
-          articles[i].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
-          that.setData({
-            articles
-          })
+          //console.log(res.data[i].passed);
+          if (res.data[i].passed == 0) {
+            notPass++;
+          }
+          if(res.data[i].passed != 0){
+            articles.push(res.data[i]);
+            articles[i-notPass].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
+          }
         }
+        that.setData({
+          articles
+        })
         console.log(articles)
       }
     })
