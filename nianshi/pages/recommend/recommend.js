@@ -146,10 +146,10 @@ Page({
         var notPass = 0;
         for (var i = 0; i < res.data.length; i++) {
           //console.log(res.data[i].passed);
-          if (res.data[i].passed == 0) {
+          if (res.data[i].passed != 1) {
             notPass++;
           }
-          if(res.data[i].passed != 0){
+          if (res.data[i].passed != 0 && res.data[i].passed != 2){
             articles.push(res.data[i]);
             articles[i-notPass].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
           }
