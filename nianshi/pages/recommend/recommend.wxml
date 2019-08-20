@@ -1,4 +1,4 @@
-<view wx:if="{{exchange==0}}" class="flash">
+<view wx:if="{{exchange==0}}" class="flash" bindtap="start_now">
   <view class="above_text">
     <view class="above_1" animation='{{ani_above_1}}'>那</view>
     <view class="above_2" animation='{{ani_above_2}}'>些</view>
@@ -11,7 +11,7 @@
     <view class="below_6" animation='{{ani_below_6}}'>事</view>
   </view>
   <view class="extra" animation='{{extra}}' bindtransitionend='animation_over'></view>
-  <view class="start_now" bindtap="start_now">点击屏幕开启旅程！</view>
+  <view class="start_now" >点击屏幕开启旅程！</view>
 </view> 
 
 <scroll-view scroll-y="true" class="container">
