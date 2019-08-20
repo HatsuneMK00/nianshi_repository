@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Submit</title>
+	</head>
+
+	<body>
+	    <form method="POST" action="submit" enctype="multipart/form-data">
+		<p>Title: <input type="text" placeholder="title" name="title" /></p>
+		<p>Author: <input type="text" placeholder="author" name="author" /></p>
+		<p><h>Times: </h><select name="times">	<option value ="0">1940</option>
+		  	<option value ="1">1950</option>
+		  	<option value="2">1960</option>
+		  	<option value="3">1970</option>
+		</select>
+		</p>
+		<p><h>Classification: </h><select name="classification">
+			<option value ="0">Friends</option>
+		  	<option value ="1">Wars</option>
+		  	<option value="2">Family</option>
+		</select>
+		</p>
+		<p>Introduction: <input type="text" placeholder="introduction" name="introduction" style="height:50px;width:200px" /></p>
+		<p>Image: <input type="file" name="file" /></p>
+		<p>Article: <input type="text" placeholder="article" name="article" style="height:200px;width:400px" /></p>
+		<input type="submit" value="Submit" />
+		</form>
+	</body>
+
+</html>

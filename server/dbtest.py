@@ -399,7 +399,7 @@ def admin_not_passed():
     connection = sessionmaker(bind=engine)
     sess = connection()
     articles_info = []
-    articles = sess.query(Article).filter_by(passed=0).all()
+    articles = sess.query(Article).filter_by(passed=2).all()
     sess.close()
     for article in articles:
         articles_info.append(article.to_dict())
@@ -417,6 +417,19 @@ def admin_passed():
     for article in articles:
         articles_info.append(article.to_dict())
     return render_template("passed.html", articles=articles_info)
+
+
+@app.route('/admin/not_passed_yet')
+@check_login_admin
+def admin_not_passed_yet():
+    connection = sessionmaker(bind=engine)
+    sess = connection()
+    articles_info = []
+    articles = sess.query(Article).filter_by(passed=0).all()
+    sess.close()
+    for article in articles:
+        articles_info.append(article.to_dict())
+    return render_template("not_passed_yet.html", articles=articles_info)
 
 
 @app.route('/admin_auth/<article_id>')
@@ -442,7 +455,7 @@ WHERE article_id={}"""
 @app.route('/api/reject_article/<article_id>')
 def reject_article(article_id):
     update_query = """UPDATE Articles
-SET passed=0
+SET passed=2
 WHERE article_id={}"""
     cursor = engine.execute(update_query.format(int(article_id)))
     return "success"
@@ -535,10 +548,13 @@ def set_read():
     article_id = request.args.get('article_id')
     insert_query = """INSERT INTO `Read`(article_id,usr_open_id,read_time)
 VALUES ({},'{}','{}')"""
+    update_query = """UPDATE `Read`
+SET read_time='{}'
+WHERE article_id={} AND usr_open_id='{}'"""
     try:
         result = engine.execute(insert_query.format(article_id, openid, time.time()))
     except:
-        pass
+        result = engine.execute(update_query.format(time.time(),article_id,openid))
     return "success"
 
 
