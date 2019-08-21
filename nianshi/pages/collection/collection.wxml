@@ -1,7 +1,5 @@
-<!--pages/info/info.wxml-->
-<view class='container'>
-  <view style="position:absolute;top:10vh;">
-    <view>{{ message }}</view>
+<scroll-view scroll-y="true" class="container">
+  <view>
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item" bindtap='bindIndexTap' id="{{item.article_id}}">
         <!-- <image class="bg_image" mode='scaleToFill' src="/image/bg1.jpg"></image> -->
@@ -15,14 +13,14 @@
             </view>
             <view class='inform-bottomleft'>
               <view class='block'>
-                <text class="author">{{item.author}}</text>
+                <text class="author">{{item.auther_name}}</text>
               </view>
               <view class="good">
                 <view catchtap='bindLikeTap' class='block' hover-stop-propagation='false'>
                   <image src='https://www.nianshi.xyz/images/like.png' />
                 </view>
                 <view class='block'>
-                  <text>{{item.numofLike}}</text>
+                  <text>{{item.like_num}}</text>
                 </view>
               </view>
             </view>
@@ -36,5 +34,5 @@
         </view>
       </view>
     </block>
-  </view>                                                                                                  
-</view>
+  </view>
+</scroll-view>

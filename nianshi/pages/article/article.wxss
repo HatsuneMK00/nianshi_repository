@@ -47,7 +47,7 @@ page {
   border-top: 1px gainsboro solid;
 }
 
-.movaleAera{ 
+.movableArea{ 
   pointer-events: none;
   height: 100%;
   width: 100%;
@@ -59,9 +59,31 @@ page {
 
 .movableView{
   pointer-events: auto;
-  height: 50px;
-  width: 50px;
-  background: blue;
+  height: 92rpx;
+  width: 92rpx;
+  left: 1000rpx;
+  background: rgb(233, 233, 233);
+  border-radius: 46rpx;
+  border: rgb(200,200,200) 2rpx outset;
+  z-index: 11;
+}
+.likeImage{
+  margin: 10rpx;
+  height:72rpx;
+  width:72rpx;
+}
+.likeNum{
+  height: 30rpx;
+  width: 60rpx;
+  background: rgb(233, 233, 233);
+  border-radius: 10rpx;
+  border: rgb(200,200,200) 2rpx outset;
+  text-align: center;
+  color: gray;
+  font-size: 24rpx;
+  position: relative;
+  top: -10rpx;
+  left: 14rpx;
 }
 .title{
   text-align: left;

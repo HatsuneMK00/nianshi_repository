@@ -16,7 +16,7 @@ Page({
     var app = getApp();
     var option;
     console.log(that.data.Test.liked)
-    if(that.data.Test.liked=='false'){
+    if(that.data.Test.liked==false){
       option='like_article';
     }
     else{option='dislike_article';}
@@ -30,20 +30,19 @@ Page({
       success(res){
         console.log(res)
         if(res.data=='success'){
-          console.log('hello')
-          that.setData({
-            'that.data.Test.liked': 'false',
-            'that.data.Test.numoflike': ['that.data.Test.numofLike'] - 1
-          })
+          console.log(that.data)
+          that.data.Test.liked = !that.data.Test.liked
+          if (that.data.Test.liked==true)
+              { that.data.Test.numofLike = that.data.Test.numofLike + 1}
+          else { that.data.Test.numofLike = that.data.Test.numofLike - 1}
         }
         else if(res.data=='error'){
           console.log('helllo')
-          that.setData({
-            'that.data.Test.liked':'ture',
-            'that.data.Test.numoflike':['that.data.Test.numofLike']+1
-          })
         }
-        
+        var NewTest=that.data.Test
+        that.setData({
+          Test: NewTest
+        })
       }
     })
   },
@@ -58,7 +57,7 @@ Page({
       name: 'testgetInfo',
       success: function (res) {
         app.globalData.openid = res.result.info.OPENID
-        console.log(app.globalData.openid)
+        // console.log(app.globalData.openid)
       }
     })
     console.log(options);
@@ -72,6 +71,8 @@ Page({
         console.log("set read success")
       }
     })
+    console.log(options.id)
+    console.log(app.globalData.openid)
     wx.request({
       url: 'https://www.nianshi.xyz/api/getArticle', //服务器地址 实际按调用文章页会传过来的id号来访问
       data: {
