@@ -146,10 +146,10 @@ Page({
         var notPass = 0;
         for (var i = 0; i < res.data.length; i++) {
           //console.log(res.data[i].passed);
-          if (res.data[i].passed == 0) {
+          if (res.data[i].passed != 1) {
             notPass++;
           }
-          if(res.data[i].passed != 0){
+          if (res.data[i].passed != 0 && res.data[i].passed != 2){
             articles.push(res.data[i]);
             articles[i-notPass].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
           }
@@ -206,16 +206,16 @@ Page({
     ani_above_2.opacity(1).translateX(100 / 750 * temp).step();
     ani_above_3.opacity(1).translateX(74 / 750 * temp).step();
     ani_image.opacity(1).step();
-    ani_above_1.opacity(0).translateX(-130 / 750 * temp).step();
-    ani_above_2.opacity(0).translateX(-100 / 750 * temp).step();
-    ani_above_3.opacity(0).translateX(-74 / 750 * temp).step();
+    // ani_above_1.opacity(0).translateX(-130 / 750 * temp).step();
+    // ani_above_2.opacity(0).translateX(-100 / 750 * temp).step();
+    // ani_above_3.opacity(0).translateX(-74 / 750 * temp).step();
     ani_below_4.opacity(1).translateX(160 / 750 * temp).step();
     ani_below_5.opacity(1).translateX(74 / 750 * temp).step();
     ani_below_6.opacity(1).translateX(-20 / 750 * temp).step();
-    ani_below_4.opacity(0).translateX(-160 / 750 * temp).step();
-    ani_below_5.opacity(0).translateX(-74 / 750 * temp).step();
-    ani_below_6.opacity(0).translateX(20 / 750 * temp).step();
-    ani_image.opacity(0).step();
+    // ani_below_4.opacity(0).translateX(-160 / 750 * temp).step();
+    // ani_below_5.opacity(0).translateX(-74 / 750 * temp).step();
+    // ani_below_6.opacity(0).translateX(20 / 750 * temp).step();
+    // ani_image.opacity(0).step();
     extra.opacity(1).step();
     this.setData({
       ani_above_1: ani_above_1.export(),
