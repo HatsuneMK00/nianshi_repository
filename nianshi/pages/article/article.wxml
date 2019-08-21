@@ -1,32 +1,37 @@
 <!--pages/article/article.wxml-->
 
 <view class='article'>
-  <!--<movable-area class='movableArea'>
-<movable-view direction='all' class='movableView'> 
-<image src='https://www.nianshi.xyz/images/like.png'></image>
-</movable-view>-->
-  <view class='likeBind'>
+  <movable-area class='movableArea'>
+    <movable-view direction='all' class='movableView' catchtap='bindLikeTap'>
+      <image wx:if="{{Test.liked==false}}" src='https://www.nianshi.xyz/images/dislike.png' mode='scaleToFill' class='likeImage' ></image>
+      <image wx:else src='https://www.nianshi.xyz/images/like.png' mode='scaleToFill' class='likeImage' ></image>
+      <view class='likeNum'>
+        <text>{{Test.numofLike}}</text>
+      </view>
+    </movable-view>
+  </movable-area>
+    <!--<view class='likeBind'>
     <view class='likeBindImg'>
       <image class='likeBindImg' style='aspectFill' src='https://www.nianshi.xyz/images/like.png' catchtap='bindLikeTap'></image>
     </view>
     <view class='likeAmount'>
       <text class=''>{{Test.numofLike}}</text>
     </view>
-  </view>
-  <scroll-view scroll-y="true" style="height: 95vh; z-index:-1;">
-    <view class='title' style='font-size: {{titleFontSize}};'>
-      <text>{{Test.title}}\n</text>
-    </view>
-    <view class='timeAndAuthor' style='font-size: {{timeAndAuthorSize}}'>
-      <text>{{Test.time}}</text>
-      <text class='timeAndAuthor-author'>文/{{Test.author}}\n</text>
-    </view>
-    <view>
-      <image class='image' mode="widthFix" src="{{imagesrc}}"></image>
-    </view>
-    <view class='content' style='font-size: {{contentFontSize}};'>
-      <text>{{Test.text}}\n</text>
-    </view>
-  </scroll-view>
-  <!--</movable-area>-->
+    </view>-->
+    <scroll-view scroll-y="true" style="height: 95vh; z-index:-1;">
+      <view class='title' style='font-size: {{titleFontSize}};'>
+        <text>{{Test.title}}\n</text>
+      </view>
+      <view class='timeAndAuthor' style='font-size: {{timeAndAuthorSize}}'>
+        <text>{{Test.time}}</text>
+        <text class='timeAndAuthor-author'>文/{{Test.author}}\n</text>
+      </view>
+      <view>
+        <image class='image' mode="widthFix" src="{{imagesrc}}"></image>
+      </view>
+      <view class='content' style='font-size: {{contentFontSize}};'>
+        <text>{{Test.text}}\n</text>
+      </view>
+    </scroll-view>
+    <!--</movable-area>-->
 </view>
