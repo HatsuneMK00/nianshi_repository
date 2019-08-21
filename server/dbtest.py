@@ -504,12 +504,14 @@ def like_article():
     insert_query = """INSERT INTO `Like`
 VALUES({},'{}')"""
     update_query = """UPDATE `Articles`
-SET like_num=like_num+1
+    SET like_num=(SELECT COUNT(*) FROM `Like`
+WHERE article_id={})
 WHERE article_id={}"""
     try:
-        engine.execute(insert_query.format(int(article_id), openid))
-        engine.execute(update_query.format(article_id))
-    except:
+        engine.execute(insert_query.format(article_id, openid))
+        engine.execute(update_query.format(article_id,article_id))
+    except Exception as e:
+        # print(e)
         return "error"
     else:
         return "success"
@@ -522,12 +524,14 @@ def dislike_article():
     delete_query = """DELETE FROM `Like`
 WHERE article_id={} AND usr_open_id='{}'"""
     update_query = """UPDATE `Articles`
-SET like_num=like_num-1
+SET like_num=(SELECT COUNT(*) FROM `Like`
+WHERE article_id={})
 WHERE article_id={}"""
     try:
         engine.execute(delete_query.format(int(article_id), openid))
-        engine.execute(update_query.format(article_id))
-    except:
+        engine.execute(update_query.format(article_id,article_id))
+    except Exception as e:
+        # print(e)
         return "error"
     else:
         return "success"
@@ -574,6 +578,22 @@ def delete_read():
 WHERE article_id={} AND usr_open_id='{}'"""
     result = engine.execute(delete_read.format(article_id, openid))
     return "success"
+
+
+@app.route('/api/get_like_num')
+def get_like_num():
+    article_id = request.args.get('article_id')
+    select_query = """SELECT like_num FROM `Articles`
+WHERE article_id={}"""
+    result = engine.execute(select_query.format(article_id))
+    # result 对象不支持索引访问
+    # 只会有一个结果
+    # 返回值不能是python格式的字典
+    # 必须是json格式化后的字典
+    answer = {}
+    for row in result:
+        answer['like_num'] = row['like_num']
+    return jsonify(answer)
 
 
 if __name__ == '__main__':
