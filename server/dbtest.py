@@ -368,9 +368,9 @@ WHERE article_id={} AND usr_open_id='{}'"""
     result['security'] = is_secured
     for row in cursor:
         if row['article_num'] == 0:
-            result['liked'] = "false"
+            result['liked'] = False
         else:
-            result['liked'] = "true"
+            result['liked'] = True
     sess.close()
 
     return jsonify(result)
@@ -503,8 +503,12 @@ def like_article():
     openid = request.args.get('openid')
     insert_query = """INSERT INTO `Like`
 VALUES({},'{}')"""
+    update_query = """UPDATE `Articles`
+SET like_num=like_num+1
+WHERE article_id={}"""
     try:
         engine.execute(insert_query.format(int(article_id), openid))
+        engine.execute(update_query.format(article_id))
     except:
         return "error"
     else:
@@ -517,10 +521,14 @@ def dislike_article():
     openid = request.args.get('openid')
     delete_query = """DELETE FROM `Like`
 WHERE article_id={} AND usr_open_id='{}'"""
+    update_query = """UPDATE `Articles`
+SET like_num=like_num-1
+WHERE article_id={}"""
     try:
         engine.execute(delete_query.format(int(article_id), openid))
+        engine.execute(update_query.format(article_id))
     except:
-        return "success"
+        return "error"
     else:
         return "success"
 
