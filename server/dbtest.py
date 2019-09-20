@@ -26,7 +26,7 @@ engine = settings.ProductionConfig.engine
 app = Flask(__name__)
 app.config.from_object(settings.ProductionConfig)
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
 def allowed_file(filename):
@@ -468,10 +468,10 @@ def update_article():
     form = request.json
     # 这里在服务器端 字符类型是unicode 而在本地是str，因此在服务器端需要用encode对unicode类型进行编码转换为str类型！！！！
     n_article = form['article'].encode('utf-8')
-    print(n_article.__class__)
+    # print(n_article.__class__)
     article_id = form['article_id']
     title = form['title'].encode('utf-8')
-    print(title.__class__)
+    # print(title.__class__)
     update_query = """UPDATE Articles
 SET `text`='{}',passed=0,`title`='{}'
 WHERE article_id={}"""
@@ -580,6 +580,20 @@ WHERE article_id={} AND usr_open_id='{}'"""
     return "success"
 
 
+@app.route('/api/delete_article')
+def delete_article():
+    article_id = request.args.get('article_id')
+    delete_query = """DELETE FROM `Articles`
+WHERE article_id={}"""
+    try:
+        result = engine.execute(delete_query.format(article_id))
+    except Exception as e:
+        print(e)
+        return "delete fail"
+    else:
+        return "success"
+
+
 @app.route('/api/get_like_num')
 def get_like_num():
     article_id = request.args.get('article_id')
@@ -594,6 +608,32 @@ WHERE article_id={}"""
     for row in result:
         answer['like_num'] = row['like_num']
     return jsonify(answer)
+
+
+@app.route('/api/upload_article',methods=['POST'])
+def upload_article():
+    form = request.json
+    connect = sessionmaker(bind=engine)
+    usr_openid = form['openid'].encode('utf-8')
+    article = form['article'].encode('utf-8')
+    title = form['title'].encode('utf-8')
+    type = form['type'].encode('utf-8')
+    year = form['year'].encode('utf-8')
+    describe = article[0:20]
+    conn = connect()
+    user = conn.query(Accounts).filter_by(usr_open_id=usr_openid).all()[0]
+    sql_result = conn.query(func.max(Article.article_id).label('article_id')).one()
+    article_id = sql_result.article_id + 1
+    # 为满足外码约束 文章要先提交
+    obj1 = Article(article_id=article_id, title=title, auther_name=user.usr_name, like_num=0,
+                   describe=describe, usr_open_id=usr_openid,
+                   time=datetime.now().strftime("%Y-%m-%d"), age=year, type=type,
+                   text=article, image_num=0,
+                   passed=0)
+    conn.add(obj1)
+    conn.commit()
+    conn.close()
+    return "upload success"
 
 
 if __name__ == '__main__':
