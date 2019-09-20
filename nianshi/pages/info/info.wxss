@@ -4,14 +4,14 @@
 .notPassImage{
   position: absolute;
   z-index: 9;
-  top: -35rpx;
+  top: -45rpx;
   width: 80%;
   height: 130%;
 }
 
 .notExamined{
   position: absolute;
-  z-index: 9;
+  z-index: 11;
   font-size: 15;
   color: red;
 }
@@ -27,18 +27,16 @@
 .info-block{
   /* display: table;
   vertical-align: middle;
-  text-align: center; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 10vh;
-  width: 100vw;
-  border-top: 2px solid rgba(109, 108, 108, 1);
-  border-bottom: 2px outset rgba(109, 108, 108, 1);
-  background-color: rgba(236, 236, 236, 1);
+  text-align: center; */ 
   position: fixed;
-  top:0;
-  z-index: 10;
+  top: 1050rpx;
+  left: 575rpx;
+  z-index: 12;
+}
+.addButton{
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 60rpx
 }
 .info-block text{
   vertical-align: middle;
@@ -58,13 +56,25 @@
 }
 
 .reviseBottom{
-  width: 70px;
-  background-color: black;
+  width: 90rpx;
+  height: 90rpx;
   position: absolute;
-  top: 15rpx;
-  left: 610rpx;
+  top: 195rpx;
+  left: 320rpx;
   z-index: 9;
+  border-radius: 55rpx
 }
+
+.deleteBottom{
+  width: 90rpx;
+  height: 90rpx;
+  position: absolute;
+  top: 195rpx;
+  left: 520rpx;
+  z-index: 9;
+  border-radius: 55rpx
+}
+
 /* pages/articleList/articleList.wxss */
 .feed-item{
   width: 660rpx;
@@ -111,13 +121,16 @@
   margin-left: 20rpx;
 }
 .feed-source .inform .title_block{
+  height: 132rpx;
+  width: 470rpx;
   margin-right: 10rpx;
   padding-left: 0rpx;
   padding-right: 15rpx;
   font-size: 16px;
   text-align: center;
-  position: relative;
-  border-bottom: solid #cccece 4rpx
+  position: absolute;
+  border-bottom: solid #cccece 4rpx;
+  top: 20rpx
 }
 .feed-source .inform .inform-bottomleft{
   padding-right: 45rpx;
@@ -129,8 +142,12 @@
 .feed-source .inform .title{
   height:40rpx;
   width: 400rpx;
+  line-height: 50rpx;
   vertical-align: middle;
-  position: relative;
+  position: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
   bottom: 10rpx;
   font-size: 40rpx;
   font-weight: 300;

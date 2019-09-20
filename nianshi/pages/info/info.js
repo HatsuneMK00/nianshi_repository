@@ -22,6 +22,38 @@ Page({
       url: '/pages/articleRevise/articleRevise?id='+ e.currentTarget.id,
     })
   },
+  catchDeleteTap:function(e){
+    console.log(e.currentTarget.id);
+    wx.showModal({
+      title:"删除确认",
+      content:"是否确认删除这篇文章?",
+      confirmText:"确认",
+      cancelText:"取消",
+      success(res){
+        if(res.confirm){
+          console.log(e.currentTarget.id)
+          wx.request({
+            url: 'https://www.nianshi.xyz/api/delete_article',
+            data: {
+              article_id: e.currentTarget.id
+            },
+            success(res){
+              wx.showToast({
+                title: '删除成功'
+              })
+              var page = getCurrentPages().pop(); //当前页面
+              if (page == undefined || page == null) return;
+              page.onLoad(); //或者其它操作
+            }
+          })
+          console.log("confirmed");
+        }else if(res.cancel){
+          console.log("cancelled");
+        }
+      }
+    });
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */

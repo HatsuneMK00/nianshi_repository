@@ -122,6 +122,9 @@ Page({
       data: { 'article_id' : that.data.article_id, 'title' : that.data.article_title, 'article': that.data.article_content },
       success(res){
         console.log(res)
+        wx.showToast({
+          title: '修改成功'
+        })
       }
     })
   },
