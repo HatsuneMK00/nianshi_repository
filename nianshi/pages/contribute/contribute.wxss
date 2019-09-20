@@ -14,13 +14,9 @@
   border-right: 3px solid #b6b6b6;
   border-top: 3px solid #b6b6b6;
   border-bottom: 3px solid #b6b6b6;
+  border-radius: 5px;
+  background-color: #ffe5902f;
   font-family: "Times New Roman", "楷体";
-}
-
-.articleTitleText{
-  font-size: 35px;
-  margin-bottom: 5px;
-  color: blue;
 }
 
 .articleTitleContent{
@@ -42,13 +38,9 @@
   border-right: 3px solid #b6b6b6;
   border-top: 3px solid #b6b6b6;
   border-bottom: 3px solid #b6b6b6;
+  border-radius: 5px;
+  background-color: #ffe5902f;
   font-family: "Times New Roman", "楷体";
-}
-
-.articleContentText{
-  font-size: 35px;
-  margin-bottom: 5px;
-  color: blue;
 }
 
 .articleContentContent{

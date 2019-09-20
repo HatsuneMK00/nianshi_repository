@@ -9,6 +9,32 @@ Page({
     swiperIndex: 0,
     feedIndex: 0,
   },
+  topLoad: function (event) {
+    //   该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
+    var that = this;
+    wx.request({
+      url: 'https://www.nianshi.xyz/getArticleByLike',
+      success(res) {
+        // console.log(res)
+        var articles = [];
+        var notPass = 0;
+        for (var i = 0; i < res.data.length; i++) {
+          //console.log(res.data[i].passed);
+          if (res.data[i].passed != 1) {
+            notPass++;
+          }
+          if (res.data[i].passed != 0 && res.data[i].passed != 2) {
+            articles.push(res.data[i]);
+            articles[i - notPass].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
+          }
+        }
+        that.setData({
+          articles
+        })
+        console.log(articles)
+      }
+    })
+  },
   bindIndexTap: function (e) {
     // console.log(e);
    wx.navigateTo({

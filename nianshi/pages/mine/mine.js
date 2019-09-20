@@ -124,7 +124,7 @@ Page({
           }
           else {
             wx.navigateTo({
-              url: '/pages/info/info',
+              url: '/pages/mineManuscript/mineManuscript',
             })
           }
         }
@@ -133,7 +133,7 @@ Page({
     else if(e.currentTarget.id=="1"){
       //console.log(e.currentTarget.id)
       wx.navigateTo({
-        url: '/pages/list/list'
+        url: '/pages/history/history'
       })
     }
     else{

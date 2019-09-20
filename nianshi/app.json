@@ -4,7 +4,7 @@
     "pages/activity/activity",
     "pages/mine/mine",
     "pages/authorize/authorize",
-    "pages/info/info",
+    "pages/mineManuscript/mineManuscript",
     "pages/year/year",
     "pages/articleList/articleList",
     "pages/me/me",
@@ -16,7 +16,7 @@
     "pages/contribute/contribute",
     "pages/collection/collection",
     "pages/articleRevise/articleRevise",
-    "pages/list/list"
+    "pages/history/history"
   ],
   "window": {
     "navigationBarBackgroundColor": "#99cf66"

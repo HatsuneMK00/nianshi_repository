@@ -1,13 +1,11 @@
 <!--pages/articleRevise/articleRevise.wxml-->
 <view class="all">
   <view class="articleTitle">
-    <text class="articleTitleText">标题：</text>
-    <input class="articleTitleContent" value="{{Test.title}}"bindinput="setTitle"></input>
+    <input class="articleTitleContent" placeholder='文章标题' value="{{Test.title}}"bindinput="setTitle"></input>
   </view>
 
   <view class="articleContent">
-    <text class="articleContentText">正文：</text>
-    <textarea class="articleContentContent" maxlength="-1" value="{{Test.text}}" bindinput="setContent"></textarea>
+    <textarea class="articleContentContent" placeholder='正文' maxlength="-1" value="{{Test.text}}" bindinput="setContent"></textarea>
   </view>
 
   <view class='section'>

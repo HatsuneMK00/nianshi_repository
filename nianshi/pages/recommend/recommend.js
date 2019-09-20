@@ -74,34 +74,57 @@ Page({
     wx.navigateTo({
       url: '/pages/article/article?id=' + e.currentTarget.id,
     })
-    //wx.request({
-    //url: '/pages/article/article',
-    //data: { openid: app.globalData.openid}
-    //})
-    /*wx.request({
-      url: 'https://www.nianshi.xyz/getInfo',
-      data: { 'openid': that.data.openid },
+  },
+  topLoad: function (event) {
+    //   该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
+    var that = this;
+    wx.request({
+      url: 'https://www.nianshi.xyz/getArticleByLike',
+      success(res) {
+        // console.log(res)
+        var articles = [];
+        var notPass = 0;
+        for (var i = 0; i < res.data.length; i++) {
+          //console.log(res.data[i].passed);
+          if (res.data[i].passed != 1) {
+            notPass++;
+          }
+          if (res.data[i].passed != 0 && res.data[i].passed != 2) {
+            articles.push(res.data[i]);
+            articles[i - notPass].imagesrc = "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data[i].article_id;
+          }
+        }
+        that.setData({
+          articles
+        })
+        console.log(articles)
+      }
+    })
+    /* 刷新后只改变点赞数，暂时保留
+    var that = this;
+    wx.request({
+      url: 'https://www.nianshi.xyz/getArticleByLike',
       success(res) {
         console.log(res)
-        if (res.data['signed'] == 'false') {
-          wx.navigateTo({
-            url: '/pages/upload/upload',
-          })
+        console.log(that)
+        for (var i = 0; i < that.data.articles.length; i++) {
+          for(var j = 0; j < res.data.length; j++){
+            if(that.data.articles[i].article_id == res.data[j].article_id){
+              if (that.data.articles[i].numofLike != res.data[j].numofLike){
+                that.data.articles[i].numofLike = res.data[i].numofLike
+                break
+              }
+            }
+          }
+          //console.log(res.data[i].passed);
         }
-        else {
-          wx.navigateTo({
-            url: '/pages/article/article?id='+ e.currentTarget.id,
-          })
-        }
+        that.setData({
+          articles:that.data.articles
+        })
       }
-    })*/
+    })
+    */
   },
-    // wx.switchTab({
-    //   url: '',
-    // })({
-    //   // url: '../article/articleId?id=value'
-    //   url: '/pages/agepage/agepage'
-    // })
   bindLikeTap: function (e) {
     var that=this
     wx.request({
@@ -111,14 +134,6 @@ Page({
         openid:app.globalData.openid
       }
     })
-    // this.data.good_yet = 1 - this.data.good_yet
-    // if(this.data.good_yet == 1){
-    //   this.data.good_num = this.data.good_num + 1
-    // }
-    // else{
-    //   this.data.good_num = this.data.good_num - 1
-    // }
-    // console.log(e)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -136,8 +151,6 @@ Page({
         console.log(app.globalData.openid)
       }
     })
-    let pages = getCurrentPages();
-    let prevpage = pages[pages.length - 2];
     wx.request({
       url: 'https://www.nianshi.xyz/getArticleByLike',
       success(res) {
@@ -206,16 +219,9 @@ Page({
     ani_above_2.opacity(1).translateX(100 / 750 * temp).step();
     ani_above_3.opacity(1).translateX(74 / 750 * temp).step();
     ani_image.opacity(1).step();
-    // ani_above_1.opacity(0).translateX(-130 / 750 * temp).step();
-    // ani_above_2.opacity(0).translateX(-100 / 750 * temp).step();
-    // ani_above_3.opacity(0).translateX(-74 / 750 * temp).step();
     ani_below_4.opacity(1).translateX(160 / 750 * temp).step();
     ani_below_5.opacity(1).translateX(74 / 750 * temp).step();
     ani_below_6.opacity(1).translateX(-20 / 750 * temp).step();
-    // ani_below_4.opacity(0).translateX(-160 / 750 * temp).step();
-    // ani_below_5.opacity(0).translateX(-74 / 750 * temp).step();
-    // ani_below_6.opacity(0).translateX(20 / 750 * temp).step();
-    // ani_image.opacity(0).step();
     extra.opacity(1).step();
     this.setData({
       ani_above_1: ani_above_1.export(),
