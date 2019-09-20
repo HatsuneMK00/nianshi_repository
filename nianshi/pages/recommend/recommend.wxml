@@ -14,7 +14,7 @@
   <view class="start_now" >点击屏幕开启旅程！</view>
 </view> 
 
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="topLoad" >
+<view scroll-y="true" class="container" bindscrolltoupper="topLoad" >
   <swiper class="swiper-block" previous-margin="0rpx" next-margin="0rpx" current="{{swiperIndex}}" autoplay="{{autoplay}}" bindanimationfinish='swiperChange' indicator-dots='{{indicatorDots}}'>
     <block wx:for="{{imgUrls}}" wx:index="{{index}}">
       <swiper-item class="swiper-item" bindtap="{{item.bindfun}}">
@@ -61,4 +61,4 @@
         </view>
     </block>
   </view>
-</scroll-view>
+</view>
