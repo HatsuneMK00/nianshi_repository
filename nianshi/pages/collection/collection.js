@@ -79,7 +79,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    var page = getCurrentPages().pop(); //当前页面
+    if (page == undefined || page == null) return;
+    page.onLoad();
   },
 
   /**
