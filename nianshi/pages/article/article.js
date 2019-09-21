@@ -9,6 +9,7 @@ Page({
     titleFontSize: '',
     contentFontSize: '',
     timeAndAuthorSize: '',
+    hasImg: true,
     imagesrc: ''
   },
   bindLikeTap: function(e) {
@@ -31,8 +32,16 @@ Page({
           that.data.Test.liked = !that.data.Test.liked
           if (that.data.Test.liked == true) {
             that.data.Test.numofLike = that.data.Test.numofLike + 1
+            wx.showToast({
+              title: '收藏成功\^o^/',
+              icon: 'none'
+            })
           } else {
             that.data.Test.numofLike = that.data.Test.numofLike - 1
+            wx.showToast({
+              title: '已取消收藏~',
+              icon: 'none'
+            })
           }
         } else if (res.data == 'error') {
           console.log('res error')
@@ -40,7 +49,6 @@ Page({
         that.setData({
           Test: that.data.Test
         })
-
         /* 修改上一页的数据 */
         var pages = getCurrentPages();
         var currPage = pages[pages.length - 1];
@@ -116,8 +124,6 @@ Page({
         var winWidth = wx.getSystemInfoSync().windowWidth
         var winHeight = wx.getSystemInfoSync().windowHeight
 
-        console.log(winWidth)
-
         console.log(res.data)
         that.setData({
           Test: res.data
@@ -125,8 +131,19 @@ Page({
         that.setData({
           imagesrc: "https://www.nianshi.xyz/articleImage?image_id=0&article_id=" + res.data.article_id
         })
+        wx.request({
+          url: that.data.imagesrc,
+          success: function(res){
+            console.log(res)
+            if (res.data == 'no such image'){
+              that.setData({
+                hasImg: false
+              })
+            }
+          }
+        })
         var titleLength = res.data.title.length
-        console.log(titleLength)
+        console.log(that)
         if (titleLength <= 8 && winWidth <= 500) {
           that.setData({
             titleFontSize: "42px",

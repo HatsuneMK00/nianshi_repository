@@ -25,7 +25,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    wx.showModal({
+      title: '提示',
+      content: '在网页端可以上传图片等更多信息',
+      showCancel: false
+    })
   },
 
   /**

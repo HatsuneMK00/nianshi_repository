@@ -27,7 +27,7 @@
         <text class='timeAndAuthor-author'>文/{{Test.author}}\n</text>
       </view>
       <view>
-        <image class='image' mode="widthFix" src="{{imagesrc}}"></image>
+        <image wx:if="{{hasImg}}" class='image' mode="widthFix" src="{{imagesrc}}"></image>
       </view>
       <view class='content' style='font-size: {{contentFontSize}};'>
         <text>{{Test.text}}\n</text>
