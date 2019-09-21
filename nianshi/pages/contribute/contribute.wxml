@@ -1,4 +1,4 @@
-<view class="all">
+<scroll-view scroll-y="true" class="all">
   <view class="articleTitle">
     <input class="articleTitleContent" placeholder='文章标题' value="{{Test.title}}"bindinput="setTitle"></input>
   </view>
@@ -7,9 +7,27 @@
     <textarea class="articleContentContent" placeholder='正文' maxlength="-1" value="{{Test.text}}" bindinput="setContent"></textarea>
   </view>
 
-  <view class='section'>
+  <view class="selection">
+    <view class="selectionTitle">年代</view>
+      <picker bindchange="bindYearPickerChange" value="{{yearIndex}}" range="{{yearArray}}">
+        <view class="picker">
+          {{yearArray[yearIndex]}}
+        </view>
+      </picker>
+  </view>
+
+  <view class="selection">
+    <view class="selectionTitle">事儿</view>
+      <picker bindchange="bindAffairPickerChange" value="{{affairIndex}}" range="{{affairArray}}">
+        <view class="picker">
+          {{affairArray[affairIndex]}}
+        </view>
+      </picker>
+  </view>
+
+  <view class='buttonArea'>
     <view class='btn-area'>
-      <button type='primary' bindtap='articleRevisePost'>提交修改</button>
+      <button type='primary' bindtap='articleUpdatePost'>确认投稿</button>
     </view>
   </view>
-</view>
+</scroll-view>
