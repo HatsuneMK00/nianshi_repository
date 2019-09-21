@@ -1,4 +1,4 @@
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="topLoad">
+<view scroll-y="true" class="container" bindscrolltoupper="topLoad">
   <view>
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item" bindtap='bindIndexTap' id="{{item.article_id}}">
@@ -35,4 +35,4 @@
       </view>
     </block>
   </view>
-</scroll-view>
+</view>
