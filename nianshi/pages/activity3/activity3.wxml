@@ -1,4 +1,4 @@
-<image class="titleimage" src='../../images/旅行推荐.png'>
+<image class="titleimage" src='../../images/tour recommend.png'>
 </image>
 
 <scroll-view class="top" >
@@ -22,3 +22,29 @@
  </view>
 </scroll-view>
 
+<image class="whiteboard" src='../../images/white.png'>
+</image>
+
+<image class="titleimage" src='../../images/item recommend.png'>
+</image>
+
+<scroll-view class="top" >
+  <view class="topmain"> 
+  <view class="information" wx:for="{{find_items2}}" wx:key="{{index}}" wx:for-item="find_items2">
+    <image class="find_image" src='{{find_items2.image}}'></image> 
+    <view class="brief_text">{{find_items2.brieftext}}</view>
+   
+    <view class="findcontain">
+      <image class="avatar" src='{{find_items2.avatar}}'></image> 
+      <view class="nickname">{{find_items2.nickname}}</view>
+
+    <view class="LikeLike">
+     <image wx:if="{{find_items2.isLike==true}}" class="Like" src='/images/good.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
+    <image wx:if="{{find_items2.isLike==false}}" class="Like" src='/images/nogood.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
+    <view class="isLikenumber">{{find_items2.isLikenumber}}</view>
+  </view>
+   
+    </view> 
+ </view>
+ </view>
+</scroll-view>
