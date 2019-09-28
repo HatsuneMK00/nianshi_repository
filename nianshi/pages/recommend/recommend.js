@@ -15,7 +15,7 @@ Page({
         bindfun: 'bindActTap2'
       },
       {
-        src: '../../images/社区活动.png',
+        src: '../../images/社区活动.jpg',
         bindfun: 'bindActTap3'
       },
     ],
