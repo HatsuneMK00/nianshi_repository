@@ -50,6 +50,56 @@ Page({
         isLike: false,
       },
     ],
+    find_items2: [
+      {
+        image: '../../images/image7.jpg',
+        brieftext: '定时药物盒',
+        avatar: '../../images/avatar7.png',
+        nickname: '安诚老年用品',
+        isLikenumber: 134,
+        isLike: false,
+      },
+      {
+        image: '../../images/image8.jpeg',
+        brieftext: 'GPS导航拐杖',
+        avatar: '../../images/avatar8.png',
+        nickname: '康心便民',
+        isLikenumber: 248,
+        isLike: false,
+      },
+      {
+        image: '../../images/image9.png',
+        brieftext: '水龙头瓶盖',
+        avatar: '../../images/avatar9.png',
+        nickname: '源兴有限公司',
+        isLikenumber: 112,
+        isLike: false,
+      },
+      {
+        image: '../../images/image10.png',
+        brieftext: '立式放大镜',
+        avatar: '../../images/avatar10.png',
+        nickname: '福康堂',
+        isLikenumber: 197,
+        isLike: false,
+      },
+      {
+        image: '../../images/image11.png',
+        brieftext: '多功能拐杖',
+        avatar: '../../images/avatar11.png',
+        nickname: '得立荣',
+        isLikenumber: 247,
+        isLike: false,
+      },
+      {
+        image: '/images/image12.png',
+        brieftext: '可折叠洗澡椅',
+        avatar: '/images/avatar12.png',
+        nickname: '禾兴老年',
+        isLikenumber: 146,
+        isLike: false,
+      },
+    ],
   },
   //事件处理函数
 
@@ -65,6 +115,15 @@ Page({
     this.setData({
       find_items: this.data.find_items,
     })
+    this.data.find_items2[find_index].isLike = !this.data.find_items2[find_index].isLike;
+    if (this.data.find_items2[find_index].isLike) {
+      this.data.find_items2[find_index].isLikenumber++;
+    }
+    else {
+      this.data.find_items2[find_index].isLikenumber--;
+    }
+    this.setData({
+      find_items2: this.data.find_items2,
+    })
   },
-
 })

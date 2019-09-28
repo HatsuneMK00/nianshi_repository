@@ -9,7 +9,7 @@ page{
 .CircleList{
   background: white;
   margin-bottom: 1px;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 15px solid white;
   border-top: 1px solid whitesmoke;
 }
 
@@ -31,7 +31,7 @@ page{
 
 .user-name{
   display: flex;
-  height: 50rpx;
+  height: 80rpx;
   line-height: 50rpx;
   font-size: 18px;
   color: rgb(88, 103, 138);
@@ -42,7 +42,7 @@ page{
 .user-content{
   display: flex;
   font-size: 18px;
-  line-height: 50rpx;
+  line-height: 65rpx;
   margin-left: 10rpx;
 }
 
@@ -121,14 +121,14 @@ page{
 .zan-user-view{
   display: flex;
   float: left;
-  height: 40rpx;
+  height: 50rpx;
   margin-left: 10rpx;
   align-content: center;
 }
 .zan-user{
   font-size: 12px;
-  line-height: 40rpx;
-  height: 40rpx;
+  line-height: 50rpx;
+  height: 50rpx;
   color: rgb(88, 103, 138);
 }
 
@@ -145,7 +145,7 @@ page{
 
 .discuss{
   background: rgb(235, 235, 235);
-  line-height: 35rpx;
+  line-height: 45rpx;
 }
 
 .discuss label{

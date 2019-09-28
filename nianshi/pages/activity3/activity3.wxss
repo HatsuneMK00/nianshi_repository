@@ -1,3 +1,8 @@
+.whiteboard{
+  width: 750rpx; 
+  height: 40rpx;
+}
+
 .titleimage{
   width: 750rpx; 
   height: 90rpx;
