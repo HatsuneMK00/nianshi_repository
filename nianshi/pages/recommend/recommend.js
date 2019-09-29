@@ -11,11 +11,11 @@ Page({
         bindfun: 'bindActTap1'
       },
       {
-        src: '../../images/好歌分享.png',
+        src: 'https://www.nianshi.xyz/images/goodSongSharing.jpg',
         bindfun: 'bindActTap2'
       },
       {
-        src: '../../images/社区活动.png',
+        src: 'https://www.nianshi.xyz/images/communityActivity.jpg',
         bindfun: 'bindActTap3'
       },
     ],
