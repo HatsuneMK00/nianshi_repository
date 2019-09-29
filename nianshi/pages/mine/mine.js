@@ -39,29 +39,22 @@ Page({
     })
     wx.getSetting({
       success: function(res) {
-        console.log(res)
-        if(!res.authSetting["scope.userInfo"]&&(!app.globalData.asked)){
-          wx.navigateTo({
-            url: '/pages/authorize/authorize',
-          })
-        }
-        else{
-          wx.getUserInfo({
-            success(res){
-              app.globalData.nickName = res.userInfo.nickName
-              app.globalData.avatarUrl = res.userInfo.avatarUrl
-              that.setData({
-                username: res.userInfo.nickName,
-                avatar: res.userInfo.avatarUrl
-              })
-            },
-            fail(res){
-              that.setData({
-                avatar:'/images/logo.png'
-              })
-            }
-          })
-        }
+        wx.getUserInfo({
+          success(res){
+            app.globalData.nickName = res.userInfo.nickName
+            app.globalData.avatarUrl = res.userInfo.avatarUrl
+            that.setData({
+              username: res.userInfo.nickName,
+              avatar: res.userInfo.avatarUrl
+            })
+          },
+          fail(res){
+            that.setData({
+              avatar:'/images/logo.png',
+              username: '点击登录'
+            })
+          }
+        })
       },
       fail: function(res) {
         console.log(res)
