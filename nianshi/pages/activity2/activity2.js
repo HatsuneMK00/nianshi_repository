@@ -6,7 +6,7 @@ Page({
     DataSource:[1,1,1],
     icon: '../../images/logo.png',
     content: '我衷心地谢谢您\n一番关怀和情意\n如果没有你给我爱的滋润\n我生命将会失去意义\n我们在春风里陶醉飘逸\n仲夏夜里绵绵细语\n聆听那秋虫它轻轻在\n呢喃迎雪花飘满地\n我的平凡岁月里有了一个你\n显得充满活力\n❄️',
-    resource: ['../../images/歌曲.jpg'
+    resource: ['https://www.nianshi.xyz/images/song.jpg'
     ],
     zanSource: ['大佬A', '大佬B', '大佬C', '大佬D', '大佬E', '大佬F'],
     contnet: [{

@@ -22,10 +22,10 @@
  </view>
 </scroll-view>
 
-<image class="whiteboard" src='../../images/white.png'>
+<image class="whiteboard" src='https://www.nianshi.xyz/images/white.png'>
 </image>
 
-<image class="titleimage" src='../../images/item recommend.png'>
+<image class="titleimage" src='https://www.nianshi.xyz/images/item_recommend.png'>
 </image>
 
 <scroll-view class="top" >
