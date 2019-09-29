@@ -11,11 +11,11 @@ Page({
         bindfun: 'bindActTap1'
       },
       {
-        src: '../../images/好歌分享.png',
+        src: '/images/好歌分享.png',
         bindfun: 'bindActTap2'
       },
       {
-        src: '../../images/社区活动.jpg',
+        src: '/images/社区活动.jpg',
         bindfun: 'bindActTap3'
       },
     ],
