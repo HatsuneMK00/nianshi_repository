@@ -6,6 +6,11 @@ Page({
     var app = getApp();
     app.asked = true
   },
+  notAuthorizing: function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
