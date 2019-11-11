@@ -17,7 +17,7 @@ Page({
         text: 'tg'
       }, {
         url: 'https://www.nianshi.xyz/images/fk.png',
-        image: 'iconfont icon-fk',
+        image: 'iconfont icon-fk', 
         text: 'fk'
       }
     ],

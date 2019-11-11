@@ -59,7 +59,7 @@ Page({
     let pages = getCurrentPages();
     let prevpage = pages[pages.length - 2];
     var method ='getArticleByAge?age=';
-    var types = ['亲情','友情','爱情'];
+    var types = ['亲情','友情','爱情','社会','历史','童年','家乡','美食','自传','纪实'];
     if(prevpage.route=='pages/year/year'){
       method = 'getArticleByAge?age='
     }

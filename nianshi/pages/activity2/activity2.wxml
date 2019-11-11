@@ -22,11 +22,11 @@
         <view class='TDD-view'>
           <label>2019-07-31 10:14:23</label>
           <button bindtap='delete'>删除</button>
-          <image data-isShow='{{isShow}}' bindtap='TouchDiscuss' src='/images/wxdiscuss.png'></image>
+          <image data-isShow='{{isShow}}' bindtap='TouchDiscuss' src='https://www.nianshi.xyz/images/wxdiscuss.png'></image>
         </view>
         <view class='zan-view'>
           <view class='trigon-view'>
-            <image mode='aspectFill' class='trigon' src='/images/trigon.png'></image>
+            <image mode='aspectFill' class='trigon' src='https://www.nianshi.xyz/images/trigon.png'></image>
           </view>
           <view class='zan-bg-view'>
             <view class='zan-user-view' wx:for='{{zanSource}}'>

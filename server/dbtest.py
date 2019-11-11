@@ -504,9 +504,7 @@ def like_article():
     insert_query = """INSERT INTO `Like`
 VALUES({},'{}')"""
     update_query = """UPDATE `Articles`
-    SET like_num=(SELECT COUNT(*) FROM `Like`
-WHERE article_id={})
-WHERE article_id={}"""
+    SET like_num=like_num+1"""
     try:
         engine.execute(insert_query.format(article_id, openid))
         engine.execute(update_query.format(article_id,article_id))
@@ -524,9 +522,7 @@ def dislike_article():
     delete_query = """DELETE FROM `Like`
 WHERE article_id={} AND usr_open_id='{}'"""
     update_query = """UPDATE `Articles`
-SET like_num=(SELECT COUNT(*) FROM `Like`
-WHERE article_id={})
-WHERE article_id={}"""
+SET like_num=like_num-1"""
     try:
         engine.execute(delete_query.format(int(article_id), openid))
         engine.execute(update_query.format(article_id,article_id))

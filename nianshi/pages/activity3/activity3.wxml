@@ -1,4 +1,4 @@
-<image class="titleimage" src='../../images/tour recommend.png'>
+<image class="titleimage" src='https://www.nianshi.xyz/images/tour recommend.png'>
 </image>
 
 <scroll-view class="top" >
@@ -12,8 +12,8 @@
       <view class="nickname">{{find_items.nickname}}</view>
 
     <view class="LikeLike">
-     <image wx:if="{{find_items.isLike==true}}" class="Like" src='/images/good.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
-    <image wx:if="{{find_items.isLike==false}}" class="Like" src='/images/nogood.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
+     <image wx:if="{{find_items.isLike==true}}" class="Like" src='https://www.nianshi.xyz/images/good.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
+    <image wx:if="{{find_items.isLike==false}}" class="Like" src='https://www.nianshi.xyz/images/nogood.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
     <view class="isLikenumber">{{find_items.isLikenumber}}</view>
   </view>
    
@@ -39,8 +39,8 @@
       <view class="nickname">{{find_items2.nickname}}</view>
 
     <view class="LikeLike">
-     <image wx:if="{{find_items2.isLike==true}}" class="Like" src='/images/good.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
-    <image wx:if="{{find_items2.isLike==false}}" class="Like" src='/images/nogood.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
+     <image wx:if="{{find_items2.isLike==true}}" class="Like" src='https://www.nianshi.xyz/images/good.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
+    <image wx:if="{{find_items2.isLike==false}}" class="Like" src='https://www.nianshi.xyz/images/nogood.png' data-index="{{index}}" bindtap="find_checkboxChange"></image> 
     <view class="isLikenumber">{{find_items2.isLikenumber}}</view>
   </view>
    
