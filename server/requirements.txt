@@ -8,7 +8,7 @@ idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.0
-Pillow==5.4.1
+Pillow==9.0.1
 PyMySQL==0.9.3
 requests==2.21.0
 SQLAlchemy==1.2.16
